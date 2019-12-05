@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { compose } from 'recompose';
 
 import Layout from '../components/layout';
@@ -9,14 +9,22 @@ import {
 import { UserList } from '../components/Users';
 import * as ROLES from '../constants/roles';
 
-const AdminPageBase = () => (
-  <Fragment>
-    <h1>Admin</h1>
-    <p>The Admin Page is accessible by every signed in admin user.</p>
+const AdminPageBase = (props) => {
+  useEffect(() => {
+    console.log(props, 'user');
+  }, []);
 
-    <UserList />
-  </Fragment>
-);
+  return (
+    <Fragment>
+      <h1>Admin</h1>
+      <p>
+        The Admin Page is accessible by every signed in admin user.
+      </p>
+
+      <UserList />
+    </Fragment>
+  );
+};
 
 const condition = authUser =>
   authUser && !!authUser.roles[ROLES.ADMIN];

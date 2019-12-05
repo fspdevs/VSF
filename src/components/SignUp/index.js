@@ -11,6 +11,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   isAdmin: false,
+  isRep: false,
   error: null,
 };
 
@@ -32,13 +33,16 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin } = this.state;
+    const { username, email, passwordOne, isAdmin, isRep } = this.state;
     const roles = {};
 
     if (isAdmin) {
       roles[ROLES.ADMIN] = ROLES.ADMIN;
     }
-
+    if (isRep) {
+      roles[ROLES.REP] = ROLES.REP;
+    }
+ 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -82,6 +86,7 @@ class SignUpFormBase extends Component {
       passwordOne,
       passwordTwo,
       isAdmin,
+      isRep,
       error,
     } = this.state;
 
@@ -127,6 +132,15 @@ class SignUpFormBase extends Component {
             name="isAdmin"
             type="checkbox"
             checked={isAdmin}
+            onChange={this.onChangeCheckbox}
+          />
+        </label>
+        <label>
+          Rep:
+          <input
+            name="isRep"
+            type="checkbox"
+            checked={isRep}
             onChange={this.onChangeCheckbox}
           />
         </label>

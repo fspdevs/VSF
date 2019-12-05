@@ -72,6 +72,7 @@ class Messages extends Component {
     this.props.firebase.messages().push({
       text: this.state.text,
       userId: authUser.uid,
+      userName: authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
 
