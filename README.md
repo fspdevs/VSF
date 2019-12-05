@@ -16,3 +16,4 @@
 # FUTURE Implementations
 
 - esignature
+- try updating to latest versions of packages --yarn upgrade-interactive --latest--
