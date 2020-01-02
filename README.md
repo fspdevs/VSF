@@ -9,7 +9,7 @@
 - reactHooks
 - STyle a Layout
 - Images/Logo/Colors (probably jack some colros from VS)
-    - Have to create a new logo in illustratorF
+  - Have to create a new logo in illustrator?
 - ~~ make it so users can only see the messages/clients that they created ~~
 - Make components that lists each users message for the Admin once they choose their name from the userlist
 - change messages tp clients and users to Reps
@@ -34,10 +34,10 @@
 
 ## Fonts
 
-- Nunito or Nunito Sans
-- Roboto
-- Montserrat
-- Nanum Gothic
+- Nunito or Nunito Sans (Headings, Titles)
+- Montserrat (TExt, body )
+- Spectral (menu, lists)
+- Karla (Buttons, links)
 
 ## modules
 
@@ -50,3 +50,4 @@
 
     - Table
     - button
+    - appBar
