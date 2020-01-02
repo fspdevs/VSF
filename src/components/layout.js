@@ -10,7 +10,9 @@ const drawerWidth = 240;
 const styles = theme => ({
   root: {
     // display: 'flex',
-    width: "75%",
+    width: '75%',
+    padding: 20,
+    textAlign: 'center',
   },
   toolbar: {
     paddingRight: 24,
@@ -80,8 +82,8 @@ const styles = theme => ({
     alignItems: 'center',
   },
   chartContainer: {
-    display: "flex",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
   },
 });
 
@@ -125,7 +127,6 @@ const AppWithAuthentication = withAuthentication(
           component="div"
           className={classes.chartContainer}
         >
-          
           <Paper className={classes.root}>{children}</Paper>
         </Typography>
       </main>
