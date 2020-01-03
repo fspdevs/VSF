@@ -84,6 +84,7 @@ const styles = theme => ({
   chartContainer: {
     display: 'flex',
     justifyContent: 'center',
+    width: '100%',
   },
 });
 

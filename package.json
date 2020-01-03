@@ -23,6 +23,7 @@
     "gatsby-plugin-sitemap": "^2.2.24",
     "gatsby-source-filesystem": "^2.1.43",
     "gatsby-transformer-sharp": "^2.3.9",
+    "material-table": "^1.54.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",

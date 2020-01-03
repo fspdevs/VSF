@@ -2,13 +2,13 @@
 
 # TODO:
 
+- Edit signup to account for all reps data and reset Firebase DB
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase!!
-- gatsby-config/plugin installs
 - siteconfig
 - Material UI, tables, textfield, form,
 - reactHooks
-- STyle a Layout
-- Images/Logo/Colors (probably jack some colros from VS)
+- STyle & Layout
+- Images/Logo/Colors (probably jack some colors from VS)
   - Have to create a new logo in illustrator?
 - ~~ make it so users can only see the messages/clients that they created ~~
 - Make components that lists each users message for the Admin once they choose their name from the userlist
@@ -17,6 +17,7 @@
 # FUTURE Implementations
 
 - esignature
+- Switch form reg8ular table to MAterial-Table
 - try updating to latest versions of packages --yarn upgrade-interactive --latest--
 
 # Styling
