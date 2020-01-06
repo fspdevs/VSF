@@ -19,6 +19,11 @@ const styles = {
   },
 };
 //! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
+
+/////////////////////
+/////////////////////
+/////////////////////
+/////////////////////
 const Clients = props => {
   //Handling initFirebase which checks for firebase initilizaiton in the component then listens for clients in the database
   const [_initFirebase, set_initFirebase] = useState(false);
@@ -54,7 +59,7 @@ const Clients = props => {
         props.firebase.clients().off();
       };
     }
-  }, []);
+  });
 
   const onListenForClients = () => {
     updateState({ loading: true });
@@ -93,6 +98,9 @@ const Clients = props => {
       createdAt: props.firebase.serverValue.TIMESTAMP,
     });
     updateState({ createClient: false });
+    console.log(clients, 'clients array');
+    console.log('it works')
+    e.preventDefault();
   };
 
   const {
@@ -109,73 +117,63 @@ const Clients = props => {
     <AuthUserContext.Consumer>
       {authUser => (
         <>
-          {clients && <ClientList clients={clients} authUser={authUser} />}
-          {!clients && <p>There are no clients ......</p>}
-          {!createClient && (
-            <Fab variant="extended" onClick={makeClient}>
-              <AddIcon />
-              Create Client
-            </Fab>
-          )}
-          {createClient && (
-            <form
-              className={props.classes.root}
-              noValidate
-              autoComplete="off"
-            >
-              <TextField
-                className={props.classes.input}
-                id="outlined-basic"
-                label="First Name"
-                variant="outlined"
-                type="text"
-                value={firstName}
-                onChange={e =>
-                  updateState({ firstName: e.target.value })
-                }
-              />
-              <TextField
-                className={props.classes.input}
-                id="outlined-basic"
-                label="Last Name"
-                variant="outlined"
-                type="text"
-                value={lastName}
-                onChange={e =>
-                  updateState({ lastName: e.target.value })
-                }
-              />
-              <TextField
-                className={props.classes.input}
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                type="email"
-                value={email}
-                onChange={e => updateState({ email: e.target.value })}
-              />
-              <TextField
-                className={props.classes.input}
-                id="outlined-basic"
-                label="Phone #"
-                variant="outlined"
-                type="text"
-                value={phone}
-                onChange={e => updateState({ phone: e.target.value })}
-              />
-              <Button
-                startIcon={<SaveIcon />}
-                onClick={e => uploadClient(e, authUser)}
-              >
-                Add User
-              </Button>
-              {/* For now this button just changes the state to hide form after submission, will need to create logic for adding clients to firebase DB */}
-            </form>
-          )}
-          {firstName && <div>First Name: {firstName}</div>}
-          {lastName && <div> Last Name: {lastName}</div>}
-          {email && <div>Email: {email}</div>}
-          {phone && <div>Phone Number: {phone}</div>}
+          <ClientList clients={clients} authUser={authUser} />
+
+          <Fab variant="extended" onClick={makeClient}>
+            <AddIcon />
+            Create Client
+          </Fab>
+
+          <form
+            className={props.classes.root}
+            noValidate
+            autoComplete="off"
+            onSubmit={e => uploadClient(e, authUser)}
+          >
+            <TextField
+              className={props.classes.input}
+              id="outlined-basic"
+              label="First Name"
+              variant="outlined"
+              type="text"
+              value={firstName}
+              onChange={e =>
+                updateState({ firstName: e.target.value })
+              }
+            />
+            <TextField
+              className={props.classes.input}
+              id="outlined-basic"
+              label="Last Name"
+              variant="outlined"
+              type="text"
+              value={lastName}
+              onChange={e =>
+                updateState({ lastName: e.target.value })
+              }
+            />
+            <TextField
+              className={props.classes.input}
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              type="email"
+              value={email}
+              onChange={e => updateState({ email: e.target.value })}
+            />
+            <TextField
+              className={props.classes.input}
+              id="outlined-basic"
+              label="Phone #"
+              variant="outlined"
+              type="text"
+              value={phone}
+              onChange={e => updateState({ phone: e.target.value })}
+            />
+            <Button type="submit" startIcon={<SaveIcon />}>
+              Add User
+            </Button>
+          </form>
         </>
       )}
     </AuthUserContext.Consumer>

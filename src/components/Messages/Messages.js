@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import MessageList from './MessageList';
-import Clients from '../Clients/Clients';
 
 class Messages extends Component {
   _initFirebase = false;
@@ -138,7 +137,7 @@ class Messages extends Component {
 
             {!messages && <div>There are no messages ...</div>}
 
-            {/* <form
+            <form
               onSubmit={event =>
                 this.onCreateMessage(event, authUser)
               }
@@ -149,8 +148,7 @@ class Messages extends Component {
                 onChange={this.onChangeText}
               />
               <button type="submit">Send</button>
-            </form> */}
-            <Clients />
+            </form>
           </div>
         )}
       </AuthUserContext.Consumer>

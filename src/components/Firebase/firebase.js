@@ -104,7 +104,7 @@ class Firebase {
 
   // *** Client API ***
 
-  clients = uid => this.db.ref(`clients/${uid}`);
+  client = uid => this.db.ref(`clients/${uid}`);
 
   clients = () => this.db.ref('clients');
 }
