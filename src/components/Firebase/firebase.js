@@ -96,11 +96,17 @@ class Firebase {
 
   users = () => this.db.ref('users');
 
-  // *** Message API ***
+  //! *** Message API ***  need to change to clients API
 
   message = uid => this.db.ref(`messages/${uid}`);
 
   messages = () => this.db.ref('messages');
+
+  // *** Client API ***
+
+  clients = uid => this.db.ref(`clients/${uid}`);
+
+  clients = () => this.db.ref('clients');
 }
 
 let firebase;

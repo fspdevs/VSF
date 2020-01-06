@@ -21,6 +21,7 @@ import {
 } from '@material-ui/core';
 import {
   Menu as MenuIcon,
+  ChevronRight as ChevronRightIcon,
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
   EventNote as EventNoteIcon,
@@ -70,6 +71,7 @@ const styles = theme => ({
   },
   title: {
     flexGrow: 1,
+    fontSize: 40,
   },
   drawerPaper: {
     // position: 'relative',
@@ -256,8 +258,11 @@ const NavigationNonAuth = ({
       open={drawerOpen}
     >
       <div className={classes.toolbarIcon}>
-        <IconButton onClick={handleDrawerClose}>
-          <ChevronLeftIcon />
+        <IconButton
+          onClick={drawerOpen ? handleDrawerClose : handleDrawerOpen}
+        >
+          {drawerOpen && <ChevronLeftIcon />}
+          {!drawerOpen && <MenuIcon />}
         </IconButton>
       </div>
       <Divider />

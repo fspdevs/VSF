@@ -64,6 +64,10 @@ class Messages extends Component {
     this.props.firebase.messages().off();
   }
 
+  /////////////////////////////////
+  //! //// /MEssage creation funcitons/////
+  ////////////////////////////////
+
   onChangeText = event => {
     this.setState({ text: event.target.value });
   };
@@ -101,6 +105,12 @@ class Messages extends Component {
       this.onListenForMessages,
     );
   };
+
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
+  ///////////////////////
 
   render() {
     const { text, messages, loading } = this.state;

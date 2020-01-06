@@ -12,13 +12,14 @@
   - Have to create a new logo in illustrator?
 - ~~ make it so users can only see the messages/clients that they created ~~
 - Make components that lists each users message for the Admin once they choose their name from the userlist
-- change messages tp clients and users to Reps
+- change messages to clients and users to Reps
 
 # FUTURE Implementations
 
 - esignature
 - Switch form reg8ular table to MAterial-Table
-- try updating to latest versions of packages --yarn upgrade-interactive --latest--
+- try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
+- Change all forms into Material Ui forms with validation(optional)
 
 # Styling
 
