@@ -36,7 +36,6 @@ class Messages extends Component {
 
   onListenForMessages = () => {
     this.setState({ loading: true });
-
     this.props.firebase
       .messages()
       .orderByChild('createdAt')
@@ -49,11 +48,11 @@ class Messages extends Component {
             ...messageObject[key],
             uid: key,
           }));
-
           this.setState({
             messages: messageList,
             loading: false,
           });
+          console.log(this.state.messages, 'messages');
         } else {
           this.setState({ messages: null, loading: false });
         }
@@ -85,6 +84,7 @@ class Messages extends Component {
     event.preventDefault();
   };
 
+  // TODO: implement this edit and delete for Clients
   onEditMessage = (message, text) => {
     const { uid, ...messageSnapshot } = message;
 

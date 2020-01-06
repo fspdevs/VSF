@@ -1,10 +1,11 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { TextField, Fab, Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import SaveIcon from '@material-ui/icons/Save';
+import ClientList from './ClientList';
 const styles = {
   root: {
     backgroundColor: 'lightgrey',
@@ -17,10 +18,10 @@ const styles = {
     textAlign: 'center',
   },
 };
-
+//! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
 const Clients = props => {
-  const _initFirebase = false;
-
+  //Handling initFirebase which checks for firebase initilizaiton in the component then listens for clients in the database
+  const [_initFirebase, set_initFirebase] = useState(false);
   const [state, updateState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -37,8 +38,9 @@ const Clients = props => {
 
   const firebaseInit = () => {
     if (props.firebase && !_initFirebase) {
-      _initFirebase = true;
+      set_initFirebase(true);
       onListenForClients();
+      console.log('hittin', props);
     }
   };
 
@@ -77,10 +79,19 @@ const Clients = props => {
       });
   };
 
+  //This funciton opens up the form to upload a client's info
   const makeClient = () => {
     updateState({ createClient: true });
   };
-  const uploadClient = () => {
+  const uploadClient = (e, authUser) => {
+    props.firebase.clients().push({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      phone: phone,
+      userId: authUser.uid,
+      createdAt: props.firebase.serverValue.TIMESTAMP,
+    });
     updateState({ createClient: false });
   };
 
@@ -98,6 +109,8 @@ const Clients = props => {
     <AuthUserContext.Consumer>
       {authUser => (
         <>
+          {clients && <ClientList clients={clients} authUser={authUser} />}
+          {!clients && <p>There are no clients ......</p>}
           {!createClient && (
             <Fab variant="extended" onClick={makeClient}>
               <AddIcon />
@@ -150,7 +163,10 @@ const Clients = props => {
                 value={phone}
                 onChange={e => updateState({ phone: e.target.value })}
               />
-              <Button startIcon={<SaveIcon />} onClick={uploadClient}>
+              <Button
+                startIcon={<SaveIcon />}
+                onClick={e => uploadClient(e, authUser)}
+              >
                 Add User
               </Button>
               {/* For now this button just changes the state to hide form after submission, will need to create logic for adding clients to firebase DB */}
@@ -166,4 +182,4 @@ const Clients = props => {
   );
 };
 
-export default withStyles(styles)(Clients);
+export default withStyles(styles)(withFirebase(Clients));
