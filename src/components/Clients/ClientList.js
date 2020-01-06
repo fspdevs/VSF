@@ -12,6 +12,7 @@ const ClientList = ({ clients, authUser }) => {
             key={client.uid}
           />
         ))}
+        <h2>HELOOOOOOOO</h2>
       </ul>
     </div>
   );
