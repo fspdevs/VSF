@@ -12,7 +12,7 @@ const ClientList = ({ clients, authUser }) => {
             key={client.uid}
           />
         ))}
-        <h2>HELOOOOOOOO</h2>
+        <h2>HELOOO</h2>
       </ul>
     </div>
   );

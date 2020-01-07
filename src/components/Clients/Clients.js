@@ -26,7 +26,7 @@ const styles = {
 /////////////////////
 const Clients = props => {
   //Handling initFirebase which checks for firebase initilizaiton in the component then listens for clients in the database
-  const [_initFirebase, set_initFirebase] = useState(false);
+  // const [_initFirebase, set_initFirebase] = useState(false);
   const [state, updateState] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     {
@@ -37,21 +37,22 @@ const Clients = props => {
       loading: false,
       createClient: false,
       clients: [],
-      limit: 10,
+      limit: 5,
+      _initFirebase: false,
     },
   );
 
   const firebaseInit = () => {
     if (props.firebase && !_initFirebase) {
-      set_initFirebase(true);
-      onListenForClients();
+      updateState({ _initFirebase: true });
       console.log('hittin', props);
+      onListenForClients();
     }
   };
 
   useEffect(() => {
     firebaseInit();
-  });
+  }, []);
 
   useEffect(() => {
     if (props.firebase) {
@@ -62,6 +63,7 @@ const Clients = props => {
   });
 
   const onListenForClients = () => {
+    console.log('hejsdfhlaskdjfhalksdjfhalskjh');
     updateState({ loading: true });
     props.firebase
       .clients()
@@ -78,8 +80,10 @@ const Clients = props => {
             clients: clientList,
             loading: false,
           });
+          console.log(clients, 'clients hitting');
         } else {
           updateState({ clients: null, loading: false });
+          console.log('clients not hitting');
         }
       });
   };
@@ -99,7 +103,7 @@ const Clients = props => {
     });
     updateState({ createClient: false });
     console.log(clients, 'clients array');
-    console.log('it works')
+    console.log('it works');
     e.preventDefault();
   };
 
@@ -112,12 +116,13 @@ const Clients = props => {
     createClient,
     clients,
     limit,
+    _initFirebase,
   } = state;
   return (
     <AuthUserContext.Consumer>
       {authUser => (
         <>
-          <ClientList clients={clients} authUser={authUser} />
+          {/* <ClientList clients={clients} authUser={authUser} /> */}
 
           <Fab variant="extended" onClick={makeClient}>
             <AddIcon />

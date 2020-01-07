@@ -6,9 +6,9 @@ import {
   withAuthorization,
   withEmailVerification,
 } from '../components/Session';
-import Messages from '../components/Messages';
+// import Messages from '../components/Messages';
 import { Typography } from '@material-ui/core';
-import Clients from '../components/Clients/Clients';
+import Clients from '../components/Clients/Clients.js';
 
 const DIV = styled(Typography)({
   display: 'flex',
@@ -20,8 +20,8 @@ const HomePageBase = () => (
   <DIV variant="body1">
     <h1>Home Page</h1>
     <p>The Home Page is accessible by every signed in user.</p>
-<Clients/>
-    <Messages />
+    <Clients />
+    {/* <Messages /> */}
   </DIV>
 );
 

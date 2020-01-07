@@ -1,12 +1,12 @@
 import React, { Fragment, useEffect } from 'react';
 import { compose } from 'recompose';
 
-import Layout from '../components/layout';
+import Layout from '../components/layout.js';
 import {
   withAuthorization,
   withEmailVerification,
 } from '../components/Session';
-import { UserList } from '../components/Users';
+import UserList from "../components/Users/UserList"
 import * as ROLES from '../constants/roles';
 
 const AdminPageBase = (props) => {
