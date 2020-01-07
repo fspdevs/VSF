@@ -20,7 +20,8 @@ const HomePageBase = () => (
   <DIV variant="body1">
     <h1>Home Page</h1>
     <p>The Home Page is accessible by every signed in user.</p>
-    <Clients />
+    {/* Chaange to a class based component  */}
+    {/* <Clients /> */}
     {/* <Messages /> */}
   </DIV>
 );
