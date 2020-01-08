@@ -1,39 +1,172 @@
 import React, { useState, useReducer, useEffect } from 'react';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  ToolTip,
+  TableSortLabel,
+  Typography,
+  TextField,
+  Fab,
+  Button,
+  Box,
+} from '@material-ui/core';
+import { styled } from '@material-ui/core/styles';
+import { Add, Save, Cancel } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
 
+const Column = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: 400,
+});
+
+const styles = {
+  root: {
+    backgroundColor: 'lightgrey',
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  input: {
+    margin: 5,
+    textAlign: 'center',
+    width: '100%',
+  },
+};
 const ClientItem = props => {
-  //   const [editMode, setEditMode] = useState(false);
-  //   const [clientInfo, updateClientInfo] = useReducer(
-  //     (state, newState) => ({ ...state, ...newState }),
-  //     {
-  //       firstName: '',
-  //       lastName: '',
-  //       email: '',
-  //       phone: '',
-  //       editMode: false,
-  //     },
-  //   );
+  const initState = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    editMode: false,
+  };
+  const [clientInfo, updateClientInfo] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      firstName: props.client.firstName,
+      lastName: props.client.lastName,
+      email: props.client.email,
+      phone: props.client.phone,
+      editMode: false,
+    },
+  );
 
-  //   useEffect(() => {
-  //     console.log(props.client, 'client');
-  //   }, []);
+  useEffect(() => {
+    console.log(props.client, 'client');
+  }, [props.client]);
 
-  //   const { firstName, lastName, email, phone, editMode } = clientInfo;
-  const { client, authUser } = props;
+  const toggleEditMode = () => {
+    updateClientInfo({
+      editMode: !editMode,
+    });
+  };
+
+  const onSaveEdit = () => {
+    props.onEditClient(props.client, clientInfo);
+    updateClientInfo({ initState });
+  };
+
+  const { firstName, lastName, email, phone, editMode } = clientInfo;
+  const { client, authUser, onRemoveClient } = props;
   return (
-    <div>
-      <span>
-        <strong>{client.firstName}</strong>
-      </span>
-      <span>
-        <strong>{client.lastName}</strong>
-      </span>
-      <span>
-        <strong>{client.email}</strong>
-      </span>
-      <span>
-        <strong>{client.phone}</strong>
-      </span>
-    </div>
+    <>
+      {authUser.uid === client.userId && (
+        <div>
+          {editMode ? (
+            <Column>
+              <TextField
+                name="firstName"
+                className={props.classes.input}
+                id="outlined-basic"
+                label={props.client.firstName}
+                variant="outlined"
+                type="text"
+                value={firstName}
+                onChange={e =>
+                  updateClientInfo({ firstName: e.target.value })
+                }
+              />
+              <TextField
+                name="lastName"
+                className={props.classes.input}
+                id="outlined-basic"
+                label={props.client.lastName}
+                variant="outlined"
+                type="text"
+                value={lastName}
+                onChange={e =>
+                  updateClientInfo({ lastName: e.target.value })
+                }
+              />
+              <TextField
+                name="email"
+                className={props.classes.input}
+                id="outlined-basic"
+                label={props.client.email}
+                variant="outlined"
+                type="email"
+                value={email}
+                onChange={e =>
+                  updateClientInfo({ email: e.target.value })
+                }
+              />
+              <TextField
+                name="phone"
+                className={props.classes.input}
+                id="outlined-basic"
+                label={props.client.phone}
+                variant="outlined"
+                type="text"
+                value={phone}
+                onChange={e =>
+                  updateClientInfo({ phone: e.target.value })
+                }
+              />
+            </Column>
+          ) : (
+            <div>
+              <span>
+                <strong>{client.firstName}</strong>
+              </span>
+              <span>
+                <strong>{client.lastName}</strong>
+              </span>
+              <span>
+                <strong>{client.email}</strong>
+              </span>
+              <span>
+                <strong>{client.phone}</strong>
+              </span>
+            </div>
+          )}
+
+          <span>
+            {editMode ? (
+              <span>
+                <button onClick={onSaveEdit}>Save</button>
+                <button onClick={toggleEditMode}>Cancel</button>
+              </span>
+            ) : (
+              <button onClick={toggleEditMode}>Edit</button>
+            )}
+
+            {!editMode && (
+              <button
+                type="button"
+                onClick={() => onRemoveClient(client.uid)}
+              >
+                Delete
+              </button>
+            )}
+          </span>
+        </div>
+      )}
+    </>
   );
 };
-export default ClientItem;
+export default withStyles(styles)(ClientItem);

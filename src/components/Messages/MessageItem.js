@@ -10,22 +10,21 @@ class MessageItem extends Component {
     };
   }
 
-  onToggleEditMode = () => {
-    this.setState(state => ({
-      editMode: !state.editMode,
-      editText: this.props.message.text,
-    }));
-  };
   componentDidMount() {
     console.log(this.props.message, 'user');
   }
   onChangeEditText = event => {
     this.setState({ editText: event.target.value });
   };
+  onToggleEditMode = () => {
+    this.setState(state => ({
+      editMode: !state.editMode,
+      editText: this.props.message.text,
+    }));
+  };
 
   onSaveEditText = () => {
     this.props.onEditMessage(this.props.message, this.state.editText);
-
     this.setState({ editMode: false });
   };
 

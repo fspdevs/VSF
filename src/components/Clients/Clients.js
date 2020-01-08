@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
-import { TextField, Fab, Button } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import SaveIcon from '@material-ui/icons/Save';
+import { withStyles } from '@material-ui/core/styles';
+import { TextField, Fab, Button, Box } from '@material-ui/core';
+import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
 const styles = {
   root: {
@@ -18,12 +17,7 @@ const styles = {
     textAlign: 'center',
   },
 };
-//! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
-
-/////////////////////
-/////////////////////
-/////////////////////
-/////////////////////
+// ! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
 
 class Clients extends Component {
   _initFirebase = false;
@@ -79,7 +73,7 @@ class Clients extends Component {
           console.log(this.state.clients, 'clients');
         } else {
           this.setState({ clients: null, loading: false });
-          console.log('clients not hitting');
+          console.log('No clients in DB');
         }
       });
   };
@@ -88,21 +82,28 @@ class Clients extends Component {
     this.props.firebase.clients().off();
   }
 
-  //This funciton opens up the form to upload a client's info
+  //////////////////////////////////////////////////
+  //! //////MEssage creation/editing functions/////
+  ////////////////////////////////////////////////
+
+  //This funciton opens up the form to upload a client's info and closes the form
   makeClient = () => {
-    this.setState({ createClient: true });
+    console.log('hitting');
+    !this.state.createClient
+      ? this.setState({ createClient: true })
+      : this.setState({ createClient: false });
   };
 
+  //Handler for onChange for each input
   onChangeHandler = e => {
     const value = e.target.value;
     this.setState({
       ...this.state,
       [e.target.name]: value,
     });
-    // console.log('value', e.target.value);
-    // console.log('name', e.target.name);
   };
 
+  //Function for adding client to firebase database
   uploadClient = (e, authUser) => {
     this.props.firebase.clients().push({
       firstName: this.state.firstName,
@@ -110,6 +111,7 @@ class Clients extends Component {
       email: this.state.email,
       phone: this.state.phone,
       userId: authUser.uid,
+      rep: authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
     this.setState({
@@ -122,6 +124,22 @@ class Clients extends Component {
     console.log(this.state.clients, 'clients array');
     console.log('it works');
     e.preventDefault();
+  };
+
+  onEditClient = (client, clientInfo) => {
+    const { uid, ...clientSnapshot } = client;
+    this.props.firebase.client(client.uid).update({
+      ...clientSnapshot,
+      firstName: clientInfo.firstName,
+      lastName: clientInfo.lastName,
+      email: clientInfo.email,
+      phone: clientInfo.phone,
+      editedAt: this.props.firebase.serverValue.TIMESTAMP,
+    });
+  };
+
+  onRemoveClient = uid => {
+    this.props.firebase.client(uid).remove();
   };
 
   render() {
@@ -142,14 +160,24 @@ class Clients extends Component {
         {authUser => (
           <div>
             {' '}
-            <ClientList clients={clients} authUser={authUser} />
-            {!this.state.makeClient && (
+            {clients && (
+              <ClientList
+                clients={clients}
+                authUser={authUser}
+                onEditClient={this.onEditClient}
+                onRemoveClient={this.onRemoveClient}
+              />
+            )}
+            {!clients && (
+              <Box component="div">There Are No Clients in DB</Box>
+            )}
+            {!this.state.createClient && (
               <Fab variant="extended" onClick={this.makeClient}>
-                <AddIcon />
+                <Add />
                 Create Client
               </Fab>
             )}
-            {this.state.makeClient && (
+            {this.state.createClient && (
               <form
                 className={this.props.classes.root}
                 noValidate
@@ -196,8 +224,15 @@ class Clients extends Component {
                   value={phone}
                   onChange={this.onChangeHandler}
                 />
-                <Button type="submit" startIcon={<SaveIcon />}>
+                <Button type="submit" startIcon={<Save />}>
                   Add User
+                </Button>
+                <Button
+                  type="submit"
+                  startIcon={<Cancel />}
+                  onClick={this.makeClient}
+                >
+                  Cancel
                 </Button>
               </form>
             )}
@@ -209,166 +244,3 @@ class Clients extends Component {
 }
 
 export default withStyles(styles)(withFirebase(Clients));
-
-// const Clients = props => {
-//   //Handling initFirebase which checks for firebase initilizaiton in the component then listens for clients in the database
-//   // const [_initFirebase, set_initFirebase] = useState(false);
-//   const [state, updateState] = useReducer(
-//     (state, newState) => ({ ...state, ...newState }),
-//     {
-//       firstName: '',
-//       lastName: '',
-//       email: '',
-//       phone: '',
-//       loading: false,
-//       createClient: false,
-//       clients: [],
-//       limit: 5,
-//       _initFirebase: false,
-//     },
-//   );
-
-//   const firebaseInit = () => {
-//     if (props.firebase && !_initFirebase) {
-//       updateState({ _initFirebase: true });
-//       console.log('hittin', props);
-//       onListenForClients();
-//     }
-//   };
-
-//   useEffect(() => {
-//     firebaseInit();
-//   }, []);
-
-//   useEffect(() => {
-//     if (props.firebase) {
-//       return () => {
-//         props.firebase.clients().off();
-//       };
-//     }
-//   });
-
-//   const onListenForClients = () => {
-//     console.log('hejsdfhlaskdjfhalksdjfhalskjh');
-//     updateState({ loading: true });
-//     props.firebase
-//       .clients()
-//       .orderByChild('createdAt')
-//       .limitToLast(limit)
-//       .on('value', snapshot => {
-//         const clientObject = snapshot.val();
-//         if (clientObject) {
-//           const clientList = Object.keys(clientObject).map(key => ({
-//             ...clientObject[key],
-//             uid: key,
-//           }));
-//           updateState({
-//             clients: clientList,
-//             loading: false,
-//           });
-//           console.log(clients, 'clients hitting');
-//         } else {
-//           updateState({ clients: null, loading: false });
-//           console.log('clients not hitting');
-//         }
-//       });
-//   };
-
-//   //This funciton opens up the form to upload a client's info
-//   const makeClient = () => {
-//     updateState({ createClient: true });
-//   };
-//   const uploadClient = (e, authUser) => {
-//     props.firebase.clients().push({
-//       firstName: firstName,
-//       lastName: lastName,
-//       email: email,
-//       phone: phone,
-//       userId: authUser.uid,
-//       createdAt: props.firebase.serverValue.TIMESTAMP,
-//     });
-//     updateState({ createClient: false });
-//     console.log(clients, 'clients array');
-//     console.log('it works');
-//     e.preventDefault();
-//   };
-
-//   const {
-//     firstName,
-//     lastName,
-//     email,
-//     phone,
-//     loading,
-//     createClient,
-//     clients,
-//     limit,
-//     _initFirebase,
-//   } = state;
-//   return (
-//     <AuthUserContext.Consumer>
-//       {authUser => (
-//         <>
-//           {/* <ClientList clients={clients} authUser={authUser} /> */}
-
-//           <Fab variant="extended" onClick={makeClient}>
-//             <AddIcon />
-//             Create Client
-//           </Fab>
-
-//           <form
-//             className={props.classes.root}
-//             noValidate
-//             autoComplete="off"
-//             onSubmit={e => uploadClient(e, authUser)}
-//           >
-//             <TextField
-//               className={props.classes.input}
-//               id="outlined-basic"
-//               label="First Name"
-//               variant="outlined"
-//               type="text"
-//               value={firstName}
-//               onChange={e =>
-//                 updateState({ firstName: e.target.value })
-//               }
-//             />
-//             <TextField
-//               className={props.classes.input}
-//               id="outlined-basic"
-//               label="Last Name"
-//               variant="outlined"
-//               type="text"
-//               value={lastName}
-//               onChange={e =>
-//                 updateState({ lastName: e.target.value })
-//               }
-//             />
-//             <TextField
-//               className={props.classes.input}
-//               id="outlined-basic"
-//               label="Email"
-//               variant="outlined"
-//               type="email"
-//               value={email}
-//               onChange={e => updateState({ email: e.target.value })}
-//             />
-//             <TextField
-//               className={props.classes.input}
-//               id="outlined-basic"
-//               label="Phone #"
-//               variant="outlined"
-//               type="text"
-//               value={phone}
-//               onChange={e => updateState({ phone: e.target.value })}
-//             />
-//             <Button type="submit" startIcon={<SaveIcon />}>
-//               Add User
-//             </Button>
-//           </form>
-//         </>
-//       )}
-//     </AuthUserContext.Consumer>
-//   );
-// };
-
-// export default withStyles(styles)(withFirebase(Clients));

@@ -77,9 +77,7 @@ class Messages extends Component {
       userName: authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
-
     this.setState({ text: '' });
-
     event.preventDefault();
   };
 
