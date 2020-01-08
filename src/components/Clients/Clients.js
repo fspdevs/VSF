@@ -47,7 +47,7 @@ class Clients extends Component {
     if (this.props.firebase && !this._initFirebase) {
       this._initFirebase = true;
       console.log('firebaseInit is hitting', this._initFirebase);
-      // this.onListenForClients()
+      this.onListenForClients();
     }
   }
 
@@ -64,7 +64,7 @@ class Clients extends Component {
     this.props.firebase
       .clients()
       .orderByChild('createdAt')
-      .limitToLast(limit)
+      .limitToLast(this.state.limit)
       .on('value', snapshot => {
         const clientObject = snapshot.val();
         if (clientObject) {
@@ -93,14 +93,24 @@ class Clients extends Component {
     this.setState({ createClient: true });
   };
 
+  onChangeHandler = e => {
+    const value = e.target.value;
+    this.setState({
+      ...this.state,
+      [e.target.name]: value,
+    });
+    // console.log('value', e.target.value);
+    // console.log('name', e.target.name);
+  };
+
   uploadClient = (e, authUser) => {
-    props.firebase.clients().push({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
+    this.props.firebase.clients().push({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      phone: this.state.phone,
       userId: authUser.uid,
-      createdAt: props.firebase.serverValue.TIMESTAMP,
+      createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
     this.setState({
       createClient: false,
@@ -109,7 +119,7 @@ class Clients extends Component {
       email: '',
       phone: '',
     });
-    console.log(clients, 'clients array');
+    console.log(this.state.clients, 'clients array');
     console.log('it works');
     e.preventDefault();
   };
@@ -127,71 +137,73 @@ class Clients extends Component {
       _initFirebase,
     } = this.state;
     return (
-      <div>heyy</div>
       //! Make sure you change the functions to align with the class based component
-      //     <AuthUserContext.Consumer>
-      //       {authUser => (
-      //         <>
-      //           {/* <ClientList clients={clients} authUser={authUser} /> */}
-
-      //           <Fab variant="extended" onClick={makeClient}>
-      //             <AddIcon />
-      //             Create Client
-      //           </Fab>
-
-      //           <form
-      //             className={props.classes.root}
-      //             noValidate
-      //             autoComplete="off"
-      //             onSubmit={e => uploadClient(e, authUser)}
-      //           >
-      //             <TextField
-      //               className={props.classes.input}
-      //               id="outlined-basic"
-      //               label="First Name"
-      //               variant="outlined"
-      //               type="text"
-      //               value={firstName}
-      //               onChange={e =>
-      //                 updateState({ firstName: e.target.value })
-      //               }
-      //             />
-      //             <TextField
-      //               className={props.classes.input}
-      //               id="outlined-basic"
-      //               label="Last Name"
-      //               variant="outlined"
-      //               type="text"
-      //               value={lastName}
-      //               onChange={e =>
-      //                 updateState({ lastName: e.target.value })
-      //               }
-      //             />
-      //             <TextField
-      //               className={props.classes.input}
-      //               id="outlined-basic"
-      //               label="Email"
-      //               variant="outlined"
-      //               type="email"
-      //               value={email}
-      //               onChange={e => updateState({ email: e.target.value })}
-      //             />
-      //             <TextField
-      //               className={props.classes.input}
-      //               id="outlined-basic"
-      //               label="Phone #"
-      //               variant="outlined"
-      //               type="text"
-      //               value={phone}
-      //               onChange={e => updateState({ phone: e.target.value })}
-      //             />
-      //             <Button type="submit" startIcon={<SaveIcon />}>
-      //               Add User
-      //             </Button>
-      //           </form>
-      //         </>
-      //       )}
-      //     </AuthUserContext.Consumer>
+      <AuthUserContext.Consumer>
+        {authUser => (
+          <div>
+            {' '}
+            <ClientList clients={clients} authUser={authUser} />
+            {!this.state.makeClient && (
+              <Fab variant="extended" onClick={this.makeClient}>
+                <AddIcon />
+                Create Client
+              </Fab>
+            )}
+            {this.state.makeClient && (
+              <form
+                className={this.props.classes.root}
+                noValidate
+                autoComplete="off"
+                onSubmit={e => this.uploadClient(e, authUser)}
+              >
+                <TextField
+                  name="firstName"
+                  className={this.props.classes.input}
+                  id="outlined-basic"
+                  label="First Name"
+                  variant="outlined"
+                  type="text"
+                  value={firstName}
+                  onChange={this.onChangeHandler}
+                />
+                <TextField
+                  name="lastName"
+                  className={this.props.classes.input}
+                  id="outlined-basic"
+                  label="Last Name"
+                  variant="outlined"
+                  type="text"
+                  value={lastName}
+                  onChange={this.onChangeHandler}
+                />
+                <TextField
+                  name="email"
+                  className={this.props.classes.input}
+                  id="outlined-basic"
+                  label="Email"
+                  variant="outlined"
+                  type="email"
+                  value={email}
+                  onChange={this.onChangeHandler}
+                />
+                <TextField
+                  name="phone"
+                  className={this.props.classes.input}
+                  id="outlined-basic"
+                  label="Phone #"
+                  variant="outlined"
+                  type="text"
+                  value={phone}
+                  onChange={this.onChangeHandler}
+                />
+                <Button type="submit" startIcon={<SaveIcon />}>
+                  Add User
+                </Button>
+              </form>
+            )}
+          </div>
+        )}
+      </AuthUserContext.Consumer>
     );
   }
 }

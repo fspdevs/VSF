@@ -3,7 +3,7 @@ import ClientItem from './ClientItem';
 
 const ClientList = ({ clients, authUser }) => {
   return (
-    <div style={{ width: '200px', backgroundColor: 'magenta' }}>
+    <div>
       <ul>
         {clients.map(client => (
           <ClientItem
@@ -12,7 +12,6 @@ const ClientList = ({ clients, authUser }) => {
             key={client.uid}
           />
         ))}
-        <h2>HELOOO</h2>
       </ul>
     </div>
   );

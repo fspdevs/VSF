@@ -20,8 +20,7 @@ const ClientItem = props => {
   //   const { firstName, lastName, email, phone, editMode } = clientInfo;
   const { client, authUser } = props;
   return (
-    <>
-      <div>Client</div>
+    <div>
       <span>
         <strong>{client.firstName}</strong>
       </span>
@@ -34,7 +33,7 @@ const ClientItem = props => {
       <span>
         <strong>{client.phone}</strong>
       </span>
-    </>
+    </div>
   );
 };
 export default ClientItem;

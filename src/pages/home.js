@@ -17,11 +17,11 @@ const DIV = styled(Typography)({
 });
 
 const HomePageBase = () => (
-  <DIV variant="body1">
+  <DIV component={'div'} variant="body1">
     <h1>Home Page</h1>
     <p>The Home Page is accessible by every signed in user.</p>
     {/* Chaange to a class based component  */}
-    {/* <Clients /> */}
+    <Clients />
     {/* <Messages /> */}
   </DIV>
 );

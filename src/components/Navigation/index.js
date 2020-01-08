@@ -74,7 +74,6 @@ const styles = theme => ({
     fontSize: 40,
   },
   drawerPaper: {
-    // position: 'relative',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -173,9 +172,8 @@ const NavigationAuth = ({
           >
             Vision Solar Finance
           </Typography>
-          <Button color="inherit">
-            <SignOutButton />
-          </Button>
+
+          <SignOutButton />
         </Toolbar>
       </AppBar>
       <Drawer
@@ -205,7 +203,6 @@ const NavigationAuth = ({
                 <ListItemText primary="Landing" />
               </ListItem>
             </Link>
-
             <Link to={ROUTES.HOME}>
               <ListItem>
                 <ListItemIcon>
@@ -222,7 +219,6 @@ const NavigationAuth = ({
                 <ListItemText primary="Account" />
               </ListItem>
             </Link>
-
             {!!authUser.roles[ROLES.ADMIN] && (
               <Link to={ROUTES.ADMIN}>
                 <ListItem>

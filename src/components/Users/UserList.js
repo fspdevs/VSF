@@ -51,17 +51,13 @@ class UserList extends Component {
   firebaseInit = () => {
     if (this.props.firebase && !this._initFirebase) {
       this._initFirebase = true;
-
       this.setState({ loading: true });
-
       this.props.firebase.users().on('value', snapshot => {
         const usersObject = snapshot.val();
-
         const usersList = Object.keys(usersObject).map(key => ({
           ...usersObject[key],
           uid: key,
         }));
-
         this.setState({
           users: usersList,
           loading: false,
@@ -73,15 +69,12 @@ class UserList extends Component {
   componentDidMount() {
     this.firebaseInit();
   }
-
   componentDidUpdate() {
     this.firebaseInit();
   }
-
   componentWillUnmount() {
     this.props.firebase.users().off();
   }
-
   handleSortRequest = property => {
     const newOrderBy = property;
     let newOrder = 'desc';
@@ -106,7 +99,6 @@ class UserList extends Component {
             Reps
           </Typography>
           {loading && <div>Loading ...</div>}
-
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
