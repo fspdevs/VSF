@@ -1,8 +1,28 @@
 import React, { Component } from 'react';
 import { navigate } from 'gatsby';
-
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { withStyles } from '@material-ui/core/styles';
+import { TextField, Fab, Button, Box } from '@material-ui/core';
+const styles = {
+  root: {
+    backgroundColor: 'lightgrey',
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  input: {
+    margin: 5,
+    textAlign: 'center',
+    width: '80%',
+    textAlign: 'center',
+  },
+};
 
 const INITIAL_STATE = {
   email: '',
@@ -53,27 +73,34 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+      <Box component="div" className={this.props.classes.root}>
+        <form
+          onSubmit={this.onSubmit}
+          className={this.props.classes.form}
+        >
+          <TextField
+            className={this.props.classes.input}
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <TextField
+            className={this.props.classes.input}
+            name="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <Button disabled={isInvalid} type="submit">
+            Sign In
+          </Button>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </Box>
     );
   }
 }
@@ -116,7 +143,9 @@ class SignInGoogleBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <Fab variant="extended" type="submit">
+          Sign In with Google
+        </Fab>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -216,7 +245,7 @@ class SignInTwitterBase extends Component {
   }
 }
 
-const SignInForm = withFirebase(SignInFormBase);
+const SignInForm = withStyles(styles)(withFirebase(SignInFormBase));
 
 const SignInGoogle = withFirebase(SignInGoogleBase);
 
