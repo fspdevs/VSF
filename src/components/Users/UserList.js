@@ -8,10 +8,8 @@ import {
   TableHead,
   TableRow,
   Tooltip,
-  Paper,
   TableSortLabel,
   Typography,
-  TextField,
 } from '@material-ui/core';
 
 const styles = theme => ({
@@ -75,6 +73,13 @@ class UserList extends Component {
   componentWillUnmount() {
     this.props.firebase.users().off();
   }
+
+   // TODO:  Still need to implement sorting via these functions with Firebase functions
+  // getFilter = () => {
+  //   return this.state.usernameFilter.length > 0
+  //     ? { name_contains: filterState.usernameFilter }
+  //     : {};
+  // };
   handleSortRequest = property => {
     const newOrderBy = property;
     let newOrder = 'desc';

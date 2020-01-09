@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Fab, Button, Box, Grid } from '@material-ui/core';
+import {
+  TextField,
+  Fab,
+  Button,
+  Box,
+  Grid,
+  Typography,
+} from '@material-ui/core';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
 const styles = {
@@ -125,7 +132,7 @@ class Clients extends Component {
       city: this.state.city,
       state: this.state.state,
       zip: this.state.zip,
-      cpuntry: this.state.country,
+      country: this.state.country,
       userId: authUser.uid,
       rep: authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
@@ -183,7 +190,7 @@ class Clients extends Component {
       zip,
       country,
       loading,
-      createClient,
+      // createClient,
       clients,
       limit,
       _initFirebase,
@@ -204,6 +211,9 @@ class Clients extends Component {
             )}
             {!clients && (
               <Box component="div">There Are No Clients in DB</Box>
+            )}
+            {loading && (
+              <Typography component="h3">Loading .....</Typography>
             )}
             {!this.state.createClient && (
               <Fab variant="extended" onClick={this.makeClient}>
@@ -265,7 +275,7 @@ class Clients extends Component {
                   label="Address Line 1"
                   variant="outlined"
                   type="text"
-                  // value={addressLine1}
+                  value={addressLine1}
                   onChange={this.onChangeHandler}
                 />
                 <TextField
@@ -275,7 +285,7 @@ class Clients extends Component {
                   label="Address Line 2"
                   variant="outlined"
                   type="text"
-                  // value={addressLine2}
+                  value={addressLine2}
                   onChange={this.onChangeHandler}
                 />
                 <Grid container xs={12} justify="space-evenly">
@@ -287,6 +297,7 @@ class Clients extends Component {
                       label="City"
                       variant="outlined"
                       type="text"
+                      value={city}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
@@ -298,6 +309,7 @@ class Clients extends Component {
                       label="State"
                       variant="outlined"
                       type="text"
+                      value={state}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
@@ -306,22 +318,24 @@ class Clients extends Component {
                   <Grid item xs={5}>
                     <TextField
                       className={this.props.classes.gridInput}
-                      name=""
+                      name="zip"
                       id="outlined-basic"
-                      label=""
+                      label="Zip Code"
                       variant="outlined"
                       type="text"
+                      value={zip}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
                   <Grid item xs={5}>
                     <TextField
                       className={this.props.classes.gridInput}
-                      name=""
+                      name="country"
                       id="outlined-basic"
-                      label=""
+                      label="Country"
                       variant="outlined"
                       type="text"
+                      value={country}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>

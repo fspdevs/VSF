@@ -2,7 +2,6 @@ import React, { useState, useReducer, useEffect } from 'react';
 import {
   Table,
   TableBody,
-  TableCell,
   TableHead,
   TableRow,
   ToolTip,
@@ -11,10 +10,10 @@ import {
   TextField,
   Fab,
   Button,
+  TableCell,
   Box,
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
-import { Add, Save, Cancel } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 const Column = styled(Box)({
@@ -130,18 +129,21 @@ const ClientItem = props => {
             </Column>
           ) : (
             <div>
-              <span>
+              <TableCell component="th" scope="row" >
                 <strong>{client.firstName}</strong>
-              </span>
-              <span>
+              </TableCell>
+
+              <TableCell component="th" scope="row" >
                 <strong>{client.lastName}</strong>
-              </span>
-              <span>
+              </TableCell>
+
+              <TableCell component="th" scope="row" >
                 <strong>{client.email}</strong>
-              </span>
-              <span>
+              </TableCell>
+
+              <TableCell component="th" scope="row" >
                 <strong>{client.phone}</strong>
-              </span>
+              </TableCell>
             </div>
           )}
 
