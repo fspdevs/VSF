@@ -4,23 +4,31 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { withStyles } from '@material-ui/core/styles';
 import { TextField, Fab, Button, Box } from '@material-ui/core';
+import theme from '../../theme';
 const styles = {
   root: {
-    backgroundColor: 'lightgrey',
     padding: 20,
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    width: '60%',
+    backgroundColor: 'pink',
+    padding: 20,
   },
   input: {
     margin: 5,
     textAlign: 'center',
-    width: '80%',
+    width: '60%',
     textAlign: 'center',
+    padding: '5px 10px 5px 20px',
+  },
+  fab: {
+    margin: '10px 0px',
   },
 };
 
@@ -143,7 +151,11 @@ class SignInGoogleBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <Fab variant="extended" type="submit">
+        <Fab
+          className={this.props.classes.fab}
+          variant="extended"
+          type="submit"
+        >
           Sign In with Google
         </Fab>
 
@@ -191,7 +203,13 @@ class SignInFacebookBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
+        <Fab
+          className={this.props.classes.fab}
+          variant="extended"
+          type="submit"
+        >
+          Sign In with Facebook
+        </Fab>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -237,7 +255,13 @@ class SignInTwitterBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Twitter</button>
+        <Fab
+          className={this.props.classes.fab}
+          variant="extended"
+          type="submit"
+        >
+          Sign In with Twitter
+        </Fab>
 
         {error && <p>{error.message}</p>}
       </form>
@@ -247,11 +271,17 @@ class SignInTwitterBase extends Component {
 
 const SignInForm = withStyles(styles)(withFirebase(SignInFormBase));
 
-const SignInGoogle = withFirebase(SignInGoogleBase);
+const SignInGoogle = withStyles(styles)(
+  withFirebase(SignInGoogleBase),
+);
 
-const SignInFacebook = withFirebase(SignInFacebookBase);
+const SignInFacebook = withStyles(styles)(
+  withFirebase(SignInFacebookBase),
+);
 
-const SignInTwitter = withFirebase(SignInTwitterBase);
+const SignInTwitter = withStyles(styles)(
+  withFirebase(SignInTwitterBase),
+);
 
 export default SignInForm;
 

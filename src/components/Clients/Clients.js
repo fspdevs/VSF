@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Fab, Button, Box } from '@material-ui/core';
+import { TextField, Fab, Button, Box, Grid } from '@material-ui/core';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
 const styles = {
@@ -15,6 +15,10 @@ const styles = {
   input: {
     margin: 5,
     textAlign: 'center',
+  },
+  gridInput: {
+    width: '100%',
+    margin: 5,
   },
 };
 // ! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
@@ -29,6 +33,12 @@ class Clients extends Component {
       lastName: '',
       email: '',
       phone: '',
+      addressLine1: '',
+      addressLine2: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: '',
       loading: false,
       createClient: false,
       clients: [],
@@ -110,6 +120,12 @@ class Clients extends Component {
       lastName: this.state.lastName,
       email: this.state.email,
       phone: this.state.phone,
+      addressLine1: this.state.addressLine1,
+      addressLine2: this.state.addressLine2,
+      city: this.state.city,
+      state: this.state.state,
+      zip: this.state.zip,
+      cpuntry: this.state.country,
       userId: authUser.uid,
       rep: authUser.username,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
@@ -120,6 +136,12 @@ class Clients extends Component {
       lastName: '',
       email: '',
       phone: '',
+      addressLine1: '',
+      addressLine2: '',
+      city: '',
+      state: '',
+      zip: '',
+      country: '',
     });
     console.log(this.state.clients, 'clients array');
     console.log('it works');
@@ -134,6 +156,12 @@ class Clients extends Component {
       lastName: clientInfo.lastName,
       email: clientInfo.email,
       phone: clientInfo.phone,
+      addressLine1: clientInfo.addressLine1,
+      addressLine2: clientInfo.addressLine2,
+      city: clientInfo.city,
+      state: clientInfo.state,
+      zip: clientInfo.zip,
+      country: clientInfo.country,
       editedAt: this.props.firebase.serverValue.TIMESTAMP,
     });
   };
@@ -148,6 +176,12 @@ class Clients extends Component {
       lastName,
       email,
       phone,
+      addressLine1,
+      addressLine2,
+      city,
+      state,
+      zip,
+      country,
       loading,
       createClient,
       clients,
@@ -224,6 +258,75 @@ class Clients extends Component {
                   value={phone}
                   onChange={this.onChangeHandler}
                 />
+                <TextField
+                  className={this.props.classes.input}
+                  name="addressLine1"
+                  id="outlined-basic"
+                  label="Address Line 1"
+                  variant="outlined"
+                  type="text"
+                  // value={addressLine1}
+                  onChange={this.onChangeHandler}
+                />
+                <TextField
+                  className={this.props.classes.input}
+                  name="addressLine2"
+                  id="outlined-basic"
+                  label="Address Line 2"
+                  variant="outlined"
+                  type="text"
+                  // value={addressLine2}
+                  onChange={this.onChangeHandler}
+                />
+                <Grid container xs={12} justify="space-evenly">
+                  <Grid item xs={5}>
+                    <TextField
+                      className={this.props.classes.gridInput}
+                      name="city"
+                      id="outlined-basic"
+                      label="City"
+                      variant="outlined"
+                      type="text"
+                      onChange={this.onChangeHandler}
+                    />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TextField
+                      className={this.props.classes.gridInput}
+                      name="state"
+                      id="outlined-basic"
+                      label="State"
+                      variant="outlined"
+                      type="text"
+                      onChange={this.onChangeHandler}
+                    />
+                  </Grid>
+                </Grid>
+                <Grid container xs={12} justify="space-evenly">
+                  <Grid item xs={5}>
+                    <TextField
+                      className={this.props.classes.gridInput}
+                      name=""
+                      id="outlined-basic"
+                      label=""
+                      variant="outlined"
+                      type="text"
+                      onChange={this.onChangeHandler}
+                    />
+                  </Grid>
+                  <Grid item xs={5}>
+                    <TextField
+                      className={this.props.classes.gridInput}
+                      name=""
+                      id="outlined-basic"
+                      label=""
+                      variant="outlined"
+                      type="text"
+                      onChange={this.onChangeHandler}
+                    />
+                  </Grid>
+                </Grid>
+
                 <Button type="submit" startIcon={<Save />}>
                   Add User
                 </Button>

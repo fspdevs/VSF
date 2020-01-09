@@ -1,10 +1,33 @@
+export const size = {
+  mobileS: '320px',
+  mobileM: '375px',
+  mobileL: '526px',
+  tablet: '768px',
+  laptop: '1024px',
+  laptopL: '1340px',
+  desktopS: '1500px',
+  desktop: '1600px',
+  desktopM: '1920px',
+  desktopL: '2560px',
+};
+
 const theme = {
   color: {
-    solOrange: '#FAA818',
-    grey: '#21303A',
     white: '#ffffff',
-    drkGrey: '#333333',
+    soulOrange: '#FAA818',
     cornBlue: '#428ACA',
+    blueGrey: '#333333',
+    drkGrey: '#21303A',
+  },
+  fonts: {
+    nuni: 'Nunito Sans',
+    mont: 'Montserrat',
+    spec: 'Sepctral',
+    Karl: 'Karla',
+    //  - Nunito or Nunito Sans (Headings, Titles)
+    // - Montserrat (TExt, body )
+    // - Spectral (menu, lists)
+    // - Karla (Buttons, links)
   },
   device: {
     mobileS: `(max-width: ${size.mobileS})`,
@@ -19,17 +42,6 @@ const theme = {
     desktopL: `(max-width: ${size.desktopL})`,
   },
 };
-const size = {
-  mobileS: '320px',
-  mobileM: '375px',
-  mobileL: '526px',
-  tablet: '768px',
-  laptop: '1024px',
-  laptopL: '1340px',
-  desktopS: '1500px',
-  desktop: '1600px',
-  desktopM: '1920px',
-  desktopL: '2560px',
-};
+
 
 export default theme;

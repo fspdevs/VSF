@@ -8,10 +8,20 @@ import SignInForm, {
 } from '../components/SignIn';
 import { SignUpLink } from '../components/SignUp';
 import { PasswordForgetLink } from '../components/PasswordForget';
+import theme from '../theme';
+import { Typography } from '@material-ui/core';
 
 const SignInPage = () => (
   <Fragment>
-    <h1>SignIn</h1>
+    <Typography
+      variant="h2"
+      style={{
+        fontFamily: theme.fonts.nuni,
+        color: theme.color.soulOrange,
+      }}
+    >
+      Sign In
+    </Typography>
     <SignInForm />
     <SignInGoogle />
     <SignInFacebook />

@@ -21,6 +21,7 @@
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
 - Change all forms into Material Ui forms with validation(optional)
 - Make Client info editable/deletable for their respective reps
+- Identifty Provider configuration
 
 # Styling
 
