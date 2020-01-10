@@ -35,6 +35,10 @@ const styles = {
     textAlign: 'center',
     width: '100%',
   },
+  box: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
 };
 const ClientItem = props => {
   const initState = {
@@ -42,6 +46,12 @@ const ClientItem = props => {
     lastName: '',
     email: '',
     phone: '',
+    addressLine1: '',
+    addressLine2: '',
+    city: '',
+    state: '',
+    zip: '',
+    country: '',
     editMode: false,
   };
   const [clientInfo, updateClientInfo] = useReducer(
@@ -51,6 +61,12 @@ const ClientItem = props => {
       lastName: props.client.lastName,
       email: props.client.email,
       phone: props.client.phone,
+      addressLine1: props.client.addressLine1,
+      addressLine2: props.client.addressLine2,
+      city: props.client.city,
+      state: props.client.state,
+      zip: props.client.zip,
+      country: props.client.country,
       editMode: false,
     },
   );
@@ -68,105 +84,228 @@ const ClientItem = props => {
   const onSaveEdit = () => {
     props.onEditClient(props.client, clientInfo);
     updateClientInfo({ initState });
+    toggleEditMode();
   };
 
-  const { firstName, lastName, email, phone, editMode } = clientInfo;
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    addressLine1,
+    addressLine2,
+    city,
+    state,
+    zip,
+    country,
+    editMode,
+  } = clientInfo;
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
       {authUser.uid === client.userId && (
-        <div>
-          {editMode ? (
-            <Column>
-              <TextField
-                name="firstName"
-                className={props.classes.input}
-                id="outlined-basic"
-                label={props.client.firstName}
-                variant="outlined"
-                type="text"
-                value={firstName}
-                onChange={e =>
-                  updateClientInfo({ firstName: e.target.value })
-                }
-              />
-              <TextField
-                name="lastName"
-                className={props.classes.input}
-                id="outlined-basic"
-                label={props.client.lastName}
-                variant="outlined"
-                type="text"
-                value={lastName}
-                onChange={e =>
-                  updateClientInfo({ lastName: e.target.value })
-                }
-              />
-              <TextField
-                name="email"
-                className={props.classes.input}
-                id="outlined-basic"
-                label={props.client.email}
-                variant="outlined"
-                type="email"
-                value={email}
-                onChange={e =>
-                  updateClientInfo({ email: e.target.value })
-                }
-              />
-              <TextField
-                name="phone"
-                className={props.classes.input}
-                id="outlined-basic"
-                label={props.client.phone}
-                variant="outlined"
-                type="text"
-                value={phone}
-                onChange={e =>
-                  updateClientInfo({ phone: e.target.value })
-                }
-              />
-            </Column>
-          ) : (
-            <div>
-              <TableCell component="th" scope="row" >
-                <strong>{client.firstName}</strong>
-              </TableCell>
-
-              <TableCell component="th" scope="row" >
-                <strong>{client.lastName}</strong>
-              </TableCell>
-
-              <TableCell component="th" scope="row" >
-                <strong>{client.email}</strong>
-              </TableCell>
-
-              <TableCell component="th" scope="row" >
-                <strong>{client.phone}</strong>
-              </TableCell>
-            </div>
-          )}
-
-          <span>
+        <>
+          <TableRow key={client.uid}>
             {editMode ? (
-              <span>
-                <button onClick={onSaveEdit}>Save</button>
-                <button onClick={toggleEditMode}>Cancel</button>
-              </span>
+              <>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="firstName"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.firstName}
+                    variant="outlined"
+                    type="text"
+                    value={firstName}
+                    onChange={e =>
+                      updateClientInfo({ firstName: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="lastName"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.lastName}
+                    variant="outlined"
+                    type="text"
+                    value={lastName}
+                    onChange={e =>
+                      updateClientInfo({ lastName: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="email"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.email}
+                    variant="outlined"
+                    type="email"
+                    value={email}
+                    onChange={e =>
+                      updateClientInfo({ email: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="phone"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.phone}
+                    variant="outlined"
+                    type="text"
+                    value={phone}
+                    onChange={e =>
+                      updateClientInfo({ phone: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="addressLine1"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.addressLine1}
+                    variant="outlined"
+                    type="text"
+                    value={addressLine1}
+                    onChange={e =>
+                      updateClientInfo({
+                        addressLine1: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="addressLine2"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.addressLine2}
+                    variant="outlined"
+                    type="text"
+                    value={addressLine2}
+                    onChange={e =>
+                      updateClientInfo({
+                        addressLine2: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="city"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.city}
+                    variant="outlined"
+                    type="text"
+                    value={city}
+                    onChange={e =>
+                      updateClientInfo({
+                        city: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="state"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.state}
+                    variant="outlined"
+                    type="text"
+                    value={state}
+                    onChange={e =>
+                      updateClientInfo({
+                        state: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="zipcode"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.zipcode}
+                    variant="outlined"
+                    type="text"
+                    value={zip}
+                    onChange={e =>
+                      updateClientInfo({
+                        zip: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="country"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    label={props.client.country}
+                    variant="outlined"
+                    type="text"
+                    value={country}
+                    onChange={e =>
+                      updateClientInfo({
+                        country: e.target.value,
+                      })
+                    }
+                  />
+                </TableCell>
+              </>
             ) : (
-              <button onClick={toggleEditMode}>Edit</button>
-            )}
+              <>
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.firstName}</strong>
+                </TableCell>
 
-            {!editMode && (
-              <button
-                type="button"
-                onClick={() => onRemoveClient(client.uid)}
-              >
-                Delete
-              </button>
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.lastName}</strong>
+                </TableCell>
+
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.email}</strong>
+                </TableCell>
+
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.phone}</strong>
+                </TableCell>
+                <TableCell align="center" component="th" scope="row">
+                  <Box component="div" className={props.classes.box}>
+                    {client.addressLine1}
+                    {` `}
+                    {client.addressLine2}
+                    {` `}
+                    {client.city}
+                    {` `}
+                    {client.state}
+                    {` `}
+                    {client.country}
+                    {` `}
+                    {client.zip}
+                  </Box>
+                </TableCell>
+              </>
             )}
-          </span>
-        </div>
+            <TableCell align="center" component="th" scope="row">
+              {' '}
+              {editMode ? (
+                <>
+                  <button onClick={onSaveEdit}>Save</button>
+                  <button onClick={toggleEditMode}>Cancel</button>
+                </>
+              ) : (
+                <button onClick={toggleEditMode}>Edit</button>
+              )}
+              {!editMode && (
+                <button
+                  type="button"
+                  onClick={() => onRemoveClient(client.uid)}
+                >
+                  Delete
+                </button>
+              )}
+            </TableCell>
+          </TableRow>
+        </>
       )}
     </>
   );

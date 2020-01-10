@@ -39,83 +39,102 @@ const ClientList = props => {
     classes,
   } = props;
   return (
-    <div>
-      <TableHead>
-        <TableRow>
-          <TableCell key="firstName">
-            <Tooltip
-              title="sort??"
-              placement="bottom-start"
-              enterDelay={300}
-            >
-              <TableSortLabel
-              // active={this.state.orderBy === 'firstName'}
-              // direction={this.state.order}
-              // onClick={() => this.handleSortRequest('firstName')}
+    <div className={classes.root}>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow>
+            <TableCell align="center" key="firstName">
+              <Tooltip
+                title="First Name"
+                placement="bottom-start"
+                enterDelay={300}
               >
-                First Name
-              </TableSortLabel>
-            </Tooltip>
-          </TableCell>
-          <TableCell key="lastName">
-            <Tooltip
-              title="sort??"
-              placement="bottom-start"
-              enterDelay={300}
-            >
-              <TableSortLabel
-              // active={this.state.orderBy === 'lastName'}
-              // direction={this.state.order}
-              // onClick={() => this.handleSortRequest('lastName')}
+                <TableSortLabel
+                // active={this.state.orderBy === 'firstName'}
+                // direction={this.state.order}
+                // onClick={() => this.handleSortRequest('firstName')}
+                >
+                  First Name
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center" key="lastName">
+              <Tooltip
+                title="Last Name"
+                placement="bottom-start"
+                enterDelay={300}
               >
-                Last Name
-              </TableSortLabel>
-            </Tooltip>
-          </TableCell>
-          <TableCell key="email">
-            <Tooltip
-              title="sort??"
-              placement="bottom-start"
-              enterDelay={300}
-            >
-              <TableSortLabel
-              // active={this.state.orderBy === 'email'}
-              // direction={this.state.order}
-              // onClick={() => this.handleSortRequest('email')}
+                <TableSortLabel
+                // active={this.state.orderBy === 'lastName'}
+                // direction={this.state.order}
+                // onClick={() => this.handleSortRequest('lastName')}
+                >
+                  Last Name
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center" key="email">
+              <Tooltip
+                title="Email"
+                placement="bottom-start"
+                enterDelay={300}
               >
-                Email
-              </TableSortLabel>
-            </Tooltip>
-          </TableCell>
-          <TableCell key="phone">
-            <Tooltip
-              title="sort??"
-              placement="bottom-start"
-              enterDelay={300}
-            >
-              <TableSortLabel
-              // active={this.state.orderBy === 'phone'}
-              // direction={this.state.order}
-              // onClick={() => this.handleSortRequest('phone')}
+                <TableSortLabel
+                // active={this.state.orderBy === 'email'}
+                // direction={this.state.order}
+                // onClick={() => this.handleSortRequest('email')}
+                >
+                  Email
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center" key="phone">
+              <Tooltip
+                title="Phone"
+                placement="bottom-start"
+                enterDelay={300}
               >
-                Phone
-              </TableSortLabel>
-            </Tooltip>
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {clients.map(client => (
-          <TableRow key={client.uid}>
+                <TableSortLabel
+                // active={this.state.orderBy === 'phone'}
+                // direction={this.state.order}
+                // onClick={() => this.handleSortRequest('phone')}
+                >
+                  Phone
+                </TableSortLabel>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center" key="address">
+              <Tooltip
+                title="Address"
+                placement="bottom-start"
+                enterDelay={300}
+              >
+                <TableSortLabel>Address</TableSortLabel>
+              </Tooltip>
+            </TableCell>
+            <TableCell align="center" key="actions">
+              <Tooltip
+                title="Edit/Delete"
+                placement="bottom-start"
+                enterDelay={300}
+              >
+                <TableSortLabel>Actions</TableSortLabel>
+              </Tooltip>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {clients.map(client => (
             <ClientItem
+              key={client.uid}
               authUser={authUser}
               client={client}
               onEditClient={onEditClient}
               onRemoveClient={onRemoveClient}
             />
-          </TableRow>
-        ))}
-      </TableBody>
+          ))}
+        </TableBody>
+      </Table>
     </div>
   );
 };

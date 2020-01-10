@@ -9,7 +9,10 @@ import {
   Box,
   Grid,
   Typography,
+  Snackbar,
 } from '@material-ui/core';
+import Slide from '@material-ui/core/Slide';
+import MuiAlert from '@material-ui/lab/Alert';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
 const styles = {
@@ -28,6 +31,10 @@ const styles = {
     margin: 5,
   },
 };
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 // ! keep in mind that the Firebase object and session is in the props object along with the MAterial UI styles (as classes) This Firebase "prop" is accessible in each component.
 
 class Clients extends Component {
@@ -51,6 +58,7 @@ class Clients extends Component {
       clients: [],
       limit: 5,
       _initFirebase: false,
+      openSnack: false,
     };
   }
 
@@ -150,6 +158,7 @@ class Clients extends Component {
       zip: '',
       country: '',
     });
+    this.handleSnackBar();
     console.log(this.state.clients, 'clients array');
     console.log('it works');
     e.preventDefault();
@@ -177,6 +186,13 @@ class Clients extends Component {
     this.props.firebase.client(uid).remove();
   };
 
+  handleSnackBar = e => {
+    console.log('hitting');
+    this.setState({
+      openSnack: !this.state.openSnack,
+    });
+  };
+
   render() {
     const {
       firstName,
@@ -200,7 +216,19 @@ class Clients extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <div>
-            {' '}
+            <Snackbar
+              open={this.state.openSnack}
+              autoHideDuration={3000}
+              onClose={this.handleSnackBar}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <Alert onClose={this.handleSnackBar} severity="success">
+                Client Created Successfully!!!
+              </Alert>
+            </Snackbar>{' '}
             {clients && (
               <ClientList
                 clients={clients}
