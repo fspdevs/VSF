@@ -11,6 +11,7 @@ import {
   Fab,
   Button,
   TableCell,
+  Grid,
   Box,
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
@@ -24,12 +25,6 @@ const Column = styled(Box)({
 });
 
 const styles = {
-  root: {
-    backgroundColor: 'lightgrey',
-    padding: 20,
-    display: 'flex',
-    flexDirection: 'column',
-  },
   input: {
     margin: 5,
     textAlign: 'center',
@@ -38,6 +33,12 @@ const styles = {
   box: {
     display: 'flex',
     flexDirection: 'column',
+  },
+  row: {
+    color: 'red',
+    '&:hover': {
+      background: 'green',
+    },
   },
 };
 const ClientItem = props => {
@@ -113,7 +114,8 @@ const ClientItem = props => {
                     name="firstName"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.firstName}
+                    placeHolder={props.client.firstName}
+                    label="First Name"
                     variant="outlined"
                     type="text"
                     value={firstName}
@@ -127,7 +129,8 @@ const ClientItem = props => {
                     name="lastName"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.lastName}
+                    placeHolder={props.client.lastName}
+                    label="Last Name"
                     variant="outlined"
                     type="text"
                     value={lastName}
@@ -141,7 +144,8 @@ const ClientItem = props => {
                     name="email"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.email}
+                    placeHolder={props.client.email}
+                    label="Email"
                     variant="outlined"
                     type="email"
                     value={email}
@@ -155,7 +159,8 @@ const ClientItem = props => {
                     name="phone"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.phone}
+                    placeHolder={props.client.phone}
+                    label="Phone"
                     variant="outlined"
                     type="text"
                     value={phone}
@@ -169,7 +174,8 @@ const ClientItem = props => {
                     name="addressLine1"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.addressLine1}
+                    placeHolder={props.client.addressLine1}
+                    label="Address Line 1"
                     variant="outlined"
                     type="text"
                     value={addressLine1}
@@ -183,7 +189,8 @@ const ClientItem = props => {
                     name="addressLine2"
                     className={props.classes.input}
                     id="outlined-basic"
-                    label={props.client.addressLine2}
+                    placeHolder={props.client.addressLine2}
+                    label="Address Line 2"
                     variant="outlined"
                     type="text"
                     value={addressLine2}
@@ -193,68 +200,86 @@ const ClientItem = props => {
                       })
                     }
                   />
-                  <TextField
-                    name="city"
-                    className={props.classes.input}
-                    id="outlined-basic"
-                    label={props.client.city}
-                    variant="outlined"
-                    type="text"
-                    value={city}
-                    onChange={e =>
-                      updateClientInfo({
-                        city: e.target.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    name="state"
-                    className={props.classes.input}
-                    id="outlined-basic"
-                    label={props.client.state}
-                    variant="outlined"
-                    type="text"
-                    value={state}
-                    onChange={e =>
-                      updateClientInfo({
-                        state: e.target.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    name="zipcode"
-                    className={props.classes.input}
-                    id="outlined-basic"
-                    label={props.client.zipcode}
-                    variant="outlined"
-                    type="text"
-                    value={zip}
-                    onChange={e =>
-                      updateClientInfo({
-                        zip: e.target.value,
-                      })
-                    }
-                  />
-                  <TextField
-                    name="country"
-                    className={props.classes.input}
-                    id="outlined-basic"
-                    label={props.client.country}
-                    variant="outlined"
-                    type="text"
-                    value={country}
-                    onChange={e =>
-                      updateClientInfo({
-                        country: e.target.value,
-                      })
-                    }
-                  />
+                  <Grid container xs={12} justify="space-evenly">
+                    <Grid item xs={6}>
+                      <TextField
+                        name="city"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.city}
+                        label="City"
+                        variant="outlined"
+                        type="text"
+                        value={city}
+                        onChange={e =>
+                          updateClientInfo({
+                            city: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        name="state"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.state}
+                        label="State"
+                        variant="outlined"
+                        type="text"
+                        value={state}
+                        onChange={e =>
+                          updateClientInfo({
+                            state: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid container xs={12} justify="space-evenly">
+                    <Grid item xs={6}>
+                      <TextField
+                        name="zip"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.zipcode}
+                        label="Zip Code"
+                        variant="outlined"
+                        type="text"
+                        value={zip}
+                        onChange={e =>
+                          updateClientInfo({
+                            zip: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        name="country"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.country}
+                        label="Country"
+                        variant="outlined"
+                        type="text"
+                        value={country}
+                        onChange={e =>
+                          updateClientInfo({
+                            country: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                  </Grid>
                 </TableCell>
               </>
             ) : (
               <>
                 <TableCell align="center" component="th" scope="row">
-                  <strong>{client.firstName}</strong>
+                  <strong className={props.classes.row}>
+                    {client.firstName}
+                  </strong>
                 </TableCell>
 
                 <TableCell align="center" component="th" scope="row">

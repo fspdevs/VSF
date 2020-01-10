@@ -11,7 +11,6 @@ import {
   Typography,
   Snackbar,
 } from '@material-ui/core';
-import Slide from '@material-ui/core/Slide';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
@@ -29,6 +28,9 @@ const styles = {
   gridInput: {
     width: '100%',
     margin: 5,
+  },
+  fab: {
+    marginTop: 20,
   },
 };
 
@@ -58,7 +60,8 @@ class Clients extends Component {
       clients: [],
       limit: 5,
       _initFirebase: false,
-      openSnack: false,
+      openSuccessSnack: false,
+      openDeleteSnack: false,
     };
   }
 
@@ -184,12 +187,19 @@ class Clients extends Component {
 
   onRemoveClient = uid => {
     this.props.firebase.client(uid).remove();
+    this.setState({
+      openDeleteSnack: true,
+    });
   };
 
-  handleSnackBar = e => {
-    console.log('hitting');
+  handleSuccessSnackBar = e => {
     this.setState({
-      openSnack: !this.state.openSnack,
+      openSuccessSnack: !this.state.openSuccessSnack,
+    });
+  };
+  handleDeleteSnackBar = e => {
+    this.setState({
+      openDeleteSnack: !this.state.openDeleteSnack,
     });
   };
 
@@ -217,18 +227,42 @@ class Clients extends Component {
         {authUser => (
           <div>
             <Snackbar
-              open={this.state.openSnack}
+              open={this.state.openSuccessSnack}
+              name="openSuccessSnack"
               autoHideDuration={3000}
-              onClose={this.handleSnackBar}
+              onClose={this.handleSuccessSnackBar}
               anchorOrigin={{
                 vertical: 'bottom',
                 horizontal: 'right',
               }}
             >
-              <Alert onClose={this.handleSnackBar} severity="success">
+              <Alert
+                onClose={this.handleSuccessSnackBar}
+                severity="success"
+              >
                 Client Created Successfully!!!
               </Alert>
             </Snackbar>{' '}
+            <Snackbar
+              open={this.state.openDeleteSnack}
+              name="openDeleteSnack"
+              autoHideDuration={3000}
+              onClose={this.handleDeleteSnackBar}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+            >
+              <Alert
+                onClose={this.handleDeleteSnackBar}
+                severity="error"
+              >
+                <strong>
+                  {' '}
+                  {authUser.username} deleted a CLIENT !!!
+                </strong>
+              </Alert>
+            </Snackbar>
             {clients && (
               <ClientList
                 clients={clients}
@@ -244,7 +278,11 @@ class Clients extends Component {
               <Typography component="h3">Loading .....</Typography>
             )}
             {!this.state.createClient && (
-              <Fab variant="extended" onClick={this.makeClient}>
+              <Fab
+                variant="extended"
+                onClick={this.makeClient}
+                className={this.props.classes.fab}
+              >
                 <Add />
                 Create Client
               </Fab>

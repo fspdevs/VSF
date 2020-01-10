@@ -6,10 +6,10 @@ import {
   withAuthorization,
   withEmailVerification,
 } from '../components/Session';
-import UserList from "../components/Users/UserList"
+import UserList from '../components/Users/UserList';
 import * as ROLES from '../constants/roles';
 
-const AdminPageBase = (props) => {
+const AdminPageBase = props => {
   useEffect(() => {
     console.log(props, 'user');
   }, []);
@@ -20,7 +20,7 @@ const AdminPageBase = (props) => {
       <p>
         The Admin Page is accessible by every signed in admin user.
       </p>
-
+      {/* MUST change USERs into Reps for outr well being  */}
       <UserList />
     </Fragment>
   );
