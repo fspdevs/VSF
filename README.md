@@ -69,6 +69,7 @@
 
 - Client Display Page (is the same as the project display page)
   - ![Example][pipeline]
+  - ![dashboard][dashboard]
 - Client Info:
   - Project #/Contract #
   - Phone
@@ -77,7 +78,8 @@
   - Loan Type
 - Project Timeline (breadcrumb?)
   - Credit App
-    - Details [details][details]
+    - Details 
+    - ![details][details]
   - Product Selection
   - Financing Details
     - Addiotional Details (image)
@@ -89,10 +91,14 @@
       - Proof of Ownership (uploadable)
       - Proof of Income (uploadable)
       - Dividend Welcome Call (calling client or provider)
+      - ![example][stipulations]
   - Intallation
     - Work Order
-    - Substantial Completion ![example][substantialcompletion]
+        - ![Example][workorder] 
+    - Substantial Completion 
+        - ![example][subInfo]
     - Permission to Operate
+        - ![Example][finalCompletion]
   - In service (I guess when the project is complete)
 
 ### Data and Relationships
@@ -118,6 +124,7 @@
   - application progress indicator
 
 - <strong>Project/Contract</strong>
+
   - Id
   - Borrower/Client Id
   - Rep Id
@@ -131,5 +138,19 @@
   - Date of Work Order Execution
 
 ## Images
+
 [details]: https://drive.google.com/open?id=1my4L7rWbFASx2kva4o6GlNiF3yc8JICj
-[pipeline]: https://drive.google.com/open?id=1mafnkblxg79kgxvxps_hzxu_vmi1pk8k[projectTimeline]: https://drive.google.com/open?id=1vP9rEtW3aBGOg39W6L0Rn01nzHxToqKI[dashboard]: https://drive.google.com/open?id=1q*EXZKz_e*-KVdjrKie7007R8UNbpXhe[substantialCompletion]: https://drive.google.com/open?id=1qmWimkzaylyXVHdWPtpoW6-sqACoPpsh[finalCompletion]: https://drive.google.com/open?id=1Xxd1y0Amsg04hfHZpmS6zzOerjJbtzSW[stipulations]: https://drive.google.com/open?id=1Jpv1O4LkGiqE1TItwnrDKFeWWhfUzvkn[workorder]: https://drive.google.com/open?id=1mgjNfneFRUqqPC_PPYVj162q-r1qQX6j
+
+[pipeline]: https://drive.google.com/open?id=1MAfnKblxg79kGXvxPS_hZXU_vmI1PK8k
+
+[projectTimeline]: https://drive.google.com/open?id=1vP9rEtW3aBGOg39W6L0Rn01nzHxToqKI
+
+[dashboard]: https://drive.google.com/open?id=1q*EXZKz_e*-KVdjrKie7007R8UNbpXhe
+
+[subInfo]: https://drive.google.com/open?id=1qmWimkzaylyXVHdWPtpoW6-sqACoPpsh
+
+[finalCompletion]: https://drive.google.com/open?id=1Xxd1y0Amsg04hfHZpmS6zzOerjJbtzSW
+
+[stipulations]: https://drive.google.com/open?id=1Jpv1O4LkGiqE1TItwnrDKFeWWhfUzvkn
+
+[workorder]: https://drive.google.com/open?id=1mgjNfneFRUqqPC_PPYVj162q-r1qQX6j
