@@ -161,7 +161,7 @@ class Clients extends Component {
       zip: '',
       country: '',
     });
-    this.handleSnackBar();
+    this.handleSuccessSnackBar();
     console.log(this.state.clients, 'clients array');
     console.log('it works');
     e.preventDefault();
@@ -187,9 +187,7 @@ class Clients extends Component {
 
   onRemoveClient = uid => {
     this.props.firebase.client(uid).remove();
-    this.setState({
-      openDeleteSnack: true,
-    });
+    this.handleDeleteSnackBar();
   };
 
   handleSuccessSnackBar = e => {
@@ -263,6 +261,7 @@ class Clients extends Component {
                 </strong>
               </Alert>
             </Snackbar>
+            {/*  CLient Component  */}
             {clients && (
               <ClientList
                 clients={clients}
@@ -271,6 +270,7 @@ class Clients extends Component {
                 onRemoveClient={this.onRemoveClient}
               />
             )}
+            {/*  CLient Component  */}
             {!clients && (
               <Box component="div">There Are No Clients in DB</Box>
             )}

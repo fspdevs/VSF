@@ -22,6 +22,7 @@
 - Change all forms into Material Ui forms with validation(optional)
 - Make Client info editable/deletable for their respective reps
 - Identifty Provider configuration
+- Applications and forms should have a "Save and Continue" button
 
 # Styling
 
@@ -32,9 +33,9 @@
 - #ffffff <em>White</em>
 - #333333 **Dark greyish blue**
 - #428ACA **cornflowerblue**
-- [Swatch][colors]
+- ![Swatch][colors]
 
-[colors]: ./src/images/VSFColors.png
+[colors]: https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
 
 ## Fonts
 
@@ -55,3 +56,80 @@
     - Table
     - button
     - appBar
+    - SnackBar
+    - Stepper
+
+## Dividend Finance Notes/Comparison
+
+- Dashboard and Pipeline will be same page in VSF or could be seperate pages
+- There should be more options/button to create a client (not just the home dashboard)
+- There should be a way to search through the client database for Admins
+
+### Pages and Components
+
+- Client Display Page (is the same as the project display page)
+  - ![Example][pipeline]
+- Client Info:
+  - Project #/Contract #
+  - Phone
+  - Email
+  - Address
+  - Loan Type
+- Project Timeline (breadcrumb?)
+  - Credit App
+    - Details [details][details]
+  - Product Selection
+  - Financing Details
+    - Addiotional Details (image)
+    - Driver's license (upload)
+    - Project Details (4.725 KW \$15,400.00)
+    - Send Agreements (Signed 2020-01-11)
+    - Stipulations (documents requested and their status)
+      - ACH Bank Info (uploadable??)
+      - Proof of Ownership (uploadable)
+      - Proof of Income (uploadable)
+      - Dividend Welcome Call (calling client or provider)
+  - Intallation
+    - Work Order
+    - Substantial Completion ![example][substantialcompletion]
+    - Permission to Operate
+  - In service (I guess when the project is complete)
+
+### Data and Relationships
+
+<em>Reference the Dividend Finance Pipeline</em>
+
+- <strong>Reps (Team Page)</strong>
+
+  - Id
+  - Role
+  - Name
+  - Manager
+  - Email
+  - (edit)
+  - (delete)
+
+- <strong>Borrower/Client</strong>
+
+  - Id
+  - Rep Id
+  - Name
+  - Next Step??
+  - application progress indicator
+
+- <strong>Project/Contract</strong>
+  - Id
+  - Borrower/Client Id
+  - Rep Id
+  - Loan amount
+  - Loan type
+  - Date Created
+  - Date Loan Doc was Sent
+  - Deficiency Reasons??
+  - Cost/ Wattage
+  - Date of Final Approval
+  - Date of Work Order Execution
+
+## Images
+[details]: https://drive.google.com/open?id=1my4L7rWbFASx2kva4o6GlNiF3yc8JICj
+[pipeline]: https://drive.google.com/open?id=1mafnkblxg79kgxvxps_hzxu_vmi1pk8k[projectTimeline]: https://drive.google.com/open?id=1vP9rEtW3aBGOg39W6L0Rn01nzHxToqKI[dashboard]: https://drive.google.com/open?id=1q*EXZKz_e*-KVdjrKie7007R8UNbpXhe[substantialCompletion]: https://drive.google.com/open?id=1qmWimkzaylyXVHdWPtpoW6-sqACoPpsh[finalCompletion]: https://drive.google.com/open?id=1Xxd1y0Amsg04hfHZpmS6zzOerjJbtzSW[stipulations]: https://drive.google.com/open?id=1Jpv1O4LkGiqE1TItwnrDKFeWWhfUzvkn[workorder]: https://drive.google.com/open?id=1mgjNfneFRUqqPC_PPYVj162q-r1qQX6j

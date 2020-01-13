@@ -106,7 +106,7 @@ const ClientItem = props => {
     <>
       {authUser.uid === client.userId && (
         <>
-          <TableRow key={client.uid}>
+          <TableRow hover key={client.uid}>
             {editMode ? (
               <>
                 <TableCell component="th" scope="row">
