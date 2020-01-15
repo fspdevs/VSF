@@ -35,7 +35,8 @@
 - #428ACA **cornflowerblue**
 
 ![swatch][colors]
-![swatch](https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx)
+
+![swatch](https://drive.google.com/uc?export=view&id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx)
 
 [colors]: https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
 
