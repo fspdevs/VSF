@@ -15,6 +15,7 @@ const theme = {
   color: {
     white: '#ffffff',
     soulOrange: '#FAA818',
+    soulOrangeLight: '#FAA81890',
     cornBlue: '#428ACA',
     blueGrey: '#333333',
     drkGrey: '#21303A',

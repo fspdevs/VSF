@@ -1,6 +1,8 @@
 {
   "name": "react-gastby-firebase-authentication",
-  "description": "Gatsby hello world starter",
+  "author": "Full Spectrum Processing",
+  "title": "Vision Solar Finance",
+  "description": "Solar Technology Installations Financing",
   "scripts": {
     "develop": "gatsby develop",
     "start": "npm run develop",
@@ -11,10 +13,12 @@
     "@material-ui/core": "^4.8.2",
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.39",
+    "babel-plugin-styled-components": "^1.10.6",
     "classnames": "^2.2.6",
     "core-js": "^2.6.5",
     "firebase": "^6.0.2",
     "gatsby": "^2.4.3",
+    "gatsby-background-image": "^0.9.12",
     "gatsby-image": "^2.2.37",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-plugin-offline": "^3.0.30",
@@ -22,12 +26,25 @@
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sharp": "^2.3.10",
     "gatsby-plugin-sitemap": "^2.2.24",
+    "gatsby-plugin-styled-components": "^3.1.17",
     "gatsby-source-filesystem": "^2.1.43",
     "gatsby-transformer-sharp": "^2.3.9",
     "material-table": "^1.54.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "styled-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "lighthouse": "^3.2.1",
+    "prettier": "^1.18.2"
   }
 }

@@ -1,9 +1,6 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
-
-const path = require('path');
-
 module.exports = {
   siteMetadata: {
     title: `Vision Solar Finance`,
@@ -13,6 +10,10 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sitemap`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
@@ -40,11 +41,9 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.join(__dirname, `src`, `images`),
+        path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-sharp`,
-    `gatsby-transformer-sharp`,
     `gatsby-plugin-offline`,
   ],
 };

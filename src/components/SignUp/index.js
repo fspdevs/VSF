@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, navigate } from 'gatsby';
-
+import { TextField, Container, Paper } from '@material-ui/core';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -33,7 +33,13 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
-    const { username, email, passwordOne, isAdmin, isRep } = this.state;
+    const {
+      username,
+      email,
+      passwordOne,
+      isAdmin,
+      isRep,
+    } = this.state;
     const roles = {};
 
     if (isAdmin) {
@@ -42,7 +48,7 @@ class SignUpFormBase extends Component {
     if (isRep) {
       roles[ROLES.REP] = ROLES.REP;
     }
- 
+
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -97,59 +103,61 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <label>
-          Admin:
+      <Paper>
+        <form onSubmit={this.onSubmit}>
           <input
-            name="isAdmin"
-            type="checkbox"
-            checked={isAdmin}
-            onChange={this.onChangeCheckbox}
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
           />
-        </label>
-        <label>
-          Rep:
           <input
-            name="isRep"
-            type="checkbox"
-            checked={isRep}
-            onChange={this.onChangeCheckbox}
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
           />
-        </label>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+          <input
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <input
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <label>
+            Admin:
+            <input
+              name="isAdmin"
+              type="checkbox"
+              checked={isAdmin}
+              onChange={this.onChangeCheckbox}
+            />
+          </label>
+          <label>
+            Rep:
+            <input
+              name="isRep"
+              type="checkbox"
+              checked={isRep}
+              onChange={this.onChangeCheckbox}
+            />
+          </label>
+          <button disabled={isInvalid} type="submit">
+            Sign Up
+          </button>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          {error && <p>{error.message}</p>}
+        </form>
+      </Paper>
     );
   }
 }

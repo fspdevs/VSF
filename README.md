@@ -23,6 +23,7 @@
 - Make Client info editable/deletable for their respective reps
 - Identifty Provider configuration
 - Applications and forms should have a "Save and Continue" button
+- gatsby plugin manifest for PWA
 
 # Styling
 
@@ -36,9 +37,7 @@
 
 ![swatch][colors]
 
-![swatch](https://drive.google.com/uc?export=view&id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx)
-
-[colors]: https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
+[colors]: https://drive.google.com/uc?export=view&id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
 
 ## Fonts
 
@@ -90,7 +89,7 @@
     - Project Details (4.725 KW \$15,400.00)
     - Send Agreements (Signed 2020-01-11)
     - Stipulations (documents requested and their status)
-      - ACH Bank Info (uploadable??)
+      - ACH Bank Info (uploadable??)x
       - Proof of Ownership (uploadable)
       - Proof of Income (uploadable)
       - Dividend Welcome Call (calling client or provider)

@@ -10,7 +10,6 @@ import {
   Toolbar,
   Typography,
   IconButton,
-  Button,
   Drawer,
   List,
   Divider,
@@ -21,10 +20,10 @@ import {
 } from '@material-ui/core';
 import {
   Menu as MenuIcon,
-  ChevronRight as ChevronRightIcon,
+  // ChevronRight as ChevronRightIcon,
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
-  EventNote as EventNoteIcon,
+  // EventNote as EventNoteIcon,
   People as PeopleIcon,
 } from '@material-ui/icons';
 
