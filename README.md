@@ -33,7 +33,9 @@
 - #ffffff <em>White</em>
 - #333333 **Dark greyish blue**
 - #428ACA **cornflowerblue**
-- ![Swatch][colors]
+
+![swatch][colors]
+![swatch](https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx)
 
 [colors]: https://drive.google.com/open?id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
 
@@ -68,8 +70,8 @@
 ### Pages and Components
 
 - Client Display Page (is the same as the project display page)
-  - ![Example][pipeline]
-  - ![dashboard][dashboard]
+  ![Example][pipeline]
+  ![dashboard][dashboard]
 - Client Info:
   - Project #/Contract #
   - Phone
@@ -78,7 +80,7 @@
   - Loan Type
 - Project Timeline (breadcrumb?)
   - Credit App
-    - Details 
+    - Details
     - ![details][details]
   - Product Selection
   - Financing Details
@@ -94,11 +96,11 @@
       - ![example][stipulations]
   - Intallation
     - Work Order
-        - ![Example][workorder] 
-    - Substantial Completion 
-        - ![example][subInfo]
+      - ![Example][workorder]
+    - Substantial Completion
+      - ![example][subinfo]
     - Permission to Operate
-        - ![Example][finalCompletion]
+      - ![Example][finalcompletion]
   - In service (I guess when the project is complete)
 
 ### Data and Relationships
@@ -140,17 +142,10 @@
 ## Images
 
 [details]: https://drive.google.com/open?id=1my4L7rWbFASx2kva4o6GlNiF3yc8JICj
-
 [pipeline]: https://drive.google.com/open?id=1MAfnKblxg79kGXvxPS_hZXU_vmI1PK8k
-
-[projectTimeline]: https://drive.google.com/open?id=1vP9rEtW3aBGOg39W6L0Rn01nzHxToqKI
-
+[projecttimeline]: https://drive.google.com/open?id=1vP9rEtW3aBGOg39W6L0Rn01nzHxToqKI
 [dashboard]: https://drive.google.com/open?id=1q*EXZKz_e*-KVdjrKie7007R8UNbpXhe
-
-[subInfo]: https://drive.google.com/open?id=1qmWimkzaylyXVHdWPtpoW6-sqACoPpsh
-
-[finalCompletion]: https://drive.google.com/open?id=1Xxd1y0Amsg04hfHZpmS6zzOerjJbtzSW
-
+[subinfo]: https://drive.google.com/open?id=1qmWimkzaylyXVHdWPtpoW6-sqACoPpsh
+[finalcompletion]: https://drive.google.com/open?id=1Xxd1y0Amsg04hfHZpmS6zzOerjJbtzSW
 [stipulations]: https://drive.google.com/open?id=1Jpv1O4LkGiqE1TItwnrDKFeWWhfUzvkn
-
 [workorder]: https://drive.google.com/open?id=1mgjNfneFRUqqPC_PPYVj162q-r1qQX6j
