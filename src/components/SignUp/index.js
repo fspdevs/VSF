@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { Link, navigate } from 'gatsby';
-import { TextField, Container, Paper } from '@material-ui/core';
+import {
+  TextField,
+  Container,
+  Paper,
+  Input,
+  FormControl,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Button,
+} from '@material-ui/core';
+import { styled } from '@material-ui/core/styles';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
@@ -24,6 +35,13 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   to sign in with one of them. Afterward, associate your accounts
   on your personal account page.
 `;
+
+const SignUpForm = styled(FormControl)({
+  display: 'flex',
+  flexDirection: 'column',
+  margin: '0 auto',
+  width: 400,
+});
 
 class SignUpFormBase extends Component {
   constructor(props) {
@@ -104,59 +122,77 @@ class SignUpFormBase extends Component {
 
     return (
       <Paper>
-        <form onSubmit={this.onSubmit}>
-          <input
+        <SignUpForm onSubmit={this.onSubmit}>
+          <TextField
+            required="true"
+            autoComplete
             name="username"
             value={username}
             onChange={this.onChange}
             type="text"
             placeholder="Full Name"
           />
-          <input
+          <TextField
+            required="true"
+            autoComplete
             name="email"
             value={email}
             onChange={this.onChange}
             type="text"
             placeholder="Email Address"
           />
-          <input
+          <TextField
+            required="true"
+            autoComplete
             name="passwordOne"
             value={passwordOne}
             onChange={this.onChange}
             type="password"
             placeholder="Password"
           />
-          <input
+          <TextField
+            required="true"
+            autoComplete
             name="passwordTwo"
             value={passwordTwo}
             onChange={this.onChange}
             type="password"
             placeholder="Confirm Password"
           />
-          <label>
-            Admin:
-            <input
-              name="isAdmin"
-              type="checkbox"
-              checked={isAdmin}
-              onChange={this.onChangeCheckbox}
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  required="true"
+                  autoComplete
+                  name="isAdmin"
+                  type="checkbox"
+                  checked={isAdmin}
+                  onChange={this.onChangeCheckbox}
+                />
+              }
+              label="Admin:"
             />
-          </label>
-          <label>
-            Rep:
-            <input
-              name="isRep"
-              type="checkbox"
-              checked={isRep}
-              onChange={this.onChangeCheckbox}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  required="true"
+                  autoComplete
+                  name="isRep"
+                  type="checkbox"
+                  checked={isRep}
+                  onChange={this.onChangeCheckbox}
+                />
+              }
+              label="Rep:"
             />
-          </label>
-          <button disabled={isInvalid} type="submit">
+          </FormGroup>
+          <Button disabled={isInvalid} type="submit">
             Sign Up
-          </button>
+          </Button>
 
           {error && <p>{error.message}</p>}
-        </form>
+        </SignUpForm>
       </Paper>
     );
   }

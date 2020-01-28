@@ -9,7 +9,6 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    // display: 'flex',
     width: '75%',
     padding: 20,
     textAlign: 'center',
