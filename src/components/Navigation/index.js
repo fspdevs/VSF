@@ -279,6 +279,14 @@ const NavigationNonAuth = ({
               <ListItemText primary="Sign In" />
             </ListItem>
           </Link>
+          <Link to={ROUTES.SIGN_UP}>
+            <ListItem>
+              <ListItemIcon>
+                <DashboardIcon />
+              </ListItemIcon>
+              <ListItemText primary="Sign Up" />
+            </ListItem>
+          </Link>
         </div>
       </List>
     </Drawer>
