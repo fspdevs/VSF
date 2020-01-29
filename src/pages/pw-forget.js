@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-
 import Layout from '../components/layout';
 import PasswordForgetForm from '../components/PasswordForget';
 
