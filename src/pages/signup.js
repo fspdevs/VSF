@@ -1,11 +1,20 @@
 import React, { Fragment } from 'react';
-
+import { Typography } from '@material-ui/core';
 import Layout from '../components/layout';
 import SignUpForm from '../components/SignUp';
+import theme from '../theme';
 
 const SignUpPage = () => (
   <>
-    <h1>SignUp</h1>
+    <Typography
+      variant="h2"
+      style={{
+        fontFamily: theme.fonts.nuni,
+        color: theme.color.soulOrange,
+      }}
+    >
+      Sign Up
+    </Typography>
     <SignUpForm />
   </>
 );

@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { navigate } from 'gatsby';
+import { TextField, Fab, Button, Box } from '@material-ui/core';
+//////////////////////////////////////
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Fab, Button, Box } from '@material-ui/core';
 import theme from '../../theme';
+
 const styles = {
   root: {
     padding: 20,
@@ -17,8 +19,9 @@ const styles = {
     flexDirection: 'column',
     alignItems: 'center',
     width: '60%',
-    backgroundColor: 'pink',
+    backgroundColor: theme.color.white,
     padding: 20,
+    boxShadow: "1px 2px 5px grey",
   },
   input: {
     margin: 5,

@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Typography } from '@material-ui/core';
 import Layout from '../components/layout';
 import SignInForm, {
   SignInGoogle,
@@ -8,10 +9,9 @@ import SignInForm, {
 import { SignUpLink } from '../components/SignUp';
 import { PasswordForgetLink } from '../components/PasswordForget';
 import theme from '../theme';
-import { Typography } from '@material-ui/core';
 
 const SignInPage = () => (
-  <Fragment>
+  <>
     <Typography
       variant="h2"
       style={{
@@ -27,7 +27,7 @@ const SignInPage = () => (
     <SignInTwitter />
     <PasswordForgetLink />
     <SignUpLink />
-  </Fragment>
+  </>
 );
 
 export default () => (

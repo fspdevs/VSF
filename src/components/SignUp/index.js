@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link, navigate } from 'gatsby';
+import { styled } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import {
   TextField,
   Container,
@@ -8,13 +10,52 @@ import {
   FormControl,
   FormGroup,
   FormControlLabel,
+  FormHelperText,
   Checkbox,
   Button,
+  FormLabel,
 } from '@material-ui/core';
-import { styled } from '@material-ui/core/styles';
+////////////////////////////
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import theme from '../../theme';
+
+const styles = {
+  root: {
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '60%',
+    padding: 20,
+    boxShadow: '1px 2px 5px grey',
+    margin: '0 auto',
+  },
+  input: {
+    margin: 5,
+    textAlign: 'center',
+    width: '60%',
+    textAlign: 'center',
+    padding: '5px 10px 5px 20px',
+  },
+  group: {
+    marginTop: 20,
+    textAlign: 'center',
+  },
+  formLabel: {
+    fontSize: '20px',
+    color: "black",
+  },
+  helperText: {
+    textAlign: 'center',
+  },
+};
 
 const INITIAL_STATE = {
   username: '',
@@ -121,79 +162,94 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-      <Paper>
-        <SignUpForm onSubmit={this.onSubmit}>
-          <TextField
-            required="true"
-            autoComplete
-            name="username"
-            value={username}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Full Name"
+      <form
+        onSubmit={this.onSubmit}
+        className={this.props.classes.form}
+      >
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Full Name"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="passwordOne"
+          value={passwordOne}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="passwordTwo"
+          value={passwordTwo}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Confirm Password"
+        />
+        <FormGroup className={this.props.classes.group}>
+          <FormLabel
+            component="legend"
+            className={this.props.classes.formLabel}
+          >
+            Role:
+          </FormLabel>
+          <FormHelperText className={this.props.classes.helperText}>
+            Choose One
+          </FormHelperText>
+          <FormControlLabel
+            control={
+              <Checkbox
+                // required="true"
+                autoComplete
+                name="isAdmin"
+                type="checkbox"
+                checked={isAdmin}
+                onChange={this.onChangeCheckbox}
+              />
+            }
+            label="Admin"
           />
-          <TextField
-            required="true"
-            autoComplete
-            name="email"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"
+          <FormControlLabel
+            control={
+              <Checkbox
+                // required="true"
+                autoComplete
+                name="isRep"
+                type="checkbox"
+                checked={isRep}
+                onChange={this.onChangeCheckbox}
+              />
+            }
+            label="Rep"
           />
-          <TextField
-            required="true"
-            autoComplete
-            name="passwordOne"
-            value={passwordOne}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-          />
-          <TextField
-            required="true"
-            autoComplete
-            name="passwordTwo"
-            value={passwordTwo}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Confirm Password"
-          />
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  required="true"
-                  autoComplete
-                  name="isAdmin"
-                  type="checkbox"
-                  checked={isAdmin}
-                  onChange={this.onChangeCheckbox}
-                />
-              }
-              label="Admin:"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  required="true"
-                  autoComplete
-                  name="isRep"
-                  type="checkbox"
-                  checked={isRep}
-                  onChange={this.onChangeCheckbox}
-                />
-              }
-              label="Rep:"
-            />
-          </FormGroup>
-          <Button disabled={isInvalid} type="submit">
-            Sign Up
-          </Button>
+        </FormGroup>
 
-          {error && <p>{error.message}</p>}
-        </SignUpForm>
-      </Paper>
+        <Button disabled={isInvalid} type="submit">
+          Sign Up
+        </Button>
+
+        {error && <p>{error.message}</p>}
+      </form>
     );
   }
 }
@@ -204,6 +260,6 @@ const SignUpLink = () => (
   </p>
 );
 
-export default withFirebase(SignUpFormBase);
+export default withStyles(styles)(withFirebase(SignUpFormBase));
 
 export { SignUpLink };
