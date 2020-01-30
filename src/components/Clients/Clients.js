@@ -10,10 +10,16 @@ import {
   Grid,
   Typography,
   Snackbar,
+  Select,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
 } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
+
 const styles = {
   root: {
     backgroundColor: 'lightgrey',
@@ -30,6 +36,11 @@ const styles = {
     margin: 5,
   },
   fab: {
+    marginTop: 20,
+  },
+  select: {
+    width: '30%',
+    alignSelf: 'center',
     marginTop: 20,
   },
 };
@@ -55,9 +66,11 @@ class Clients extends Component {
       state: '',
       zip: '',
       country: '',
+      rep: '',
       loading: false,
       createClient: false,
       clients: [],
+      users: [],
       limit: 5,
       _initFirebase: false,
       openSuccessSnack: false,
@@ -66,10 +79,12 @@ class Clients extends Component {
   }
 
   firebaseInit() {
+    //function to accecc th ereps in the database
     if (this.props.firebase && !this._initFirebase) {
       this._initFirebase = true;
       console.log('firebaseInit is hitting', this._initFirebase);
       this.onListenForClients();
+      this.onListenForUsers();
     }
   }
 
@@ -81,6 +96,20 @@ class Clients extends Component {
     this.firebaseInit();
   }
 
+  onListenForUsers = () => {
+    this.setState({ loading: true });
+    this.props.firebase.users().on('value', snapshot => {
+      const usersObject = snapshot.val();
+      const usersList = Object.keys(usersObject).map(key => ({
+        ...usersObject[key],
+        uid: key,
+      }));
+      this.setState({
+        users: usersList,
+        loading: false,
+      });
+    });
+  };
   onListenForClients = () => {
     this.setState({ loading: true });
     this.props.firebase
@@ -145,7 +174,8 @@ class Clients extends Component {
       zip: this.state.zip,
       country: this.state.country,
       userId: authUser.uid,
-      rep: authUser.username,
+      // rep: authUser.username, //! Rep is chosen via dropdown instead of by who is currently logged in
+      rep: this.state.rep,
       createdAt: this.props.firebase.serverValue.TIMESTAMP,
     });
     this.setState({
@@ -160,6 +190,7 @@ class Clients extends Component {
       state: '',
       zip: '',
       country: '',
+      rep: '',
     });
     this.handleSuccessSnackBar();
     console.log(this.state.clients, 'clients array');
@@ -214,8 +245,10 @@ class Clients extends Component {
       zip,
       country,
       loading,
+      rep,
       // createClient,
       clients,
+      users,
       limit,
       _initFirebase,
     } = this.state;
@@ -223,7 +256,7 @@ class Clients extends Component {
       //! Make sure you change the functions to align with the class based component
       <AuthUserContext.Consumer>
         {authUser => (
-          <div>
+          <>
             <Snackbar
               open={this.state.openSuccessSnack}
               name="openSuccessSnack"
@@ -284,7 +317,7 @@ class Clients extends Component {
                 className={this.props.classes.fab}
               >
                 <Add />
-                Create Client
+                Add Homeowner
               </Fab>
             )}
             {this.state.createClient && (
@@ -406,9 +439,29 @@ class Clients extends Component {
                     />
                   </Grid>
                 </Grid>
-
+                <FormControl
+                  variant="standard"
+                  className={this.props.classes.select}
+                >
+                  <Select
+                    native
+                    value={rep}
+                    name="rep"
+                    onChange={this.onChangeHandler}
+                    inputProps={{
+                      name: 'rep',
+                    }}
+                  >
+                    {this.state.users.map(user => (
+                      <option value={user.username}>
+                        {user.username}
+                      </option>
+                    ))}
+                  </Select>
+                  <FormHelperText>Choose a Rep</FormHelperText>
+                </FormControl>
                 <Button type="submit" startIcon={<Save />}>
-                  Add User
+                  Add Homeowner
                 </Button>
                 <Button
                   type="submit"
@@ -419,7 +472,7 @@ class Clients extends Component {
                 </Button>
               </form>
             )}
-          </div>
+          </>
         )}
       </AuthUserContext.Consumer>
     );
