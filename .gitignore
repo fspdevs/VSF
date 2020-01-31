@@ -34,3 +34,6 @@ yarn-error.log*
 # gatsby
 .cache/
 public/
+
+# firebase key 
+firebase-key.json

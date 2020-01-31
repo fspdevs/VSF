@@ -13,7 +13,23 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
-
+    {
+      resolve: `gatsby-source-firebase`,
+      options: {
+        credential: require('./firebase-key.json'),
+        databaseURL: 'https://vision-solar-finance.firebaseio.com/',
+        types: [
+          {
+            type: 'Clients',
+            path: 'clients',
+          },
+          {
+            type: 'Users',
+            path: 'users',
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {

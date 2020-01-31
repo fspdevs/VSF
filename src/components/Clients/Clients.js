@@ -140,7 +140,7 @@ class Clients extends Component {
   }
 
   //////////////////////////////////////////////////
-  //! //////MEssage creation/editing functions/////
+  //! //////Client creation/editing functions/////
   ////////////////////////////////////////////////
 
   //This funciton opens up the form to upload a client's info and closes the form

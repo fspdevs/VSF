@@ -28,6 +28,7 @@
     "gatsby-plugin-sitemap": "^2.2.24",
     "gatsby-plugin-styled-components": "^3.1.17",
     "gatsby-source-filesystem": "^2.1.43",
+    "gatsby-source-firebase": "^1.0.0",
     "gatsby-transformer-sharp": "^2.3.9",
     "material-table": "^1.54.2",
     "react": "^16.8.6",
