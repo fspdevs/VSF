@@ -1,4 +1,5 @@
 exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
   const result = await graphql(`
     query {
       allClients {
@@ -11,4 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
   console.log(JSON.stringify(result, null, 4));
+  result.data.allClients.nodes.forEach(() => {
+    createPage({});
+  });
 };
