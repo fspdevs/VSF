@@ -17,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: slug,
       component: require.resolve(`./src/templates/Homeowner/Homeowner.js`),
-      context: { slug: slug },
+      context: { clientId: node.id },
     });
   });
 };

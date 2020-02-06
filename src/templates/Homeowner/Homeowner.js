@@ -3,7 +3,9 @@ import { graphql } from 'gatsby';
 import { withFirebase } from '../../components/Firebase';
 import { withStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
+
 const Homeowner = ({ data }) => {
+  console.log(data.clients, 'data');
   const client = data.clients;
   return (
     <>
@@ -20,8 +22,8 @@ const Homeowner = ({ data }) => {
 export default Homeowner;
 
 export const query = graphql`
-  query($slug: String!) {
-    clients(fields: { id: { eq: $slug } }) {
+  query($clientId: String!) {
+    clients(id: { eq: $clientId }) {
       firstName
       lastName
       email
