@@ -4,9 +4,21 @@ exports.createPages = async ({ graphql, actions }) => {
     query {
       allClients {
         nodes {
+          id
           firstName
           lastName
-          id
+          phone
+          email
+          addressLine1
+          addressLine2
+          city
+          state
+          zip
+          country
+          rep
+          createdAt
+          editedAt
+          userId
         }
       }
     }
