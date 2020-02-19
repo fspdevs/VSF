@@ -107,257 +107,239 @@ const ClientItem = props => {
     <>
       {authUser.uid === client.userId && (
         <>
-          <Link to={`/client/${client.uid}`}>
-            <TableRow hover key={client.uid}>
+          {/* <Link to={`/client/${client.uid}`}> */}
+          <TableRow hover key={client.uid}>
+            {editMode ? (
+              <>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="firstName"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.firstName}
+                    label="First Name"
+                    variant="outlined"
+                    type="text"
+                    value={firstName}
+                    onChange={e =>
+                      updateClientInfo({
+                        firstName: e.target.value,
+                      })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="lastName"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.lastName}
+                    label="Last Name"
+                    variant="outlined"
+                    type="text"
+                    value={lastName}
+                    onChange={e =>
+                      updateClientInfo({ lastName: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="email"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.email}
+                    label="Email"
+                    variant="outlined"
+                    type="email"
+                    value={email}
+                    onChange={e =>
+                      updateClientInfo({ email: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="phone"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.phone}
+                    label="Phone"
+                    variant="outlined"
+                    type="text"
+                    value={phone}
+                    onChange={e =>
+                      updateClientInfo({ phone: e.target.value })
+                    }
+                  />
+                </TableCell>
+                <TableCell component="th" scope="row">
+                  <TextField
+                    name="addressLine1"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.addressLine1}
+                    label="Address Line 1"
+                    variant="outlined"
+                    type="text"
+                    value={addressLine1}
+                    onChange={e =>
+                      updateClientInfo({
+                        addressLine1: e.target.value,
+                      })
+                    }
+                  />
+                  <TextField
+                    name="addressLine2"
+                    className={props.classes.input}
+                    id="outlined-basic"
+                    placeHolder={props.client.addressLine2}
+                    label="Address Line 2"
+                    variant="outlined"
+                    type="text"
+                    value={addressLine2}
+                    onChange={e =>
+                      updateClientInfo({
+                        addressLine2: e.target.value,
+                      })
+                    }
+                  />
+                  <Grid container xs={12} justify="space-evenly">
+                    <Grid item xs={6}>
+                      <TextField
+                        name="city"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.city}
+                        label="City"
+                        variant="outlined"
+                        type="text"
+                        value={city}
+                        onChange={e =>
+                          updateClientInfo({
+                            city: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        name="state"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.state}
+                        label="State"
+                        variant="outlined"
+                        type="text"
+                        value={state}
+                        onChange={e =>
+                          updateClientInfo({
+                            state: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                  <Grid container xs={12} justify="space-evenly">
+                    <Grid item xs={6}>
+                      <TextField
+                        name="zip"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.zipcode}
+                        label="Zip Code"
+                        variant="outlined"
+                        type="text"
+                        value={zip}
+                        onChange={e =>
+                          updateClientInfo({
+                            zip: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField
+                        name="country"
+                        className={props.classes.input}
+                        id="outlined-basic"
+                        placeHolder={props.client.country}
+                        label="Country"
+                        variant="outlined"
+                        type="text"
+                        value={country}
+                        onChange={e =>
+                          updateClientInfo({
+                            country: e.target.value,
+                          })
+                        }
+                      />
+                    </Grid>
+                  </Grid>
+                </TableCell>
+              </>
+            ) : (
+              <>
+                <TableCell align="center" component="th" scope="row">
+                  <strong className={props.classes.row}>
+                    {client.firstName}
+                  </strong>
+                </TableCell>
+
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.lastName}</strong>
+                </TableCell>
+
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.email}</strong>
+                </TableCell>
+
+                <TableCell align="center" component="th" scope="row">
+                  <strong>{client.phone}</strong>
+                </TableCell>
+                <TableCell align="center" component="th" scope="row">
+                  <Box component="div" className={props.classes.box}>
+                    {client.addressLine1}
+                    {` `}
+                    {client.addressLine2}
+                    {` `}
+                    {client.city}
+                    {` `}
+                    {client.state}
+                    {` `}
+                    {client.country}
+                    {` `}
+                    {client.zip}
+                  </Box>
+                </TableCell>
+              </>
+            )}
+            <TableCell align="center" component="th" scope="row">
+              {' '}
               {editMode ? (
                 <>
-                  <TableCell component="th" scope="row">
-                    <TextField
-                      name="firstName"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.firstName}
-                      label="First Name"
-                      variant="outlined"
-                      type="text"
-                      value={firstName}
-                      onChange={e =>
-                        updateClientInfo({
-                          firstName: e.target.value,
-                        })
-                      }
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <TextField
-                      name="lastName"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.lastName}
-                      label="Last Name"
-                      variant="outlined"
-                      type="text"
-                      value={lastName}
-                      onChange={e =>
-                        updateClientInfo({ lastName: e.target.value })
-                      }
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <TextField
-                      name="email"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.email}
-                      label="Email"
-                      variant="outlined"
-                      type="email"
-                      value={email}
-                      onChange={e =>
-                        updateClientInfo({ email: e.target.value })
-                      }
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <TextField
-                      name="phone"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.phone}
-                      label="Phone"
-                      variant="outlined"
-                      type="text"
-                      value={phone}
-                      onChange={e =>
-                        updateClientInfo({ phone: e.target.value })
-                      }
-                    />
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    <TextField
-                      name="addressLine1"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.addressLine1}
-                      label="Address Line 1"
-                      variant="outlined"
-                      type="text"
-                      value={addressLine1}
-                      onChange={e =>
-                        updateClientInfo({
-                          addressLine1: e.target.value,
-                        })
-                      }
-                    />
-                    <TextField
-                      name="addressLine2"
-                      className={props.classes.input}
-                      id="outlined-basic"
-                      placeHolder={props.client.addressLine2}
-                      label="Address Line 2"
-                      variant="outlined"
-                      type="text"
-                      value={addressLine2}
-                      onChange={e =>
-                        updateClientInfo({
-                          addressLine2: e.target.value,
-                        })
-                      }
-                    />
-                    <Grid container xs={12} justify="space-evenly">
-                      <Grid item xs={6}>
-                        <TextField
-                          name="city"
-                          className={props.classes.input}
-                          id="outlined-basic"
-                          placeHolder={props.client.city}
-                          label="City"
-                          variant="outlined"
-                          type="text"
-                          value={city}
-                          onChange={e =>
-                            updateClientInfo({
-                              city: e.target.value,
-                            })
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <TextField
-                          name="state"
-                          className={props.classes.input}
-                          id="outlined-basic"
-                          placeHolder={props.client.state}
-                          label="State"
-                          variant="outlined"
-                          type="text"
-                          value={state}
-                          onChange={e =>
-                            updateClientInfo({
-                              state: e.target.value,
-                            })
-                          }
-                        />
-                      </Grid>
-                    </Grid>
-                    <Grid container xs={12} justify="space-evenly">
-                      <Grid item xs={6}>
-                        <TextField
-                          name="zip"
-                          className={props.classes.input}
-                          id="outlined-basic"
-                          placeHolder={props.client.zipcode}
-                          label="Zip Code"
-                          variant="outlined"
-                          type="text"
-                          value={zip}
-                          onChange={e =>
-                            updateClientInfo({
-                              zip: e.target.value,
-                            })
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={6}>
-                        <TextField
-                          name="country"
-                          className={props.classes.input}
-                          id="outlined-basic"
-                          placeHolder={props.client.country}
-                          label="Country"
-                          variant="outlined"
-                          type="text"
-                          value={country}
-                          onChange={e =>
-                            updateClientInfo({
-                              country: e.target.value,
-                            })
-                          }
-                        />
-                      </Grid>
-                    </Grid>
-                  </TableCell>
+                  <button onClick={onSaveEdit}>Save</button>
+                  <button onClick={toggleEditMode}>Cancel</button>
                 </>
               ) : (
                 <>
-                  <TableCell
-                    align="center"
-                    component="th"
-                    scope="row"
-                  >
-                    <strong className={props.classes.row}>
-                      {client.firstName}
-                    </strong>
-                  </TableCell>
-
-                  <TableCell
-                    align="center"
-                    component="th"
-                    scope="row"
-                  >
-                    <strong>{client.lastName}</strong>
-                  </TableCell>
-
-                  <TableCell
-                    align="center"
-                    component="th"
-                    scope="row"
-                  >
-                    <strong>{client.email}</strong>
-                  </TableCell>
-
-                  <TableCell
-                    align="center"
-                    component="th"
-                    scope="row"
-                  >
-                    <strong>{client.phone}</strong>
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    component="th"
-                    scope="row"
-                  >
-                    <Box
-                      component="div"
-                      className={props.classes.box}
-                    >
-                      {client.addressLine1}
-                      {` `}
-                      {client.addressLine2}
-                      {` `}
-                      {client.city}
-                      {` `}
-                      {client.state}
-                      {` `}
-                      {client.country}
-                      {` `}
-                      {client.zip}
-                    </Box>
-                  </TableCell>
+                  <button>
+                    <Link to={`/client/${client.uid}`}>View</Link>
+                  </button>
+                  <button onClick={toggleEditMode}>Edit</button>
                 </>
               )}
-              <TableCell align="center" component="th" scope="row">
-                {' '}
-                {editMode ? (
-                  <>
-                    <button onClick={onSaveEdit}>Save</button>
-                    <button onClick={toggleEditMode}>Cancel</button>
-                  </>
-                ) : (
-                  <button onClick={toggleEditMode}>Edit</button>
-                )}
-                {!editMode && (
-                  <button
-                    type="button"
-                    onClick={() => onRemoveClient(client.uid)}
-                  >
-                    Delete
-                  </button>
-                )}
-              </TableCell>
-            </TableRow>
-          </Link>
+              {!editMode && (
+                <button
+                  type="button"
+                  onClick={() => onRemoveClient(client.uid)}
+                >
+                  Delete
+                </button>
+              )}
+            </TableCell>
+          </TableRow>
+          {/* </Link> */}
         </>
       )}
     </>

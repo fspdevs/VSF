@@ -8,7 +8,7 @@
 - Material UI, tables, textfield, form,
 - reactHooks
 - STyle & Layout
-<!-- - Images/Logo/Colors (probably jack some colors from VS) -->
+  <!-- - Images/Logo/Colors (probably jack some colors from VS) -->
   - Have to create a new logo in illustrator???
 - ~~ make it so users can only see the messages/clients that they created ~~
 - Make components that displays a clients profile for the Admin once they choose their name from the userlist
@@ -16,6 +16,7 @@
 
 # FUTURE Implementations
 
+- configure the gatsby-plugin-material-ui
 - esignature
 - Switch form regular table to MAterial-Table
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)

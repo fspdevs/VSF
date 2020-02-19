@@ -12,6 +12,7 @@ import {
   Toolbar,
 } from '@material-ui/core';
 import ClientItem from './ClientItem';
+import { Link } from 'gatsby';
 
 const styles = theme => ({
   root: {

@@ -11,9 +11,17 @@ const Homeowner = ({ data }) => {
     <>
       <Layout>
         <h1>Home Owner Component</h1>
-        <h3>{client.firstName}</h3>
-        <h3>{client.lastName}</h3>
+        <h3>
+          {client.firstName} {client.lastName}
+        </h3>
         <h3>{client.email}</h3>
+        <h3>{client.addressLine1}</h3>
+        <h3>{client.addressLine2}</h3>
+        <h3>{client.city}</h3>
+        <h3>{client.state}</h3>
+        <h3>{client.zip}</h3>
+        <h3>{client.country}</h3>
+        <h3>{client.rep}</h3>
       </Layout>
     </>
   );
@@ -26,7 +34,18 @@ export const query = graphql`
     clients(id: { eq: $clientId }) {
       firstName
       lastName
+      phone
       email
+      addressLine1
+      addressLine2
+      city
+      state
+      zip
+      country
+      rep
+      createdAt
+      editedAt
+      userId
     }
   }
 `;
