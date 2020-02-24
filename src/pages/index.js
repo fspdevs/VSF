@@ -14,7 +14,7 @@ import {
   Fab,
 } from '@material-ui/core';
 import theme from '../theme';
-import { LandingPageLogo } from '../components/Queries/images/logos';
+
 // import Layout from '../components/layout';
 
 const LandingWrap = styled(Container)({
@@ -42,27 +42,28 @@ const A = styled(Link)({
   letterSpacing: 1,
 });
 
-const LandingPage = () => (
-  <>
-    <StyledAboutHeroBG>
-      {/* <OverlayLanding></OverlayLanding> */}
-    </StyledAboutHeroBG>
+const LandingPage = () => {
+  return (
+    <>
+      <StyledAboutHeroBG>
+        {/* <OverlayLanding></OverlayLanding> */}
+      </StyledAboutHeroBG>
 
-    <LandingWrap>
-      {/* <Typography variant="h1">Vision Solar</Typography>
-      <Typography variant="h1">Finance </Typography>
-      <Typography variant="h1">Logo </Typography> */}
-      <LandingPageLogo />
-      <A to="/signin">
-        <FAB variant="extended">Sign In</FAB>
-      </A>
-      <A to="signup">
-        <FAB variant="extended">Sign Up</FAB>
-      </A>
-    </LandingWrap>
-  </>
-);
+      <LandingWrap>
+        <Typography variant="h1">Vision Solar</Typography>
+        <Typography variant="h1">Finance </Typography>
+        <Typography variant="h1">Logo </Typography>
 
+        <A to="/signin">
+          <FAB variant="extended">Sign In</FAB>
+        </A>
+        <A to="signup">
+          <FAB variant="extended">Sign Up</FAB>
+        </A>
+      </LandingWrap>
+    </>
+  );
+};
 export default () => (
   // <Layout>
   <LandingPage />
