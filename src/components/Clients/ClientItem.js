@@ -105,8 +105,10 @@ const ClientItem = props => {
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
-      {/* {authUser.uid === client.userId && ( */}
+      {authUser.uid === client.userId && (
+        
         <>
+        {/* the below makes it so you can only see the reps you made instad of all reps if you are an admin */}
           {/* <Link to={`/client/${client.uid}`}> */}
           <TableRow hover key={client.uid}>
             {editMode ? (
@@ -341,7 +343,7 @@ const ClientItem = props => {
           </TableRow>
           {/* </Link> */}
         </>
-      {/* )} */}
+      )}
     </>
   );
 };
