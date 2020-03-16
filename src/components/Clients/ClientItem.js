@@ -105,7 +105,7 @@ const ClientItem = props => {
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
-      {authUser.uid === client.userId && (
+      {/* {authUser.uid === client.userId && ( */}
         <>
           {/* <Link to={`/client/${client.uid}`}> */}
           <TableRow hover key={client.uid}>
@@ -341,7 +341,7 @@ const ClientItem = props => {
           </TableRow>
           {/* </Link> */}
         </>
-      )}
+      {/* )} */}
     </>
   );
 };
