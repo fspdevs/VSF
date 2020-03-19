@@ -20,10 +20,8 @@ import {
 } from '@material-ui/core';
 import {
   Menu as MenuIcon,
-  // ChevronRight as ChevronRightIcon,
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
-  // EventNote as EventNoteIcon,
   People as PeopleIcon,
 } from '@material-ui/icons';
 
@@ -105,7 +103,6 @@ const Navigation = styles => {
     setDrawer(false);
   };
   const { classes } = styles;
-
   return (
     <AuthUserContext.Consumer>
       {authUser =>
@@ -171,7 +168,6 @@ const NavigationAuth = ({
           >
             Vision Solar Finance
           </Typography>
-
           <SignOutButton />
         </Toolbar>
       </AppBar>
@@ -234,7 +230,6 @@ const NavigationAuth = ({
     </>
   );
 };
-
 const NavigationNonAuth = ({
   classes,
   handleDrawerOpen,
