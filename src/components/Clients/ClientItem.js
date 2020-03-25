@@ -13,23 +13,59 @@ import {
   TableCell,
   Grid,
   Box,
+  Divider,
 } from '@material-ui/core';
 import { styled } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 
 const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  
   width: 400,
 });
 
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+  //  '.MuiTableCell-root'
+   '.MuiTableRow-head': {
+      background: '#428ACA',
+      width: '100%'
+    },
+    '.MuiDivider-root': {
+      display: 'none',
+    }
+   
+  },
+})(() => null);
+
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor:'black',
+    color: 'color',
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+// const Field = styled(TableCell)({
+//   color: 'pink',
+//   maxWidth: 200,
+//   wordWrap: 'break-word'
+// })
 const styles = {
   input: {
-    margin: 5,
+    margin: 3,
+    bacgroundColor: 'pink',
     textAlign: 'center',
     width: '100%',
+    background: 'pink',
   },
   box: {
     display: 'flex',
@@ -41,6 +77,15 @@ const styles = {
       background: 'green',
     },
   },
+  cell: {
+    color: 'pink',
+    maxWidth: 200,
+    wordWrap: 'break-word'
+  },
+  head: {
+    color: 'blue !important',
+  }
+
 };
 const ClientItem = props => {
   const initState = {
@@ -105,6 +150,8 @@ const ClientItem = props => {
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
+     <GlobalCss />
+    {console.log(props.classes, "classes")}
     {console.log(authUser, "authUser")}
       {/* {authUser.uid === client.userId && ( */}
         {(authUser.roles.ADMIN === "ADMIN" || props.client.rep === authUser.username ) && (
@@ -113,8 +160,8 @@ const ClientItem = props => {
           <TableRow hover key={client.uid}>
             {editMode ? (
               <>
-                <TableCell component="th" scope="row">
-                  <TextField
+                <StyledTableCell component="th" scope="row" className={props.classes.head}>
+                  <TextField 
                     name="firstName"
                     className={props.classes.input}
                     id="outlined-basic"
@@ -129,9 +176,9 @@ const ClientItem = props => {
                       })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  <TextField
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  <TextField scope="textField"
                     name="lastName"
                     className={props.classes.input}
                     id="outlined-basic"
@@ -144,9 +191,9 @@ const ClientItem = props => {
                       updateClientInfo({ lastName: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
-                  <TextField
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
+                  <TextField scope="textField"
                     name="email"
                     className={props.classes.input}
                     id="outlined-basic"
@@ -159,8 +206,8 @@ const ClientItem = props => {
                       updateClientInfo({ email: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row" scope="textField">
                   <TextField
                     name="phone"
                     className={props.classes.input}
@@ -174,8 +221,8 @@ const ClientItem = props => {
                       updateClientInfo({ phone: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row" scope="textField">
                   <TextField
                     name="addressLine1"
                     className={props.classes.input}
@@ -194,6 +241,7 @@ const ClientItem = props => {
                   <TextField
                     name="addressLine2"
                     className={props.classes.input}
+                   
                     id="outlined-basic"
                     placeHolder={props.client.addressLine2}
                     label="Address Line 2"
@@ -211,6 +259,7 @@ const ClientItem = props => {
                       <TextField
                         name="city"
                         className={props.classes.input}
+                        className={props.classes.cell}
                         id="outlined-basic"
                         placeHolder={props.client.city}
                         label="City"
@@ -278,7 +327,7 @@ const ClientItem = props => {
                       />
                     </Grid>
                   </Grid>
-                </TableCell>
+                </StyledTableCell>
               </>
             ) : (
               <>
@@ -292,9 +341,10 @@ const ClientItem = props => {
                   <strong>{client.lastName}</strong>
                 </TableCell>
 
-                <TableCell align="center" component="th" scope="row">
+                <TableCell align="center" component="th" scope="row" className={props.classes.cell}>
                   <strong>{client.email}</strong>
                 </TableCell>
+                <Divider/>
 
                 <TableCell align="center" component="th" scope="row">
                   <strong>{client.phone}</strong>
@@ -314,6 +364,7 @@ const ClientItem = props => {
                     {client.zip}
                   </Box>
                 </TableCell>
+                
               </>
             )}
             <TableCell align="center" component="th" scope="row">
@@ -346,5 +397,8 @@ const ClientItem = props => {
        )}
     </>
   );
+};
+ClientItem.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(ClientItem);
