@@ -16,6 +16,7 @@
 
 # FUTURE Implementations
 
+
 - configure the gatsby-plugin-material-ui
 - esignature
 - Switch form regular table to MAterial-Table
@@ -24,7 +25,8 @@
 - Make Client info editable/deletable for their respective reps and admins
 - Identifty Provider configuration
 - Applications and forms should have a "Save and Continue" button
-- gatsby plugin manifest for PWA
+- gatsby plugin manifest for PWA\
+- Choose a DOmain Name (visionsolar.app/vsf.dev/sales.visionsolar.com)
 
 # Styling
 
