@@ -105,7 +105,9 @@ const ClientItem = props => {
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
+    {console.log(authUser, "authUser")}
       {/* {authUser.uid === client.userId && ( */}
+        {(authUser.roles.ADMIN === "ADMIN" || props.client.rep === authUser.username ) && (
         <>
           {/* <Link to={`/client/${client.uid}`}> */}
           <TableRow hover key={client.uid}>
@@ -341,7 +343,7 @@ const ClientItem = props => {
           </TableRow>
           {/* </Link> */}
         </>
-      {/* )} */}
+       )}
     </>
   );
 };
