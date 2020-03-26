@@ -17,16 +17,16 @@ const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
- 
 });
-console.log(AuthUserContext, 'authuser object');
+
 const AccountPageBase = () => (
   <Fragment>
     <AuthUserContext.Consumer>
       {authUser => (
         <Column>
           <div>
-            <h2>Username: {authUser.email}</h2>
+            <h2>Email: {authUser.email}</h2>
+            {/* <h3>Role: {authUser.roles}</h3> */}
             <PasswordForgetForm />
             <PasswordChangeForm />
             <LoginManagement authUser={authUser} />
