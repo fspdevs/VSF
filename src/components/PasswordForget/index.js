@@ -3,7 +3,17 @@ import { Link } from 'gatsby';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import { styled } from '@material-ui/core/styles';
+import {
+  Box,
+} from '@material-ui/core';
 
+const Column = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+ 
+});
 const INITIAL_STATE = {
   email: '',
   error: null,
@@ -42,17 +52,19 @@ class PasswordForgetForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <label>Forgot your password?</label>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
+        <Column>
+          <label>Forgot your password?</label>
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <button disabled={isInvalid} type="submit">
+            Reset My Password
+          </button>
+        </Column>
 
         {error && <p>{error.message}</p>}
       </form>

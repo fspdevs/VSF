@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
+import { styled } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
+const Column = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  
+});
 const SIGN_IN_METHODS = [
   {
     id: 'password',
@@ -86,42 +94,43 @@ class LoginManagement extends Component {
 
   render() {
     const { activeSignInMethods, error } = this.state;
-
     return (
-      <div>
-        Sign In Methods:
-        <ul>
-          {SIGN_IN_METHODS.map(signInMethod => {
-            const onlyOneLeft = activeSignInMethods.length === 1;
-            const isEnabled = activeSignInMethods.includes(
-              signInMethod.id,
-            );
+      <Column>
+        <div>
+          Sign In Methods:
+          <ul>
+            {SIGN_IN_METHODS.map(signInMethod => {
+              const onlyOneLeft = activeSignInMethods.length === 1;
+              const isEnabled = activeSignInMethods.includes(
+                signInMethod.id,
+              );
 
-            return (
-              <li key={signInMethod.id}>
-                {signInMethod.id === 'password' ? (
-                  <DefaultLoginToggle
-                    onlyOneLeft={onlyOneLeft}
-                    isEnabled={isEnabled}
-                    signInMethod={signInMethod}
-                    onLink={this.onDefaultLoginLink}
-                    onUnlink={this.onUnlink}
-                  />
-                ) : (
-                  <SocialLoginToggle
-                    onlyOneLeft={onlyOneLeft}
-                    isEnabled={isEnabled}
-                    signInMethod={signInMethod}
-                    onLink={this.onSocialLoginLink}
-                    onUnlink={this.onUnlink}
-                  />
-                )}
-              </li>
-            );
-          })}
-        </ul>
-        {error && error.message}
-      </div>
+              return (
+                <li key={signInMethod.id}>
+                  {signInMethod.id === 'password' ? (
+                    <DefaultLoginToggle
+                      onlyOneLeft={onlyOneLeft}
+                      isEnabled={isEnabled}
+                      signInMethod={signInMethod}
+                      onLink={this.onDefaultLoginLink}
+                      onUnlink={this.onUnlink}
+                    />
+                  ) : (
+                    <SocialLoginToggle
+                      onlyOneLeft={onlyOneLeft}
+                      isEnabled={isEnabled}
+                      signInMethod={signInMethod}
+                      onLink={this.onSocialLoginLink}
+                      onUnlink={this.onUnlink}
+                    />
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          {error && error.message}
+        </div>
+      </Column>
     );
   }
 }

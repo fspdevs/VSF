@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
+import { styled } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
+const Column = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
 const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
@@ -42,24 +49,26 @@ class PasswordChangeForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <label>Change Your Password</label>
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
+        <Column>
+          <label>Change Your Password</label>
+          <input
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="New Password"
+          />
+          <input
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm New Password"
+          />
+          <button disabled={isInvalid} type="submit">
+            Reset My Password
+          </button>
+        </Column>
 
         {error && <p>{error.message}</p>}
       </form>

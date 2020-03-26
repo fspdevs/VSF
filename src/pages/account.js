@@ -10,17 +10,28 @@ import {
 import PasswordForgetForm from '../components/PasswordForget';
 import PasswordChangeForm from '../components/PasswordChange';
 import LoginManagement from '../components/LoginManagement';
+import { styled } from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
+const Column = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+ 
+});
+console.log(AuthUserContext, 'authuser object');
 const AccountPageBase = () => (
   <Fragment>
     <AuthUserContext.Consumer>
       {authUser => (
-        <div>
-          <h1>Account: {authUser.email}</h1>
-          <PasswordForgetForm />
-          <PasswordChangeForm />
-          <LoginManagement authUser={authUser} />
-        </div>
+        <Column>
+          <div>
+            <h2>Username: {authUser.email}</h2>
+            <PasswordForgetForm />
+            <PasswordChangeForm />
+            <LoginManagement authUser={authUser} />
+          </div>
+        </Column>
       )}
     </AuthUserContext.Consumer>
   </Fragment>
