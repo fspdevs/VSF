@@ -23,8 +23,8 @@ const SignInPage = () => (
     </Typography>
     <SignInForm />
     <SignInGoogle />
-    <SignInFacebook />
-    <SignInTwitter />
+    {/* <SignInFacebook />
+    <SignInTwitter /> */}
     <PasswordForgetLink />
     <SignUpLink />
   </>

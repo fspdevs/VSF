@@ -30,13 +30,13 @@
 - Media and file uploads
 - Project status breadcrumb
 
-## Home PAge (clientList.js)(Kathleen)
+## Home Page (clientList.js)(Kathleen)
 
 - Remove Address and Phone number from table
 - Addtional Styling (Fonts Colors, shadows, padding, spacing)
 - Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
 
-## Account Page () (Avery)
+## Account Page (o) (Avery)
 
 - Remove Link Social Media Links, deactivate password
 - Definitely needs Styling
@@ -48,9 +48,9 @@
 
 - Keep this page and leave unstyled
 
-# TODO:
+#  Misc. TODO:
 
-- Edit signup to account for all reps data and reset Firebase DB
+
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
