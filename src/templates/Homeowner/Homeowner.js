@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import { withFirebase } from '../../components/Firebase';
-import { withStyles } from '@material-ui/core/styles';
+// import { withFirebase } from '../../components/Firebase';
+// import { withStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 
 const Homeowner = ({ data }) => {
