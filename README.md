@@ -1,5 +1,54 @@
 ## Vision Solar Finance Gatsby/Firebase Site
 
+## Landing Page (pages/index.js) (Kathleen)
+
+- Mobile Responsiveness (For BG Image and teh SignIn SignUP Component)
+- Download correct BG image (no watermark)
+
+## SignIn Page (component/SignIn/index)
+
+- Enable Google Sign-In in Firebase Console (Avery)
+- Remove Social MEdia Sign IN Options (Avery)
+- Change Button Color (Kathleen)
+- GEneral Styling (Kathleen)
+
+## Navigation Menu Drawer (navigation.js)(Kathleen)
+
+- Add Material Icons
+- Change Font
+- Remove Landing Page Link
+- Change sign out to send you to the landing page
+- Add Sign out link to end of the navigation list
+- Change links font, color, and style
+
+## Client/Homeowner View Component (homeowner.js) (Avery)
+
+- Style Homeowner's General Information as a table on top portion of the compoenent
+- Create a back/return button that sends you back to the home page (list of clients)
+- Start building out the foundatuion for this HOmewoener contract, Creating components for each seperate task in project timeline. (refer to screen shots)
+- Some files include media uploads to the DB or form fields subimitting information.
+- Media and file uploads
+- Project status breadcrumb
+
+## Home PAge (clientList.js)(Kathleen)
+
+- Remove Address and Phone number from table
+- Addtional Styling (Fonts Colors, shadows, padding, spacing)
+- Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here 
+## Account Page () (Avery)
+
+- Remove Link Social MEdia Links, deactivate password
+- Definitely needs Styling
+- Change the forms to dropdowns after you click the "forgot password" or "change password" buttton
+- Edit email button that creates a form dropdown
+- Title header
+
+## Admin Page
+
+- Keep this page and leave unstyled
+
+
+
 # TODO:
 
 - Edit signup to account for all reps data and reset Firebase DB
@@ -11,8 +60,7 @@
   - <del>Images/Logo/Colors (probably jack some colors from VS)</del>
   - <del>Have to create a new logo in illustrator???</del>
 - <del>make it so users can only see the messages/clients that they created </del>
-- Make components that displays a clients profile for the Admin once they choose their name from the userlist
-- change messages to clients and users to Reps
+- <del>Make components that displays a clients profile for the Admin once they choose their name from the userlist</del>
 
 # FUTURE Implementations
 
