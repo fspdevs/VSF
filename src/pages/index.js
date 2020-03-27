@@ -21,12 +21,12 @@ import Logo from '../components/Queries/images/logos';
 const LandingWrap = styled(Container)({
   zIndex: 4,
   paddingTop: 20,
-  alignItems: 'center',
+  // alignItems: 'center',
   width: '100vw',
-  display: 'flex',
-  flexDirection: 'column',
+  // display: 'flex',
+  // flexDirection: 'column',
   textAlign: 'center',
-  justifyItems: 'center',
+  // justifyItems: 'center',
 });
 
 const FAB = styled(Fab)({

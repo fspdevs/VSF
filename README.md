@@ -4,13 +4,13 @@
 
 - Edit signup to account for all reps data and reset Firebase DB
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
-- siteconfig
+- <del>siteconfig</del>
 - Material UI, tables, textfield, form,
 - reactHooks
 - STyle & Layout
-  <!-- - Images/Logo/Colors (probably jack some colors from VS) -->
-  - Have to create a new logo in illustrator???
-- ~~ make it so users can only see the messages/clients that they created ~~
+  - <del>Images/Logo/Colors (probably jack some colors from VS)</del>
+  - <del>Have to create a new logo in illustrator???</del>
+- <del>make it so users can only see the messages/clients that they created </del>
 - Make components that displays a clients profile for the Admin once they choose their name from the userlist
 - change messages to clients and users to Reps
 
@@ -22,9 +22,10 @@
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
 - Change all forms into Material Ui forms with validation(optional)
 - Make Client info editable/deletable for their respective reps and admins
-- Identifty Provider configuration
+- Identity Provider configuration
 - Applications and forms should have a "Save and Continue" button
 - gatsby plugin manifest for PWA
+- Choose a DOmain Name (visionsolar.app/vsf.dev/sales.visionsolar.com)
 
 # Styling
 

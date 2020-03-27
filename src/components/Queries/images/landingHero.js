@@ -49,10 +49,7 @@ export const StyledAboutHeroBG = styled(AboutHeroBG)`
   background-size: cover;
   position: absolute !important;
   height: 100vh;
-  margin-top: -8px;
-  margin-left: -8px;
+  // margin-top: -8px;
+  // margin-left: -8px;
   z-index: -100;
-  //   @media only screen and (max-width: 550px) {
-  //     height: 720px;
-  //   }
 `;

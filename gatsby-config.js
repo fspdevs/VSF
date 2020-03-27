@@ -1,11 +1,14 @@
 require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 });
+const config = require('./content/meta/config');
 module.exports = {
   siteMetadata: {
-    title: `Vision Solar Finance`,
-    siteUrl: `https://www.visionsolarfinance.com`,
-    description: `Finance Your Solar Powered Lifestyle`,
+    title: config.siteTitle,
+    description: config.siteDescription,
+    author: config.authorName,
+    siteUrl: config.siteUrl,
+    lamguage: config.siteLanguage,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
