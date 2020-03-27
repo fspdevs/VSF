@@ -13,34 +13,113 @@ import {
   TableCell,
   Grid,
   Box,
+  Divider,
 } from '@material-ui/core';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import { styled } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 
 const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+
   width: 400,
 });
 
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+    '.MuiTableRow-head': {
+      background: '#428ACA',
+      color: 'white',
+      width: '100%',
+    },
+    '.MuiDivider-root': {
+      display: 'none',
+    },
+    '.MuiButton-label': {
+      textDecoration: 'none',
+    },
+    '*, *::before, *::after': {
+      textDecoration: 'none',
+    },
+    '.MuiTableSortLabel-root': {
+      color: 'white',
+    }
+  },
+})(() => null);
+
+const StyledTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: 'black',
+    color: 'color',
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+// const Field = styled(TableCell)({
+//   color: 'pink',
+//   maxWidth: 200,
+//   wordWrap: 'break-word'
+// })
 const styles = {
   input: {
-    margin: 5,
+    margin: 3,
+
     textAlign: 'center',
     width: '100%',
+    background: 'pink',
   },
   box: {
     display: 'flex',
     flexDirection: 'column',
   },
   row: {
-    color: 'red',
-    '&:hover': {
-      background: 'green',
-    },
+    // color: 'red',
+    // '&:hover': {
+    //   background: 'green',
+    // },
   },
+  cell: {
+    maxWidth: 200,
+    wordWrap: 'break-word',
+  },
+  head: {
+    color: 'blue !important',
+    color: 'white',
+  },
+  view: {
+    color: 'black',
+  },
+  buttonWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    height: '22px',
+    color: '#428aca'
+  },
+  icon: {
+    margin: '0 auto',
+    padding: '3px',
+  },
+  iconWrap: {
+    height: '100%',
+    paddingTop: '2px',
+  },
+  buttonText: {
+    height: '25px',
+  },
+  buttonDelete: {
+    color: '#ff3300',
+  }
 };
 const ClientItem = props => {
   const initState = {
@@ -105,18 +184,25 @@ const ClientItem = props => {
   const { client, authUser, onRemoveClient } = props;
   return (
     <>
-    {console.log(authUser, "authUser")}
+      <GlobalCss />
+      {console.log(props.classes, 'classes')}
+      {console.log(authUser, 'authUser')}
       {/* {authUser.uid === client.userId && ( */}
-        {(authUser.roles.ADMIN === "ADMIN" || props.client.rep === authUser.username ) && (
+      {(authUser.roles.ADMIN === 'ADMIN' ||
+        props.client.rep === authUser.username) && (
         <>
           {/* <Link to={`/client/${client.uid}`}> */}
           <TableRow hover key={client.uid}>
             {editMode ? (
               <>
-                <TableCell component="th" scope="row">
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                  className={props.classes.head}
+                >
                   <TextField
                     name="firstName"
-                    className={props.classes.input}
+                    className={props.classes.head}
                     id="outlined-basic"
                     placeHolder={props.client.firstName}
                     label="First Name"
@@ -129,9 +215,10 @@ const ClientItem = props => {
                       })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
                   <TextField
+                    scope="textField"
                     name="lastName"
                     className={props.classes.input}
                     id="outlined-basic"
@@ -144,9 +231,10 @@ const ClientItem = props => {
                       updateClientInfo({ lastName: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row">
                   <TextField
+                    scope="textField"
                     name="email"
                     className={props.classes.input}
                     id="outlined-basic"
@@ -159,8 +247,12 @@ const ClientItem = props => {
                       updateClientInfo({ email: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                
+                >
                   <TextField
                     name="phone"
                     className={props.classes.input}
@@ -174,8 +266,12 @@ const ClientItem = props => {
                       updateClientInfo({ phone: e.target.value })
                     }
                   />
-                </TableCell>
-                <TableCell component="th" scope="row">
+                </StyledTableCell>
+                <StyledTableCell
+                  component="th"
+                  scope="row"
+                  scope="textField"
+                >
                   <TextField
                     name="addressLine1"
                     className={props.classes.input}
@@ -211,6 +307,7 @@ const ClientItem = props => {
                       <TextField
                         name="city"
                         className={props.classes.input}
+                        className={props.classes.cell}
                         id="outlined-basic"
                         placeHolder={props.client.city}
                         label="City"
@@ -278,7 +375,7 @@ const ClientItem = props => {
                       />
                     </Grid>
                   </Grid>
-                </TableCell>
+                </StyledTableCell>
               </>
             ) : (
               <>
@@ -292,9 +389,15 @@ const ClientItem = props => {
                   <strong>{client.lastName}</strong>
                 </TableCell>
 
-                <TableCell align="center" component="th" scope="row">
+                <TableCell
+                  align="center"
+                  component="th"
+                  scope="row"
+                  className={props.classes.cell}
+                >
                   <strong>{client.email}</strong>
                 </TableCell>
+                <Divider />
 
                 <TableCell align="center" component="th" scope="row">
                   <strong>{client.phone}</strong>
@@ -320,31 +423,65 @@ const ClientItem = props => {
               {' '}
               {editMode ? (
                 <>
-                  <button onClick={onSaveEdit}>Save</button>
-                  <button onClick={toggleEditMode}>Cancel</button>
+                  <Button onClick={onSaveEdit}>Save</Button>
+                  <Button onClick={toggleEditMode}>Cancel</Button>
                 </>
               ) : (
                 <>
-                  <button>
-                    <Link to={`/client/${client.uid}`}>View</Link>
-                  </button>
-                  <button onClick={toggleEditMode}>Edit</button>
+                  <Button>
+                    <Link
+                      to={`/client/${client.uid}`}
+                      className={props.classes.view}
+                    >
+                      <div className={props.classes.buttonWrap}>
+                        <div className={props.classes.iconWrap}>
+                          <VisibilityIcon
+                            fontSize="small"
+                            className={props.classes.icon}
+                          />
+                        </div>
+                        <div className={props.classes.buttonText}>View</div>
+                      </div>
+                    </Link>
+                  </Button>
+                  <Button onClick={toggleEditMode}>
+                    <div className={props.classes.buttonWrap}>
+                      <div className={props.classes.iconWrap}>
+                        <EditIcon
+                          fontSize="small"
+                          className={props.classes.icon}
+                        />
+                      </div>
+                      <div className={props.classes.buttonText}>Edit</div>
+                    </div>
+                  </Button>
                 </>
               )}
               {!editMode && (
-                <button
+                <Button
                   type="button"
                   onClick={() => onRemoveClient(client.uid)}
                 >
-                  Delete
-                </button>
+                  <div className={`${props.classes.buttonWrap} ${props.classes.buttonDelete}`}>
+                      <div className={props.classes.iconWrap}>
+                        <DeleteIcon
+                          fontSize="small"
+                          className={props.classes.icon}
+                        />
+                      </div>
+                      <div className={`${props.classes.buttonText} `}>Delete</div>
+                    </div>
+                </Button>
               )}
             </TableCell>
           </TableRow>
           {/* </Link> */}
         </>
-       )}
+      )}
     </>
   );
+};
+ClientItem.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 export default withStyles(styles)(ClientItem);

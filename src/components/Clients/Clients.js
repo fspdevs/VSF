@@ -37,6 +37,8 @@ const styles = {
   },
   fab: {
     marginTop: 20,
+    backgroundColor: '#428aca',
+    color: 'white',
   },
   select: {
     width: '30%',
