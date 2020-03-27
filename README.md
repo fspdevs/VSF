@@ -2,7 +2,7 @@
 
 ## Landing Page (pages/index.js) (Kathleen)
 
-- Mobile Responsiveness (For BG Image and teh SignIn SignUP Component)
+- Mobile Responsiveness (For BG Image and the SignIn SignUp Component)
 - Download correct BG image (no watermark)
 
 ## SignIn Page (component/SignIn/index)
@@ -18,14 +18,14 @@
 - Change Font
 - Remove Landing Page Link
 - Change sign out to send you to the landing page
-- Add Sign out link to end of the navigation list
+- Add Signout link to end of the navigation list
 - Change links font, color, and style
 
 ## Client/Homeowner View Component (homeowner.js) (Avery)
 
 - Style Homeowner's General Information as a table on top portion of the compoenent
 - Create a back/return button that sends you back to the home page (list of clients)
-- Start building out the foundatuion for this HOmewoener contract, Creating components for each seperate task in project timeline. (refer to screen shots)
+- Start building out the foundation for this Homeowner contract, creating components for each separate task in project timeline. (refer to screenshots)
 - Some files include media uploads to the DB or form fields subimitting information.
 - Media and file uploads
 - Project status breadcrumb
@@ -34,10 +34,11 @@
 
 - Remove Address and Phone number from table
 - Addtional Styling (Fonts Colors, shadows, padding, spacing)
-- Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here 
+- Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
+
 ## Account Page () (Avery)
 
-- Remove Link Social MEdia Links, deactivate password
+- Remove Link Social Media Links, deactivate password
 - Definitely needs Styling
 - Change the forms to dropdowns after you click the "forgot password" or "change password" buttton
 - Edit email button that creates a form dropdown
@@ -46,8 +47,6 @@
 ## Admin Page
 
 - Keep this page and leave unstyled
-
-
 
 # TODO:
 
