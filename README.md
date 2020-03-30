@@ -7,8 +7,8 @@
 
 ## SignIn Page (component/SignIn/index)
 
-- Enable Google Sign-In in Firebase Console (Avery)
-- Remove Social MEdia Sign IN Options (Avery)
+- <del>Enable Google Sign-In in Firebase Console (Avery)</del>
+- <del>Remove Social MEdia Sign IN Options (Avery)</del>
 - Change Button Color (Kathleen)
 - GEneral Styling (Kathleen)
 
@@ -48,8 +48,7 @@
 
 - Keep this page and leave unstyled
 
-#  Misc. TODO:
-
+# Misc. TODO:
 
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - <del>siteconfig</del>

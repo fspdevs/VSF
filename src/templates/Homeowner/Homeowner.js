@@ -1,27 +1,71 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-// import { withFirebase } from '../../components/Firebase';
-// import { withStyles } from '@material-ui/core/styles';
+import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
+import {
+  Box,
+  Container,
+  Divider,
+  Grid,
+  Typography,
+} from '@material-ui/core';
+import theme from '../../theme';
+
+const Text = styled(Typography)({
+  fontSize: 14,
+  color: 'cornflowerblue',
+  font: theme.fonts.nuni,
+});
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    width: 'fit-content',
+    border: `1px solid ${theme.palette.divider}`,
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.secondary,
+    '& h3': {
+      margin: theme.spacing(1.5),
+    },
+    '& hr': {
+      margin: theme.spacing(0, 0.5),
+    },
+  },
+}));
 
 const Homeowner = ({ data }) => {
+  const classes = useStyles();
   console.log(data.clients, 'data');
   const client = data.clients;
   return (
     <>
       <Layout>
-        <h1>Home Owner Component</h1>
-        <h3>
+        <h1>
           {client.firstName} {client.lastName}
-        </h3>
-        <h3>{client.email}</h3>
-        <h3>{client.addressLine1}</h3>
-        <h3>{client.addressLine2}</h3>
-        <h3>{client.city}</h3>
-        <h3>{client.state}</h3>
-        <h3>{client.zip}</h3>
-        <h3>{client.country}</h3>
-        <h3>{client.rep}</h3>
+        </h1>
+        <Container>
+          <Grid
+            container
+            alignItems="center"
+            className={classes.root}
+          >
+            <Text>{client.email}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.addressLine1}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.addressLine2}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.city}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.state}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.zip}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.country}</Text>
+            <Divider orientation="vertical" flexItem />
+            <Text>{client.rep}</Text>
+          </Grid>
+        </Container>
       </Layout>
     </>
   );
