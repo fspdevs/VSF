@@ -23,7 +23,7 @@
 
 ## Client/Homeowner View Component (homeowner.js) (Avery)
 
-- Style Homeowner's General Information as a table on top portion of the compoenent
+- <del>Style Homeowner's General Information as a table on top portion of the compoenent</del>
 - Create a back/return button that sends you back to the home page (list of clients)
 - Start building out the foundation for this Homeowner contract, creating components for each separate task in project timeline. (refer to screenshots)
 - Some files include media uploads to the DB or form fields subimitting information.
