@@ -29,6 +29,7 @@
 - Some files include media uploads to the DB or form fields subimitting information.
 - Media and file uploads
 - Project status breadcrumb
+- Add Logos to the contact info for each client
 
 ## Home Page (clientList.js)(Kathleen)
 

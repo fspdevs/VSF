@@ -3,23 +3,39 @@ import { graphql } from 'gatsby';
 import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 import {
-  Box,
   Container,
   Divider,
   Grid,
   Typography,
+  Box,
 } from '@material-ui/core';
 import theme from '../../theme';
+import Project from '../Project/project';
+
+const Name = styled(Typography)({
+  fontSize: 16,
+  color: 'cornflowerblue',
+  font: theme.fonts.nuni,
+  fontWeight: 'bold',
+  textAlign: 'left',
+  marginBottom: 10,
+});
 
 const Text = styled(Typography)({
   fontSize: 14,
   color: 'cornflowerblue',
-  font: theme.fonts.nuni,
+  fontFamily: theme.fonts.nuni,
+});
+const Label = styled(Typography)({
+  fontSize: 14,
+  color: 'cornflowerblue',
+  fontFamily: 'Nunito Sans',
+  fontWeight: 'bold',
 });
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: 'fit-content',
+    width: '100%',
     border: `1px solid ${theme.palette.divider}`,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: theme.palette.background.paper,
@@ -40,32 +56,45 @@ const Homeowner = ({ data }) => {
   return (
     <>
       <Layout>
-        <h1>
-          {client.firstName} {client.lastName}
-        </h1>
         <Container>
+          <Name variant="h3">
+            {client.firstName} {client.lastName}
+          </Name>
+          <Name variant="h3">{client.id}</Name>
           <Grid
             container
             alignItems="center"
             className={classes.root}
           >
-            <Text>{client.email}</Text>
+            <Grid item xs={2}>
+              <Label>Email</Label>
+              <Text variant="h3">{client.email}</Text>
+            </Grid>
             <Divider orientation="vertical" flexItem />
-            <Text>{client.addressLine1}</Text>
+            <Grid item xs={2}>
+              <Label>Call</Label>
+              <Text variant="h3">{client.phone}</Text>
+            </Grid>
             <Divider orientation="vertical" flexItem />
-            <Text>{client.addressLine2}</Text>
+            <Grid item xs={5}>
+              <Label>Directions</Label>
+
+              <Text variant="h3">
+                {client.addressLine1}, {client.addressLine2}{' '}
+                {client.city}, {client.state} {client.zip},{' '}
+                {client.country}
+              </Text>
+            </Grid>
             <Divider orientation="vertical" flexItem />
-            <Text>{client.city}</Text>
-            <Divider orientation="vertical" flexItem />
-            <Text>{client.state}</Text>
-            <Divider orientation="vertical" flexItem />
-            <Text>{client.zip}</Text>
-            <Divider orientation="vertical" flexItem />
-            <Text>{client.country}</Text>
-            <Divider orientation="vertical" flexItem />
-            <Text>{client.rep}</Text>
+            <Grid item xs={2}>
+              <Label>REP</Label>
+              <Text variant="h3">{client.rep}</Text>
+            </Grid>
           </Grid>
         </Container>
+        <Box>
+          <Project />
+        </Box>
       </Layout>
     </>
   );
@@ -76,6 +105,7 @@ export default Homeowner;
 export const query = graphql`
   query($clientId: String!) {
     clients(id: { eq: $clientId }) {
+      id
       firstName
       lastName
       phone
