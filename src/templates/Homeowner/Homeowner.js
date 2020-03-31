@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 import {
@@ -57,10 +57,13 @@ const Homeowner = ({ data }) => {
     <>
       <Layout>
         <Container>
-          <Name variant="h3">
-            {client.firstName} {client.lastName}
+          <Name>
+            <Link to="/home">Back</Link>
           </Name>
-          <Name variant="h3">{client.id}</Name>
+          <Name variant="h3">
+            {client.firstName} {client.lastName} <em>{client.id}</em>
+          </Name>
+
           <Grid
             container
             alignItems="center"
