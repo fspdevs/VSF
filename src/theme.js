@@ -24,7 +24,7 @@ const theme = {
     nuni: 'Nunito Sans',
     mont: 'Montserrat',
     spec: 'Sepctral',
-    Karl: 'Karla',
+    karl: 'Karla',
     //  - Nunito or Nunito Sans (Headings, Titles)
     // - Montserrat (TExt, body )
     // - Spectral (menu, lists)

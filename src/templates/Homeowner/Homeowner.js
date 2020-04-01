@@ -1,7 +1,6 @@
 import React from 'react';
-import { graphql } from 'gatsby';
-import { withFirebase } from '../../components/Firebase';
-import { withStyles } from '@material-ui/core/styles';
+import { graphql, Link } from 'gatsby';
+import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 import PropTypes from 'prop-types';
 import { styled } from '@material-ui/core/styles';
@@ -62,10 +61,12 @@ const Homeowner =  props => {
   const client = props.data.clients;
   console.log(props, "props")
  
+
   return (
     <>
     <GlobalCss/>
       <Layout>
+
         <h1 className={props.classes.input}>Home Owner Component</h1>
         <Table className={props.classes.table}>
           <TableHead>
@@ -93,6 +94,7 @@ const Homeowner =  props => {
             </TableRow>
           </TableBody>
         </Table>
+
       </Layout>
     </>
   );
@@ -107,6 +109,7 @@ export default withStyles(styles)(Homeowner);
 export const query = graphql`
   query($clientId: String!) {
     clients(id: { eq: $clientId }) {
+      id
       firstName
       lastName
       phone

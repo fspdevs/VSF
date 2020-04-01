@@ -1,8 +1,56 @@
 ## Vision Solar Finance Gatsby/Firebase Site
 
-# TODO:
+## Landing Page (pages/index.js) (Kathleen)
 
-- Edit signup to account for all reps data and reset Firebase DB
+- Mobile Responsiveness (For BG Image and the SignIn SignUp Component)
+- Download correct BG image (no watermark)
+
+## SignIn Page (component/SignIn/index)
+
+- <del>Enable Google Sign-In in Firebase Console (Avery)</del>
+- <del>Remove Social MEdia Sign IN Options (Avery)</del>
+- Change Button Color (Kathleen)
+- GEneral Styling (Kathleen)
+
+## Navigation Menu Drawer (navigation.js)(Kathleen)
+
+- Add Material Icons
+- Change Font
+- Remove Landing Page Link
+- Change sign out to send you to the landing page
+- Add Signout link to end of the navigation list
+- Change links font, color, and style
+
+## Client/Homeowner View Component (homeowner.js) (Avery)
+
+- <del>Style Homeowner's General Information as a table on top portion of the compoenent</del>
+- Create a back/return button that sends you back to the home page (list of clients)
+- Start building out the foundation for this Homeowner contract, creating components for each separate task in project timeline. (refer to screenshots)
+- Some files include media uploads to the DB or form fields subimitting information.
+- Media and file uploads
+- Project status breadcrumb
+- Add Logos to the contact info for each client
+
+## Home Page (clientList.js)(Kathleen)
+
+- Remove Address and Phone number from table
+- Addtional Styling (Fonts Colors, shadows, padding, spacing)
+- Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
+
+## Account Page (o) (Avery)
+
+- Remove Link Social Media Links, deactivate password
+- Definitely needs Styling
+- Change the forms to dropdowns after you click the "forgot password" or "change password" buttton
+- Edit email button that creates a form dropdown
+- Title header
+
+## Admin Page
+
+- Keep this page and leave unstyled
+
+# Misc. TODO:
+
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
@@ -11,8 +59,7 @@
   - <del>Images/Logo/Colors (probably jack some colors from VS)</del>
   - <del>Have to create a new logo in illustrator???</del>
 - <del>make it so users can only see the messages/clients that they created </del>
-- Make components that displays a clients profile for the Admin once they choose their name from the userlist
-- change messages to clients and users to Reps
+- <del>Make components that displays a clients profile for the Admin once they choose their name from the userlist</del>
 
 # FUTURE Implementations
 
