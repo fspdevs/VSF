@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'gatsby';
-
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import { styled } from '@material-ui/core/styles';
-import {
-  Box,
-} from '@material-ui/core';
+import { TextField, Box, Button } from '@material-ui/core';
 
 const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
- 
 });
 const INITIAL_STATE = {
   email: '',
@@ -54,16 +50,30 @@ class PasswordForgetForm extends Component {
       <form onSubmit={this.onSubmit}>
         <Column>
           <label>Forgot your password?</label>
-          <input
+          <TextField
+            id="outlined-basic"
+            label="Email Address"
+            variant="outlined"
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            // placeholder="Email Address"
+          />
+          {/* <input
             name="email"
             value={email}
             onChange={this.onChange}
             type="text"
             placeholder="Email Address"
-          />
-          <button disabled={isInvalid} type="submit">
+          /> */}
+          <Button
+            variant="contained"
+            disabled={isInvalid}
+            type="submit"
+          >
             Reset My Password
-          </button>
+          </Button>
         </Column>
 
         {error && <p>{error.message}</p>}

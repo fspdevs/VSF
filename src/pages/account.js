@@ -28,6 +28,7 @@ const AccountPageBase = () => (
             <h2>Email: {authUser.email}</h2>
             {/* <h3>Role: {authUser.roles}</h3> */}
             <PasswordForgetForm />
+            
             <PasswordChangeForm />
             <LoginManagement authUser={authUser} />
           </div>

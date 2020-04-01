@@ -52,7 +52,7 @@ const GlobalCss = withStyles({
     },
     '.MuiTableSortLabel-root': {
       color: 'white',
-    }
+    },
   },
 })(() => null);
 
@@ -66,15 +66,9 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-// const Field = styled(TableCell)({
-//   color: 'pink',
-//   maxWidth: 200,
-//   wordWrap: 'break-word'
-// })
 const styles = {
   input: {
     margin: 3,
-
     textAlign: 'center',
     width: '100%',
     background: 'pink',
@@ -104,7 +98,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     height: '22px',
-    color: '#428aca'
+    color: '#428aca',
   },
   icon: {
     margin: '0 auto',
@@ -119,7 +113,7 @@ const styles = {
   },
   buttonDelete: {
     color: '#ff3300',
-  }
+  },
 };
 const ClientItem = props => {
   const initState = {
@@ -248,11 +242,7 @@ const ClientItem = props => {
                     }
                   />
                 </StyledTableCell>
-                <StyledTableCell
-                  component="th"
-                  scope="row"
-                
-                >
+                <StyledTableCell component="th" scope="row">
                   <TextField
                     name="phone"
                     className={props.classes.input}
@@ -440,7 +430,9 @@ const ClientItem = props => {
                             className={props.classes.icon}
                           />
                         </div>
-                        <div className={props.classes.buttonText}>View</div>
+                        <div className={props.classes.buttonText}>
+                          View
+                        </div>
                       </div>
                     </Link>
                   </Button>
@@ -452,7 +444,9 @@ const ClientItem = props => {
                           className={props.classes.icon}
                         />
                       </div>
-                      <div className={props.classes.buttonText}>Edit</div>
+                      <div className={props.classes.buttonText}>
+                        Edit
+                      </div>
                     </div>
                   </Button>
                 </>
@@ -462,15 +456,19 @@ const ClientItem = props => {
                   type="button"
                   onClick={() => onRemoveClient(client.uid)}
                 >
-                  <div className={`${props.classes.buttonWrap} ${props.classes.buttonDelete}`}>
-                      <div className={props.classes.iconWrap}>
-                        <DeleteIcon
-                          fontSize="small"
-                          className={props.classes.icon}
-                        />
-                      </div>
-                      <div className={`${props.classes.buttonText} `}>Delete</div>
+                  <div
+                    className={`${props.classes.buttonWrap} ${props.classes.buttonDelete}`}
+                  >
+                    <div className={props.classes.iconWrap}>
+                      <DeleteIcon
+                        fontSize="small"
+                        className={props.classes.icon}
+                      />
                     </div>
+                    <div className={props.classes.buttonText}>
+                      Delete
+                    </div>
+                  </div>
                 </Button>
               )}
             </TableCell>
