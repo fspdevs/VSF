@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-
 import { withFirebase } from '../Firebase';
 import { styled } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { Box, Button, TextField } from '@material-ui/core';
 
 const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  marginBottom: 50,
 });
 const INITIAL_STATE = {
   passwordOne: '',
