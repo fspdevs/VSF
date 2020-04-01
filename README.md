@@ -53,6 +53,7 @@
 
 ## Misc. TODO:
 
+- Mke sure all buttons and forms are using a similar styling layout
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
