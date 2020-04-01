@@ -1,7 +1,8 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import { styled, makeStyles } from '@material-ui/core/styles';
+// import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
+import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import { styled } from '@material-ui/core/styles';
 import {
