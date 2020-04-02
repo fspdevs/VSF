@@ -89,7 +89,7 @@ const ClientList = props => {
                 </TableSortLabel>
               </Tooltip>
             </TableCell>
-            <TableCell align="center" key="phone">
+            {/* <TableCell align="center" key="phone">
               <Tooltip
                 title="Phone"
                 placement="bottom-start"
@@ -103,8 +103,8 @@ const ClientList = props => {
                   Phone
                 </TableSortLabel>
               </Tooltip>
-            </TableCell>
-            <TableCell align="center" key="address">
+            </TableCell> */}
+            {/* <TableCell align="center" key="address">
               <Tooltip
                 title="Address"
                 placement="bottom-start"
@@ -112,7 +112,7 @@ const ClientList = props => {
               >
                 <TableSortLabel>Address</TableSortLabel>
               </Tooltip>
-            </TableCell>
+            </TableCell> */}
             <TableCell align="center" key="actions">
               <Tooltip
                 title="Edit/Delete"

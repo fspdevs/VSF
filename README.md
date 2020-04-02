@@ -2,8 +2,8 @@
 
 ## Landing Page (pages/index.js) (Kathleen)
 
-- Mobile Responsiveness (For BG Image and the SignIn SignUp Component)
-- Download correct BG image (no watermark)
+- <del>Mobile Responsiveness (For BG Image and the SignIn SignUp Component)</del>
+- <del>Download correct BG image (no watermark)</del>
 
 ## SignIn Page (component/SignIn/index)
 
