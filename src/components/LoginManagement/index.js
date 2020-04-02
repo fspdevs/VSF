@@ -2,13 +2,19 @@ import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
 import { styled } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
 
 const Column = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  
 });
 const SIGN_IN_METHODS = [
   {
@@ -98,7 +104,7 @@ class LoginManagement extends Component {
       <Column>
         <div>
           Sign In Methods:
-          <ul>
+          <List>
             {SIGN_IN_METHODS.map(signInMethod => {
               const onlyOneLeft = activeSignInMethods.length === 1;
               const isEnabled = activeSignInMethods.includes(
@@ -106,7 +112,7 @@ class LoginManagement extends Component {
               );
 
               return (
-                <li key={signInMethod.id}>
+                <ListItem key={signInMethod.id}>
                   {signInMethod.id === 'password' ? (
                     <DefaultLoginToggle
                       onlyOneLeft={onlyOneLeft}
@@ -124,10 +130,10 @@ class LoginManagement extends Component {
                       onUnlink={this.onUnlink}
                     />
                   )}
-                </li>
+                </ListItem>
               );
             })}
-          </ul>
+          </List>
           {error && error.message}
         </div>
       </Column>
@@ -143,20 +149,22 @@ const SocialLoginToggle = ({
   onUnlink,
 }) =>
   isEnabled ? (
-    <button
+    <Button
+      variant="contained"
       type="button"
       onClick={() => onUnlink(signInMethod.id)}
       disabled={onlyOneLeft}
     >
       Deactivate {signInMethod.id}
-    </button>
+    </Button>
   ) : (
-    <button
+    <Button
+      variant="contained"
       type="button"
       onClick={() => onLink(signInMethod.provider)}
     >
       Link {signInMethod.id}
-    </button>
+    </Button>
   );
 
 class DefaultLoginToggle extends Component {
@@ -191,13 +199,13 @@ class DefaultLoginToggle extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return isEnabled ? (
-      <button
+      <Button
         type="button"
         onClick={() => onUnlink(signInMethod.id)}
         disabled={onlyOneLeft}
       >
         Deactivate {signInMethod.id}
-      </button>
+      </Button>
     ) : (
       <form onSubmit={this.onSubmit}>
         <input

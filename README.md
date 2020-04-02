@@ -32,6 +32,7 @@
 - Media and file uploads
 - Project status breadcrumb
 - Add Logos to the contact info for each client
+- When a rep creates a contract or project for a homewoner, the project object should have a field called "projectID" that should be the same as the Homeowners ID from the Firebase Database. This is a way we can keep the contracts in separate list in the database while still linking them ro their respective homeowners.
 
 ### Home Page (clientList.js)(Kathleen)
 
@@ -46,6 +47,9 @@
 - Change the forms to dropdowns after you click the "forgot password" or "change password" button (popover material ui component)
 - Edit email button that creates a form dropdown
 - Title header
+- Think about other things a rep may need to see in their account page
+  - Password Management
+  -
 
 ### Admin Page
 

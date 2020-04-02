@@ -9,6 +9,10 @@ const Column = styled(Box)({
   alignItems: 'center',
   marginBottom: 50,
 });
+
+const PasswordChange = styled(TextField)({
+  marginBottom: 10,
+});
 const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
@@ -50,24 +54,29 @@ class PasswordChangeForm extends Component {
     return (
       <form onSubmit={this.onSubmit}>
         <Column>
-          <label>Change Your Password</label>
-          <input
+          <PasswordChange
+            id="outlined-basic"
+            variant="outlined"
+            label="Change Your Password"
             name="passwordOne"
             value={passwordOne}
             onChange={this.onChange}
             type="password"
             placeholder="New Password"
           />
-          <input
+          <PasswordChange
+            id="outlined-basic"
+            variant="outlined"
+            label="Confirm Password"
             name="passwordTwo"
             value={passwordTwo}
             onChange={this.onChange}
             type="password"
             placeholder="Confirm New Password"
           />
-          <button disabled={isInvalid} type="submit">
+          <Button variant="outlined" disabled={isInvalid} type="submit">
             Reset My Password
-          </button>
+          </Button>
         </Column>
 
         {error && <p>{error.message}</p>}

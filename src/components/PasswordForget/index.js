@@ -58,7 +58,7 @@ class PasswordForgetForm extends Component {
             placeholder="Email Address"
           />
           <Button
-            variant="contained"
+            variant="outlined"
             disabled={isInvalid}
             type="submit"
           >
