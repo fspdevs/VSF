@@ -5,6 +5,7 @@ import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import { withStyles } from '@material-ui/core/styles';
+import { withFirebase } from '../Firebase';
 import {
   AppBar,
   Toolbar,
@@ -94,7 +95,8 @@ const styles = theme => ({
     height: '100vh',
   },
 });
-const Navigation = styles => {
+const Navigation = (styles, { firebase }) => {
+
   const [drawerOpen, setDrawer] = useState(true);
   const handleDrawerOpen = () => {
     setDrawer(true);
@@ -136,6 +138,7 @@ const NavigationAuth = ({
 }) => {
   return (
     <>
+    {console.log(authUser, "authUser!")}
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -190,14 +193,14 @@ const NavigationAuth = ({
         <Divider />
         <List>
           <div>
-            <Link to={ROUTES.LANDING}>
+            {/* <Link to={ROUTES.LANDING}>
               <ListItem>
                 <ListItemIcon>
                   <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary="Landing" />
               </ListItem>
-            </Link>
+            </Link> */}
             <Link to={ROUTES.HOME}>
               <ListItem>
                 <ListItemIcon>
@@ -224,6 +227,15 @@ const NavigationAuth = ({
                 </ListItem>
               </Link>
             )}
+                <Link to={ROUTES.LANDING}>
+              <ListItem>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <SignOutButton />
+                {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/> */}
+              </ListItem>
+            </Link>
           </div>
         </List>
       </Drawer>
