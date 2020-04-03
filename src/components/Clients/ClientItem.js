@@ -53,9 +53,6 @@ const GlobalCss = withStyles({
     '.MuiTableSortLabel-root': {
       color: 'white',
     },
-    '.MuiInputBase-input': {
-      background: 'white',
-    }
   },
 })(() => null);
 
