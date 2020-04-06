@@ -4,8 +4,14 @@ import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
+import HomeIcon from '@material-ui/icons/Home';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonIcon from '@material-ui/icons/Person';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { withStyles } from '@material-ui/core/styles';
-import { withFirebase } from '../Firebase';
+import { withFirebase } from '../Firebase/index';
 import {
   AppBar,
   Toolbar,
@@ -24,6 +30,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
   People as PeopleIcon,
+  Person,
 } from '@material-ui/icons';
 
 import classNames from 'classnames';
@@ -95,28 +102,35 @@ const styles = theme => ({
     height: '100vh',
   },
 });
-const Navigation = (styles, { firebase }) => {
+const Navigation = (styles, {firebase}) => {
 
   const [drawerOpen, setDrawer] = useState(true);
   const handleDrawerOpen = () => {
     setDrawer(true);
+  
   };
   const handleDrawerClose = () => {
     setDrawer(false);
   };
   const { classes } = styles;
+
   return (
+   
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? (
           <NavigationAuth
             authUser={authUser}
             classes={classes}
+
             handleDrawerOpen={handleDrawerOpen}
             handleDrawerClose={handleDrawerClose}
             drawerOpen={drawerOpen}
+            firebase={firebase}
           />
+
         ) : (
+         
           <NavigationNonAuth
             classes={classes}
             handleDrawerOpen={handleDrawerOpen}
@@ -135,10 +149,12 @@ const NavigationAuth = ({
   handleDrawerOpen,
   handleDrawerClose,
   drawerOpen,
+  firebase
 }) => {
   return (
     <>
     {console.log(authUser, "authUser!")}
+    {console.log(firebase, "firebase")}
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -204,7 +220,8 @@ const NavigationAuth = ({
             <Link to={ROUTES.HOME}>
               <ListItem>
                 <ListItemIcon>
-                  <DashboardIcon />
+                  {/* <DashboardIcon /> */}
+                  <HomeIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Home" />
               </ListItem>
@@ -212,7 +229,8 @@ const NavigationAuth = ({
             <Link to={ROUTES.ACCOUNT}>
               <ListItem>
                 <ListItemIcon>
-                  <PeopleIcon />
+                  {/* <PeopleIcon /> */}
+                  <AccountCircleIcon/>
                 </ListItemIcon>
                 <ListItemText primary="Account" />
               </ListItem>
@@ -221,7 +239,8 @@ const NavigationAuth = ({
               <Link to={ROUTES.ADMIN}>
                 <ListItem>
                   <ListItemIcon>
-                    <DashboardIcon />
+                    {/* <DashboardIcon /> */}
+                    <SupervisorAccountIcon/>
                   </ListItemIcon>
                   <ListItemText primary="Admin" />
                 </ListItem>
@@ -230,10 +249,12 @@ const NavigationAuth = ({
                 <Link to={ROUTES.LANDING}>
               <ListItem>
                 <ListItemIcon>
-                  <DashboardIcon />
+                  {/* <DashboardIcon /> */}
+                  <ExitToAppIcon/>
                 </ListItemIcon>
-                <SignOutButton />
-                {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/> */}
+                {/* <SignOutButton /> */}
+                <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
+                {console.log(firebase, "firebase")}
               </ListItem>
             </Link>
           </div>
@@ -270,18 +291,19 @@ const NavigationNonAuth = ({
       <Divider />
       <List>
         <div>
-          <Link to={ROUTES.LANDING}>
+          {/* <Link to={ROUTES.LANDING}>
             <ListItem>
               <ListItemIcon>
                 <DashboardIcon />
               </ListItemIcon>
               <ListItemText primary="Landing" />
             </ListItem>
-          </Link>
+          </Link> */}
           <Link to={ROUTES.SIGN_IN}>
             <ListItem>
               <ListItemIcon>
-                <DashboardIcon />
+                <CheckCircleIcon/>
+                {/* <DashboardIcon /> */}
               </ListItemIcon>
               <ListItemText primary="Sign In" />
             </ListItem>
@@ -289,7 +311,8 @@ const NavigationNonAuth = ({
           <Link to={ROUTES.SIGN_UP}>
             <ListItem>
               <ListItemIcon>
-                <DashboardIcon />
+                {/* <DashboardIcon /> */}
+                <PersonIcon/>
               </ListItemIcon>
               <ListItemText primary="Sign Up" />
             </ListItem>
@@ -300,4 +323,4 @@ const NavigationNonAuth = ({
   </>
 );
 
-export default withStyles(styles)(Navigation);
+export default withStyles(styles)(withFirebase(Navigation));
