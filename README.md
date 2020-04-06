@@ -51,6 +51,12 @@
   - Password Management
   -
 
+
+  ### Firebase (Avery)
+
+  - Add Contract/Project API to Firebase object to create a list in the Firebase database. 
+  - 
+
 ### Admin Page
 
 - Keep this page and leave unstyled
@@ -80,6 +86,7 @@
 - Applications and forms should have a "Save and Continue" button
 - gatsby plugin manifest for PWA
 - Choose a DOmain Name (visionsolar.app/vsf.dev/sales.visionsolar.com)
+- consider switching over to Firestore so filtering through the database in the Firebase Admin Console would be easier  
 
 ## Styling
 
