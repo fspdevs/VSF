@@ -5,7 +5,7 @@ import BackgroundImage from 'gatsby-background-image';
 
 export const OverlayLanding = styled.div`
   height: 100vh;
-  opacity: 0.5;
+  opacity: 0.4;
   background: black;
   width: 100vw;
   z-index: 1;
@@ -18,7 +18,7 @@ const AboutHeroBG = ({ children, className }) => (
       query {
         desktop: file(relativePath: { eq: "heroImage2.jpg" }) {
           childImageSharp {
-            fluid(quality: 90, maxWidth: 1920) {
+            fluid(fit: COVER, quality: 90, maxWidth: 1920) {
               ...GatsbyImageSharpFluid_withWebp
             }
           }

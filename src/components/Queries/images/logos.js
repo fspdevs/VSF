@@ -18,9 +18,11 @@ const Logo = () => (
     render={data => {
       // Set ImageData.
       const imageData = data.logo.childImageSharp.fluid;
-      return <Img fluid={imageData} />;
+      return <Img fluid={imageData} style={{'zIndex': '200'}}/>;
     }}
   />
 );
+
+
 
 export default Logo;
