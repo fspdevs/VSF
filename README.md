@@ -1,18 +1,20 @@
-## Vision Solar Finance Gatsby/Firebase Site
+# Vision Solar Finance Gatsby/Firebase Site
 
-## Landing Page (pages/index.js) (Kathleen)
+## Task List
+
+### Landing Page (pages/index.js) (Kathleen)
 
 - <del>Mobile Responsiveness (For BG Image and the SignIn SignUp Component)</del>
 - <del>Download correct BG image (no watermark)</del>
 
-## SignIn Page (component/SignIn/index)
+### SignIn Page (component/SignIn/index)
 
 - <del>Enable Google Sign-In in Firebase Console (Avery)</del>
 - <del>Remove Social MEdia Sign IN Options (Avery)</del>
 - Change Button Color (Kathleen)
 - GEneral Styling (Kathleen)
 
-## Navigation Menu Drawer (navigation.js)(Kathleen)
+### Navigation Menu Drawer (navigation.js)(Kathleen)
 
 - Add Material Icons
 - Change Font
@@ -21,36 +23,41 @@
 - Add Signout link to end of the navigation list
 - Change links font, color, and style
 
-## Client/Homeowner View Component (homeowner.js) (Avery)
+### Client/Homeowner View Component (homeowner.js) (Avery)
 
 - <del>Style Homeowner's General Information as a table on top portion of the compoenent</del>
-- Create a back/return button that sends you back to the home page (list of clients)
+- <del>Create a back/return button that sends you back to the home page (list of clients)</del>
 - Start building out the foundation for this Homeowner contract, creating components for each separate task in project timeline. (refer to screenshots)
 - Some files include media uploads to the DB or form fields subimitting information.
 - Media and file uploads
 - Project status breadcrumb
 - Add Logos to the contact info for each client
+- When a rep creates a contract or project for a homewoner, the project object should have a field called "projectID" that should be the same as the Homeowners ID from the Firebase Database. This is a way we can keep the contracts in separate list in the database while still linking them ro their respective homeowners.
 
-## Home Page (clientList.js)(Kathleen)
+### Home Page (clientList.js)(Kathleen)
 
 - Remove Address and Phone number from table
 - Addtional Styling (Fonts Colors, shadows, padding, spacing)
 - Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
 
-## Account Page (o) (Avery)
+### Account Page (o) (Avery)
 
-- Remove Link Social Media Links, deactivate password
+- <del>Remove Link Social Media Links, deactivate password</del>
 - Definitely needs Styling
-- Change the forms to dropdowns after you click the "forgot password" or "change password" buttton
+- Change the forms to dropdowns after you click the "forgot password" or "change password" button (popover material ui component)
 - Edit email button that creates a form dropdown
 - Title header
+- Think about other things a rep may need to see in their account page
+  - Password Management
+  -
 
-## Admin Page
+### Admin Page
 
 - Keep this page and leave unstyled
 
-# Misc. TODO:
+## Misc. TODO:
 
+- Mke sure all buttons and forms are using a similar styling layout
 - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
@@ -61,7 +68,7 @@
 - <del>make it so users can only see the messages/clients that they created </del>
 - <del>Make components that displays a clients profile for the Admin once they choose their name from the userlist</del>
 
-# FUTURE Implementations
+## FUTURE Implementations
 
 - configure the gatsby-plugin-material-ui
 - esignature
@@ -74,9 +81,9 @@
 - gatsby plugin manifest for PWA
 - Choose a DOmain Name (visionsolar.app/vsf.dev/sales.visionsolar.com)
 
-# Styling
+## Styling
 
-## Colors
+### Colors
 
 - #FAA818 <em>Solar Orange</em>
 - #21303A <em> Grey </em>
@@ -88,21 +95,21 @@
 
 [colors]: https://drive.google.com/uc?export=view&id=1KkrlaA1pDYKzi03Cta7IKAJD0AI9Yvkx
 
-## Fonts
+### Fonts
 
 - Nunito or Nunito Sans (Headings, Titles)
 - Montserrat (TExt, body )
 - Spectral (menu, lists)
 - Karla (Buttons, links)
 
-## modules
+### modules
 
 - gatsby-source-filesystem exports three helper functions:
   - createFilePath
   - createRemoteFileNode
   - createFileNodeFromBuffer
 
-## MaterialUI
+### MaterialUI
 
     - Table
     - button
@@ -110,7 +117,7 @@
     - SnackBar
     - Stepper
 
-## Dividend Finance Notes/Comparison
+### Dividend Finance Notes/Comparison
 
 - Dashboard and Pipeline will be same page in VSF or could be seperate pages
 - There should be more options/button to create a client (not just the home dashboard)
@@ -188,7 +195,7 @@
   - Date of Final Approval
   - Date of Work Order Execution
 
-## Images
+### Images
 
 [details]: https://drive.google.com/open?id=1my4L7rWbFASx2kva4o6GlNiF3yc8JICj
 [pipeline]: https://drive.google.com/open?id=1MAfnKblxg79kGXvxPS_hZXU_vmI1PK8k

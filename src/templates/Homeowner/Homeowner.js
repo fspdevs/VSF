@@ -21,6 +21,7 @@ import {
   Box,
   Divider,
 } from '@material-ui/core';
+import theme from '../../theme';
 
 const GlobalCss = withStyles({
   // @global is handled by jss-plugin-global.
@@ -28,10 +29,9 @@ const GlobalCss = withStyles({
     // You should target [class*="MuiButton-root"] instead if you nest themes.
     //  '.MuiTableCell-root'
     '.Layout-root-5': {
-     padding: '0px',
-    //  backgroundColor: 'pink',
+      padding: '0px',
+      //  backgroundColor: 'pink',
     },
- 
   },
 })(() => null);
 
@@ -51,51 +51,85 @@ const styles = {
   },
   cell: {
     color: 'white',
-  }
-
-
+    margin: 0,
+    paddingTop: 5,
+    paddingBottom: 5,
+    textAlign: 'center',
+  },
+  cell2: {
+    color: `${theme.color.drkGrey}`,
+    margin: 5,
+    padding: 5,
+    textAlign: 'center',
+  },
+  h3: {
+    padding: 0,
+    margin: 0,
+    fontFamily: `${theme.fonts.nuni}`,
+  },
 };
 
-const Homeowner =  props => {
-
+const Homeowner = props => {
   console.log(props, 'data');
   const client = props.data.clients;
-  console.log(props, "props")
- 
+  console.log(props, 'props');
 
   return (
     <>
-    <GlobalCss/>
+      <GlobalCss />
       <Layout>
-
-        <h1 className={props.classes.input}>Home Owner Component</h1>
         <Table className={props.classes.table}>
           <TableHead>
             <TableRow className={props.classes.header}>
-              <TableCell className={props.classes.cell}> <h3>Name</h3></TableCell>
-              <TableCell className={props.classes.cell}><h3> Email</h3></TableCell>
-              <TableCell className={props.classes.cell}><h3>Address</h3></TableCell>
-              <TableCell className={props.classes.cell}><h3>Rep</h3></TableCell>
+              <TableCell className={props.classes.cell}>
+                {' '}
+                <h3 className={props.classes.h3}>Name</h3>
+              </TableCell>
+              <TableCell className={props.classes.cell}>
+                <h3 className={props.classes.h3}> Email</h3>
+              </TableCell>
+              <TableCell className={props.classes.cell}>
+                <h3 className={props.classes.h3}> Call</h3>
+                {/* must create link to make a clall to this phone number */}
+              </TableCell>
+              <TableCell className={props.classes.cell}>
+                <h3 className={props.classes.h3}>Directions</h3>
+                {/* Must create link to maps from this address */}
+              </TableCell>
+              <TableCell className={props.classes.cell}>
+                <h3 className={props.classes.h3}>Rep</h3>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell>
-                <div>{client.firstName} {client.lastName}</div>
+              <TableCell className={props.classes.cell2}>
+                <div>
+                  {client.firstName} {client.lastName}
+                </div>
               </TableCell>
-
-              <TableCell><div>{client.email}</div></TableCell>
-              <TableCell><div>{client.addressLine1}</div>
-              <div>{client.addressLine2}</div>
-              <div>{client.city}</div>
-              <div>{client.state}, {client.zip}</div>
-              {/* <h3>{client.country}</h3> */}
+              <TableCell className={props.classes.cell2}>
+                <div>{client.email}</div>
               </TableCell>
-              <TableCell>{client.rep}</TableCell>
+              <TableCell className={props.classes.cell2}>
+                <div>{client.phone}</div>
+              </TableCell>
+              <TableCell className={props.classes.cell2}>
+                <div>
+                  {client.addressLine1} {` `}
+                  {client.addressLine2}
+                </div>
+                <div>
+                  {client.city} {client.state}, {client.zip}
+                </div>
+                {/* <h3>{client.country}</h3> */}
+              </TableCell>
+              <TableCell className={props.classes.cell2}>
+                {client.rep}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
-
       </Layout>
     </>
   );
