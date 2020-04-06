@@ -76,6 +76,7 @@
 
 ## FUTURE Implementations
 
+- Match Material UI styling with Theme config options
 - configure the gatsby-plugin-material-ui
 - esignature
 - Switch form regular table to MAterial-Table
