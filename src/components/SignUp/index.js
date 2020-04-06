@@ -55,6 +55,9 @@ const styles = {
   helperText: {
     textAlign: 'center',
   },
+  link: {
+    color: 'pink',
+  }
 };
 
 const INITIAL_STATE = {
@@ -255,8 +258,9 @@ class SignUpFormBase extends Component {
 }
 
 const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  <p style={{'color': '#21303A'}}>
+    
+    Don't have an account? <Link to={ROUTES.SIGN_UP} style={{'textDecoration': 'none', 'color': '#428ACA'}}>Sign Up</Link>
   </p>
 );
 

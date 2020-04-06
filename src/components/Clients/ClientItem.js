@@ -242,6 +242,7 @@ const ClientItem = props => {
                     }
                   />
                 </StyledTableCell>
+
                 <StyledTableCell component="th" scope="row">
                   <TextField
                     name="phone"
@@ -256,8 +257,8 @@ const ClientItem = props => {
                       updateClientInfo({ phone: e.target.value })
                     }
                   />
-                </StyledTableCell>
-                <StyledTableCell
+                </StyledTableCell> */}
+                {/* <StyledTableCell
                   component="th"
                   scope="row"
                   scope="textField"
@@ -365,7 +366,7 @@ const ClientItem = props => {
                       />
                     </Grid>
                   </Grid>
-                </StyledTableCell>
+                </StyledTableCell> */}
               </>
             ) : (
               <>
@@ -389,10 +390,10 @@ const ClientItem = props => {
                 </TableCell>
                 <Divider />
 
-                <TableCell align="center" component="th" scope="row">
+                {/* <TableCell align="center" component="th" scope="row">
                   <strong>{client.phone}</strong>
-                </TableCell>
-                <TableCell align="center" component="th" scope="row">
+                </TableCell> */}
+                {/* <TableCell align="center" component="th" scope="row">
                   <Box component="div" className={props.classes.box}>
                     {client.addressLine1}
                     {` `}
@@ -406,7 +407,7 @@ const ClientItem = props => {
                     {` `}
                     {client.zip}
                   </Box>
-                </TableCell>
+                </TableCell> */}
               </>
             )}
             <TableCell align="center" component="th" scope="row">
