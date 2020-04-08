@@ -20,6 +20,7 @@
     "firebase": "^6.0.2",
     "gatsby": "^2.4.3",
     "gatsby-background-image": "^0.9.12",
+    "gatsby-cli": "^2.11.5",
     "gatsby-image": "^2.2.37",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-plugin-material-ui": "^2.1.6",

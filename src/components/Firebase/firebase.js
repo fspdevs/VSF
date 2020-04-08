@@ -96,7 +96,7 @@ class Firebase {
 
   users = () => this.db.ref('users');
 
-  //! *** Message API ***  need to change to clients API
+  //! *** Message API ***  this is a remnant from the initial Firebase object.
 
   message = uid => this.db.ref(`messages/${uid}`);
 
@@ -107,6 +107,12 @@ class Firebase {
   client = uid => this.db.ref(`clients/${uid}`);
 
   clients = () => this.db.ref('clients');
+
+  //TODO *** Contract API ***
+
+  contract = uid => this.db.ref(`contracts/${uid}`);
+
+  contracts = () => this.db.ref('contracts');
 }
 
 let firebase;
