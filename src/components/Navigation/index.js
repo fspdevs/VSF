@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { AuthUserContext } from '../Session';
 import SignOutButton from '../SignOut';
+import SignOutDrawer from '../SignOutDrawer';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 import HomeIcon from '@material-ui/icons/Home';
@@ -36,6 +37,43 @@ import {
 import classNames from 'classnames';
 
 const drawerWidth = 240;
+
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+ 
+  
+    '.MuiButton-label': {
+      textDecoration: 'none',
+    },
+    '*, *::before, *::after': {
+      textDecoration: 'none',
+    },
+    '.MuiListItemText-primary': {
+      color: 'white',
+      fontSize: '26px',
+    },
+    // '.MuiListItem-root :hover': {
+    //   color: '#333333',
+    // },
+    '.MuiDrawer-paper': {
+      // background: '#428aca',
+      background: '#FAA818', 
+    },
+    '.MuiListItem-root:hover': {
+      background: '#333333', 
+    },
+    '.MuiListItemIcon-root': {
+      color: 'white',
+    },
+  
+
+  
+  
+  },
+})(() => null);
 
 const styles = theme => ({
   root: {
@@ -100,9 +138,9 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
   drawer: {
     height: '100vh',
-  },
+  }, 
 });
-const Navigation = (styles, {firebase}) => {
+const Navigation = ( styles) => {
 
   const [drawerOpen, setDrawer] = useState(true);
   const handleDrawerOpen = () => {
@@ -126,7 +164,7 @@ const Navigation = (styles, {firebase}) => {
             handleDrawerOpen={handleDrawerOpen}
             handleDrawerClose={handleDrawerClose}
             drawerOpen={drawerOpen}
-            firebase={firebase}
+           
           />
 
         ) : (
@@ -153,6 +191,7 @@ const NavigationAuth = ({
 }) => {
   return (
     <>
+   < GlobalCss />
     {console.log(authUser, "authUser!")}
     {console.log(firebase, "firebase")}
       <CssBaseline />
@@ -178,6 +217,7 @@ const NavigationAuth = ({
           >
             <MenuIcon />
           </IconButton>
+
           <Typography
             component="h2"
             variant="h2"
@@ -206,7 +246,7 @@ const NavigationAuth = ({
             <ChevronLeftIcon />
           </IconButton>
         </div>
-        <Divider />
+    
         <List>
           <div>
             {/* <Link to={ROUTES.LANDING}>
@@ -221,26 +261,28 @@ const NavigationAuth = ({
               <ListItem>
                 <ListItemIcon>
                   {/* <DashboardIcon /> */}
-                  <HomeIcon/>
+                  <HomeIcon fontSize="large"/>
                 </ListItemIcon>
                 <ListItemText primary="Home" />
               </ListItem>
             </Link>
+       
             <Link to={ROUTES.ACCOUNT}>
               <ListItem>
                 <ListItemIcon>
                   {/* <PeopleIcon /> */}
-                  <AccountCircleIcon/>
+                  <AccountCircleIcon fontSize="large"/>
                 </ListItemIcon>
                 <ListItemText primary="Account" />
               </ListItem>
             </Link>
+
             {!!authUser.roles[ROLES.ADMIN] && (
               <Link to={ROUTES.ADMIN}>
                 <ListItem>
                   <ListItemIcon>
                     {/* <DashboardIcon /> */}
-                    <SupervisorAccountIcon/>
+                    <SupervisorAccountIcon fontSize="large"/>
                   </ListItemIcon>
                   <ListItemText primary="Admin" />
                 </ListItem>
@@ -250,13 +292,15 @@ const NavigationAuth = ({
               <ListItem>
                 <ListItemIcon>
                   {/* <DashboardIcon /> */}
-                  <ExitToAppIcon/>
+                  <ExitToAppIcon fontSize="large"/>
                 </ListItemIcon>
                 {/* <SignOutButton /> */}
-                <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
-                {console.log(firebase, "firebase")}
+                <SignOutDrawer/>
+                {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
+            */}
               </ListItem>
             </Link>
+  
           </div>
         </List>
       </Drawer>
@@ -270,6 +314,7 @@ const NavigationNonAuth = ({
   drawerOpen,
 }) => (
   <>
+  <GlobalCss/>
     <Drawer
       variant="permanent"
       classes={{
@@ -288,7 +333,7 @@ const NavigationNonAuth = ({
           {!drawerOpen && <MenuIcon />}
         </IconButton>
       </div>
-      <Divider />
+  
       <List>
         <div>
           {/* <Link to={ROUTES.LANDING}>
@@ -302,7 +347,7 @@ const NavigationNonAuth = ({
           <Link to={ROUTES.SIGN_IN}>
             <ListItem>
               <ListItemIcon>
-                <CheckCircleIcon/>
+                <CheckCircleIcon fontSize="large"/>
                 {/* <DashboardIcon /> */}
               </ListItemIcon>
               <ListItemText primary="Sign In" />
@@ -312,11 +357,12 @@ const NavigationNonAuth = ({
             <ListItem>
               <ListItemIcon>
                 {/* <DashboardIcon /> */}
-                <PersonIcon/>
+                <PersonIcon fontSize="large"/>
               </ListItemIcon>
               <ListItemText primary="Sign Up" />
             </ListItem>
           </Link>
+  
         </div>
       </List>
     </Drawer>

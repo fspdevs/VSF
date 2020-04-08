@@ -8,7 +8,9 @@ const SignOutButton = ({ firebase }) => (
     color="inherit"
     onClick={firebase ? firebase.doSignOut : () => {}}
   >
+    {console.log(firebase, "firebase over hrer")}
     Sign Out
   </Button>
+
 );
 export default withFirebase(SignOutButton);
