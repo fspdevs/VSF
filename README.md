@@ -44,18 +44,17 @@
 
 - <del>Remove Link Social Media Links, deactivate password</del>
 - Definitely needs Styling
-- Change the forms to dropdowns after you click the "forgot password" or "change password" button (popover material ui component)
+- <del>Change the forms to dropdowns after you click the "forgot password" or "change password" button (popover material ui component)</del>
 - Edit email button that creates a form dropdown
 - Title header
 - Think about other things a rep may need to see in their account page
   - Password Management
   -
 
+### Firebase (Avery)
 
-  ### Firebase (Avery)
-
-  - Add Contract/Project API to Firebase object to create a list in the Firebase database. 
-  - 
+- Add Contract/Project API to Firebase object to create a list in the Firebase database.
+-
 
 ### Admin Page
 
@@ -87,7 +86,7 @@
 - Applications and forms should have a "Save and Continue" button
 - gatsby plugin manifest for PWA
 - Choose a DOmain Name (visionsolar.app/vsf.dev/sales.visionsolar.com)
-- consider switching over to Firestore so filtering through the database in the Firebase Admin Console would be easier  
+- consider switching over to Firestore so filtering through the database in the Firebase Admin Console would be easier
 
 ## Styling
 
