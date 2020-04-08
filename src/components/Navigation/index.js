@@ -63,7 +63,8 @@ const GlobalCss = withStyles({
       background: '#FAA818', 
     },
     '.MuiListItem-root:hover': {
-      background: '#333333', 
+      // background: '#333333', 
+      opacity: '.6',
     },
     '.MuiListItemIcon-root': {
       color: 'white',

@@ -22,8 +22,9 @@ import ClientList from './ClientList';
 
 const styles = {
   root: {
-    backgroundColor: 'lightgrey',
-    padding: 20,
+    // backgroundColor: 'lightgrey',
+    // padding: 20,
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -36,16 +37,55 @@ const styles = {
     margin: 5,
   },
   fab: {
-    marginTop: 20,
+    marginTop: '20px',
     backgroundColor: '#428aca',
     color: 'white',
   },
   select: {
-    width: '30%',
+    width: '80%',
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: '20px',
+    height: '30px',
+    marginBottom: '20px',
+    backgroundColor: 'white',
+    textAlign: 'center',
   },
+  addButton: {
+    backgroundColor: '#428ACA',
+    width: '200px',
+    margin: '0 auto',
+    marginTop: '20px',
+    height: '50px',
+    '&:hover': {
+      backgroundColor: '#428ACA',
+      opacity: '.8',
+    },
+  },
+  cancelButton: {
+    backgroundColor: '#DC143C',
+    width: '200px',
+    margin: '0 auto',
+    marginTop: '20px',
+    height: '50px',
+    '&:hover': {
+      backgroundColor: '#DC143C',
+      opacity: '.8',
+    },
+  }
 };
+
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+    // '.MuiOutlinedInput-input': {
+    //   backgroundColor: 'white',
+    // }
+  
+  
+  },
+})(() => null);
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -259,6 +299,7 @@ class Clients extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <>
+          <GlobalCss/>
             <Snackbar
               open={this.state.openSuccessSnack}
               name="openSuccessSnack"
@@ -462,13 +503,14 @@ class Clients extends Component {
                   </Select>
                   <FormHelperText>Choose a Rep</FormHelperText>
                 </FormControl>
-                <Button type="submit" startIcon={<Save />}>
+                <Button type="submit" startIcon={<Save />}  className={this.props.classes.addButton}>
                   Add Homeowner
                 </Button>
                 <Button
                   type="submit"
                   startIcon={<Cancel />}
                   onClick={this.makeClient}
+                  className={this.props.classes.cancelButton}
                 >
                   Cancel
                 </Button>

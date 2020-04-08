@@ -16,17 +16,18 @@
 
 ### Navigation Menu Drawer (navigation.js)(Kathleen)
 
-- Add Material Icons
+-<del> Add Material Icons</del>
 - Change Font
-- Remove Landing Page Link
-- Change sign out to send you to the landing page
-- Add Signout link to end of the navigation list
+- <del>Remove Landing Page Link</del>
+- <del>Change sign out to send you to the landing page</del>
+- <del>Add Signout link to end of the navigation list</del>
 - Change links font, color, and style
 
 ### Client/Homeowner View Component (homeowner.js) (Avery)
 
 - <del>Style Homeowner's General Information as a table on top portion of the compoenent</del>
 - <del>Create a back/return button that sends you back to the home page (list of clients)</del>
+- file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
 - Start building out the foundation for this Homeowner contract, creating components for each separate task in project timeline. (refer to screenshots)
 - Some files include media uploads to the DB or form fields subimitting information.
 - Media and file uploads
@@ -36,7 +37,7 @@
 
 ### Home Page (clientList.js)(Kathleen)
 
-- Remove Address and Phone number from table
+- <del>Remove Address and Phone number from table</del>
 - Addtional Styling (Fonts Colors, shadows, padding, spacing)
 - Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
 
@@ -58,7 +59,7 @@
 ## Misc. TODO:
 
 - Mke sure all buttons and forms are using a similar styling layout
-- file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!!
+<!-- - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!! -->
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
 - reactHooks
@@ -72,9 +73,9 @@
 
 - configure the gatsby-plugin-material-ui
 - esignature
-- Switch form regular table to MAterial-Table
+- <del>Switch form regular table to MAterial-Table</del>
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
-- Change all forms into Material Ui forms with validation(optional)
+- Change all forms into Material Ui forms with validation(optional)(New Homeowner)
 - Make Client info editable/deletable for their respective reps and admins
 - Identity Provider configuration
 - Applications and forms should have a "Save and Continue" button
