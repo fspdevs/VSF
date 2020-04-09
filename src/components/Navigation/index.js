@@ -66,6 +66,10 @@ const GlobalCss = withStyles({
       // background: '#333333', 
       opacity: '.6',
     },
+    '.MuiListItem-root:active': {
+      // background: '#333333', 
+      color: 'pink',
+    },
     '.MuiListItemIcon-root': {
       color: 'white',
     },
@@ -258,15 +262,19 @@ const NavigationAuth = ({
                 <ListItemText primary="Landing" />
               </ListItem>
             </Link> */}
-            <Link to={ROUTES.HOME}>
-              <ListItem>
+          
+            <Link to={ROUTES.HOME} activeStyle={{ background: "red" }}>
+              <ListItem>    
+         
                 <ListItemIcon>
                   {/* <DashboardIcon /> */}
                   <HomeIcon fontSize="large"/>
                 </ListItemIcon>
                 <ListItemText primary="Home" />
+ 
               </ListItem>
             </Link>
+        
        
             <Link to={ROUTES.ACCOUNT}>
               <ListItem>

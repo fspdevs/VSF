@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import { withStyles } from '@material-ui/core/styles';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {
   TextField,
   Fab,
@@ -19,6 +20,7 @@ import {
 import MuiAlert from '@material-ui/lab/Alert';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
+
 
 const styles = {
   root: {
@@ -364,92 +366,119 @@ class Clients extends Component {
               </Fab>
             )}
             {this.state.createClient && (
-              <form
+              <ValidatorForm
                 className={this.props.classes.root}
                 noValidate
+           
                 autoComplete="off"
                 onSubmit={e => this.uploadClient(e, authUser)}
+                onError={errors => console.log(errors, "ERRORS")}
+
+
               >
-                <TextField
+                <TextValidator
                   name="firstName"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="First Name"
                   variant="outlined"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   type="text"
                   value={firstName}
                   onChange={this.onChangeHandler}
+                  required 
+                 
                 />
-                <TextField
+                <TextValidator
                   name="lastName"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="Last Name"
                   variant="outlined"
+                  required
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   type="text"
                   value={lastName}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   name="email"
                   className={this.props.classes.input}
                   id="outlined-basic"
+                  validators={['required', 'isEmail']}
+                  errorMessages={['this field is required', 'email is not valid']}
                   label="Email"
+                  required
                   variant="outlined"
                   type="email"
                   value={email}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   name="phone"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="Phone #"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   variant="outlined"
                   type="text"
+                  required
                   value={phone}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   className={this.props.classes.input}
                   name="addressLine1"
                   id="outlined-basic"
                   label="Address Line 1"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   variant="outlined"
                   type="text"
+                  required
                   value={addressLine1}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   className={this.props.classes.input}
                   name="addressLine2"
                   id="outlined-basic"
                   label="Address Line 2"
                   variant="outlined"
                   type="text"
+                  required
                   value={addressLine2}
                   onChange={this.onChangeHandler}
                 />
                 <Grid container xs={12} justify="space-evenly">
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="city"
                       id="outlined-basic"
                       label="City"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
+                      required
                       value={city}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="state"
                       id="outlined-basic"
+                      required
                       label="State"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
                       value={state}
                       onChange={this.onChangeHandler}
@@ -458,19 +487,22 @@ class Clients extends Component {
                 </Grid>
                 <Grid container xs={12} justify="space-evenly">
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="zip"
                       id="outlined-basic"
                       label="Zip Code"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
+                      required
                       value={zip}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="country"
                       id="outlined-basic"
@@ -514,7 +546,7 @@ class Clients extends Component {
                 >
                   Cancel
                 </Button>
-              </form>
+              </ValidatorForm>
             )}
           </>
         )}
