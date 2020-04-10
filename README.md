@@ -10,19 +10,13 @@
 ### SignIn Page (component/SignIn/index)
 
 - <del>Enable Google Sign-In in Firebase Console (Avery)</del>
-- <del>Remove Social MEdia Sign-IN Options (Avery)</del>
+- <del>Remove Social MEdia Sign IN Options (Avery)</del>
 - Change Button Color (Kathleen)
-- General Styling (Kathleen)
-
-### SignUP Page
-
-- Add inputs for additional info needed for the Reps. (refer to the list at teh end of the readme)
-- Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component
+- GEneral Styling (Kathleen)
 
 ### Navigation Menu Drawer (navigation.js)(Kathleen)
 
 -<del> Add Material Icons</del>
-
 - Change Font
 - <del>Remove Landing Page Link</del>
 - <del>Change sign out to send you to the landing page</del>
@@ -52,6 +46,7 @@
 - <del>Remove Link Social Media Links, deactivate password</del>
 - Definitely needs Styling
 - <del>Change the forms to dropdowns after you click the "forgot password" or "change password" button (popover material ui component)</del>
+- Edit email button that creates a form dropdown
 - Title header
 - Think about other things a rep may need to see in their account page
   - Password Management
@@ -60,7 +55,7 @@
 ### Firebase (Avery)
 
 - Add Contract/Project API to Firebase object to create a list in the Firebase database.
-- Initiliaze Contract list
+-
 
 ### Admin Page
 
@@ -69,11 +64,11 @@
 ## Misc. TODO:
 
 - Mke sure all buttons and forms are using a similar styling layout
-  <!-- - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!! -->
+<!-- - file upload using Firebase or Multer??? try to stay away from server stuff SERVERLESS so probably firebase/firestore!! -->
 - <del>siteconfig</del>
 - Material UI, tables, textfield, form,
 - reactHooks
-- Style & Layout
+- STyle & Layout
   - <del>Images/Logo/Colors (probably jack some colors from VS)</del>
   - <del>Have to create a new logo in illustrator???</del>
 - <del>make it so users can only see the messages/clients that they created </del>
@@ -180,11 +175,9 @@
 
   - Id
   - Role
-  - First Name
-  - Last Name
+  - Name
   - Manager
   - Email
-  - Phone
   - (edit)
   - (delete)
 
