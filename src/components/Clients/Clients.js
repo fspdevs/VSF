@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AuthUserContext } from '../Session';
 import { withFirebase } from '../Firebase';
 import { withStyles } from '@material-ui/core/styles';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {
   TextField,
   Fab,
@@ -20,10 +21,12 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { Add, Save, Cancel } from '@material-ui/icons';
 import ClientList from './ClientList';
 
+
 const styles = {
   root: {
-    backgroundColor: 'lightgrey',
-    padding: 20,
+    // backgroundColor: 'lightgrey',
+    // padding: 20,
+    width: '90%',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -36,16 +39,55 @@ const styles = {
     margin: 5,
   },
   fab: {
-    marginTop: 20,
+    marginTop: '20px',
     backgroundColor: '#428aca',
     color: 'white',
   },
   select: {
-    width: '30%',
+    width: '80%',
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: '20px',
+    height: '30px',
+    marginBottom: '20px',
+    backgroundColor: 'white',
+    textAlign: 'center',
   },
+  addButton: {
+    backgroundColor: '#428ACA',
+    width: '200px',
+    margin: '0 auto',
+    marginTop: '20px',
+    height: '50px',
+    '&:hover': {
+      backgroundColor: '#428ACA',
+      opacity: '.8',
+    },
+  },
+  cancelButton: {
+    backgroundColor: '#DC143C',
+    width: '200px',
+    margin: '0 auto',
+    marginTop: '20px',
+    height: '50px',
+    '&:hover': {
+      backgroundColor: '#DC143C',
+      opacity: '.8',
+    },
+  }
 };
+
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+    // '.MuiOutlinedInput-input': {
+    //   backgroundColor: 'white',
+    // }
+  
+  
+  },
+})(() => null);
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -259,6 +301,7 @@ class Clients extends Component {
       <AuthUserContext.Consumer>
         {authUser => (
           <>
+          <GlobalCss/>
             <Snackbar
               open={this.state.openSuccessSnack}
               name="openSuccessSnack"
@@ -323,92 +366,119 @@ class Clients extends Component {
               </Fab>
             )}
             {this.state.createClient && (
-              <form
+              <ValidatorForm
                 className={this.props.classes.root}
                 noValidate
+           
                 autoComplete="off"
                 onSubmit={e => this.uploadClient(e, authUser)}
+                onError={errors => console.log(errors, "ERRORS")}
+
+
               >
-                <TextField
+                <TextValidator
                   name="firstName"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="First Name"
                   variant="outlined"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   type="text"
                   value={firstName}
                   onChange={this.onChangeHandler}
+                  required 
+                 
                 />
-                <TextField
+                <TextValidator
                   name="lastName"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="Last Name"
                   variant="outlined"
+                  required
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   type="text"
                   value={lastName}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   name="email"
                   className={this.props.classes.input}
                   id="outlined-basic"
+                  validators={['required', 'isEmail']}
+                  errorMessages={['this field is required', 'email is not valid']}
                   label="Email"
+                  required
                   variant="outlined"
                   type="email"
                   value={email}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   name="phone"
                   className={this.props.classes.input}
                   id="outlined-basic"
                   label="Phone #"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   variant="outlined"
                   type="text"
+                  required
                   value={phone}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   className={this.props.classes.input}
                   name="addressLine1"
                   id="outlined-basic"
                   label="Address Line 1"
+                  validators={['required']}
+                  errorMessages={['this field is required']}
                   variant="outlined"
                   type="text"
+                  required
                   value={addressLine1}
                   onChange={this.onChangeHandler}
                 />
-                <TextField
+                <TextValidator
                   className={this.props.classes.input}
                   name="addressLine2"
                   id="outlined-basic"
                   label="Address Line 2"
                   variant="outlined"
                   type="text"
+                  required
                   value={addressLine2}
                   onChange={this.onChangeHandler}
                 />
                 <Grid container xs={12} justify="space-evenly">
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="city"
                       id="outlined-basic"
                       label="City"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
+                      required
                       value={city}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="state"
                       id="outlined-basic"
+                      required
                       label="State"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
                       value={state}
                       onChange={this.onChangeHandler}
@@ -417,19 +487,22 @@ class Clients extends Component {
                 </Grid>
                 <Grid container xs={12} justify="space-evenly">
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="zip"
                       id="outlined-basic"
                       label="Zip Code"
                       variant="outlined"
+                      validators={['required']}
+                      errorMessages={['this field is required']}
                       type="text"
+                      required
                       value={zip}
                       onChange={this.onChangeHandler}
                     />
                   </Grid>
                   <Grid item xs={5}>
-                    <TextField
+                    <TextValidator
                       className={this.props.classes.gridInput}
                       name="country"
                       id="outlined-basic"
@@ -462,17 +535,18 @@ class Clients extends Component {
                   </Select>
                   <FormHelperText>Choose a Rep</FormHelperText>
                 </FormControl>
-                <Button type="submit" startIcon={<Save />}>
+                <Button type="submit" startIcon={<Save />}  className={this.props.classes.addButton}>
                   Add Homeowner
                 </Button>
                 <Button
                   type="submit"
                   startIcon={<Cancel />}
                   onClick={this.makeClient}
+                  className={this.props.classes.cancelButton}
                 >
                   Cancel
                 </Button>
-              </form>
+              </ValidatorForm>
             )}
           </>
         )}

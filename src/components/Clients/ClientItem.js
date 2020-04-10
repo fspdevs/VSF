@@ -53,6 +53,18 @@ const GlobalCss = withStyles({
     '.MuiTableSortLabel-root': {
       color: 'white',
     },
+    '.MuiContainer-root': {
+      padding: '0px'
+    },
+    '.Layout-root-646': {
+      padding: '0px'
+    },
+    '.MuiOutlinedInput-input': {
+      backgroundColor: 'white',
+    },
+    '.Layout-root-1': {
+      padding: '0px',
+    }
   },
 })(() => null);
 
@@ -112,8 +124,28 @@ const styles = {
     height: '25px',
   },
   buttonDelete: {
-    color: '#ff3300',
+    color: '#DC143C',
   },
+  save: {
+    backgroundColor: '#428ACA',
+    color: 'white',
+    width: '75px',
+    marginBottom: '9px',
+    '&:hover': {
+      backgroundColor: '#428ACA',
+      opacity: '.7',
+    }
+  },
+  cancel: {
+    backgroundColor: '#FAA818',
+    color: 'white',
+    width: '75px',
+    '&:hover': {
+      backgroundColor: '#FAA818',
+      opacity: '.7',
+    }
+  }
+ 
 };
 const ClientItem = props => {
   const initState = {
@@ -257,7 +289,7 @@ const ClientItem = props => {
                       updateClientInfo({ phone: e.target.value })
                     }
                   />
-                </StyledTableCell> */}
+                </StyledTableCell> 
                 {/* <StyledTableCell
                   component="th"
                   scope="row"
@@ -414,8 +446,8 @@ const ClientItem = props => {
               {' '}
               {editMode ? (
                 <>
-                  <Button onClick={onSaveEdit}>Save</Button>
-                  <Button onClick={toggleEditMode}>Cancel</Button>
+                  <Button className={props.classes.save} onClick={onSaveEdit}>Save</Button>
+                  <Button className={props.classes.cancel} onClick={toggleEditMode}>Cancel</Button>
                 </>
               ) : (
                 <>
