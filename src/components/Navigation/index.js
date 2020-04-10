@@ -43,8 +43,7 @@ const GlobalCss = withStyles({
   '@global': {
     // You should target [class*="MuiButton-root"] instead if you nest themes.
     //  '.MuiTableCell-root'
- 
-  
+
     '.MuiButton-label': {
       textDecoration: 'none',
     },
@@ -60,23 +59,19 @@ const GlobalCss = withStyles({
     // },
     '.MuiDrawer-paper': {
       // background: '#428aca',
-      background: '#FAA818', 
+      background: '#FAA818',
     },
     '.MuiListItem-root:hover': {
-      // background: '#333333', 
+      // background: '#333333',
       opacity: '.6',
     },
     '.MuiListItem-root:active': {
-      // background: '#333333', 
+      // background: '#333333',
       color: 'pink',
     },
     '.MuiListItemIcon-root': {
       color: 'white',
     },
-  
-
-  
-  
   },
 })(() => null);
 
@@ -143,14 +138,12 @@ const styles = theme => ({
   appBarSpacer: theme.mixins.toolbar,
   drawer: {
     height: '100vh',
-  }, 
+  },
 });
-const Navigation = ( styles) => {
-
+const Navigation = styles => {
   const [drawerOpen, setDrawer] = useState(true);
   const handleDrawerOpen = () => {
     setDrawer(true);
-  
   };
   const handleDrawerClose = () => {
     setDrawer(false);
@@ -158,22 +151,17 @@ const Navigation = ( styles) => {
   const { classes } = styles;
 
   return (
-   
     <AuthUserContext.Consumer>
       {authUser =>
         authUser ? (
           <NavigationAuth
             authUser={authUser}
             classes={classes}
-
             handleDrawerOpen={handleDrawerOpen}
             handleDrawerClose={handleDrawerClose}
             drawerOpen={drawerOpen}
-           
           />
-
         ) : (
-         
           <NavigationNonAuth
             classes={classes}
             handleDrawerOpen={handleDrawerOpen}
@@ -192,13 +180,13 @@ const NavigationAuth = ({
   handleDrawerOpen,
   handleDrawerClose,
   drawerOpen,
-  firebase
+  firebase,
 }) => {
   return (
     <>
-   < GlobalCss />
-    {console.log(authUser, "authUser!")}
-    {console.log(firebase, "firebase")}
+      <GlobalCss />
+      {console.log(authUser, 'authUser!')}
+      {console.log(firebase, 'firebase')}
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -251,38 +239,27 @@ const NavigationAuth = ({
             <ChevronLeftIcon />
           </IconButton>
         </div>
-    
+
         <List>
           <div>
-            {/* <Link to={ROUTES.LANDING}>
+            <Link
+              to={ROUTES.HOME}
+              activeStyle={{ background: 'red' }}
+            >
               <ListItem>
                 <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Landing" />
-              </ListItem>
-            </Link> */}
-          
-            <Link to={ROUTES.HOME} activeStyle={{ background: "red" }}>
-              <ListItem>    
-         
-                <ListItemIcon>
-                  {/* <DashboardIcon /> */}
-                  <HomeIcon fontSize="large"/>
+                  <HomeIcon fontSize="large" />
                 </ListItemIcon>
                 <ListItemText primary="Home" />
- 
               </ListItem>
             </Link>
-        
-       
+
             <Link to={ROUTES.ACCOUNT}>
               <ListItem>
                 <ListItemIcon>
-                  {/* <PeopleIcon /> */}
-                  <AccountCircleIcon fontSize="large"/>
+                  <AccountCircleIcon fontSize="large" />
                 </ListItemIcon>
-                <ListItemText primary="Account" />
+                <ListItemText primary=" My Account" />
               </ListItem>
             </Link>
 
@@ -290,26 +267,24 @@ const NavigationAuth = ({
               <Link to={ROUTES.ADMIN}>
                 <ListItem>
                   <ListItemIcon>
-                    {/* <DashboardIcon /> */}
-                    <SupervisorAccountIcon fontSize="large"/>
+                    <SupervisorAccountIcon fontSize="large" />
                   </ListItemIcon>
                   <ListItemText primary="Admin" />
                 </ListItem>
               </Link>
             )}
-                <Link to={ROUTES.LANDING}>
+            <Link to={ROUTES.LANDING}>
               <ListItem>
                 <ListItemIcon>
                   {/* <DashboardIcon /> */}
-                  <ExitToAppIcon fontSize="large"/>
+                  <ExitToAppIcon fontSize="large" />
                 </ListItemIcon>
                 {/* <SignOutButton /> */}
-                <SignOutDrawer/>
+                <SignOutDrawer />
                 {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
-            */}
+                 */}
               </ListItem>
             </Link>
-  
           </div>
         </List>
       </Drawer>
@@ -323,7 +298,7 @@ const NavigationNonAuth = ({
   drawerOpen,
 }) => (
   <>
-  <GlobalCss/>
+    <GlobalCss />
     <Drawer
       variant="permanent"
       classes={{
@@ -342,7 +317,7 @@ const NavigationNonAuth = ({
           {!drawerOpen && <MenuIcon />}
         </IconButton>
       </div>
-  
+
       <List>
         <div>
           {/* <Link to={ROUTES.LANDING}>
@@ -356,7 +331,7 @@ const NavigationNonAuth = ({
           <Link to={ROUTES.SIGN_IN}>
             <ListItem>
               <ListItemIcon>
-                <CheckCircleIcon fontSize="large"/>
+                <CheckCircleIcon fontSize="large" />
                 {/* <DashboardIcon /> */}
               </ListItemIcon>
               <ListItemText primary="Sign In" />
@@ -366,12 +341,11 @@ const NavigationNonAuth = ({
             <ListItem>
               <ListItemIcon>
                 {/* <DashboardIcon /> */}
-                <PersonIcon fontSize="large"/>
+                <PersonIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary="Sign Up" />
             </ListItem>
           </Link>
-  
         </div>
       </List>
     </Drawer>
