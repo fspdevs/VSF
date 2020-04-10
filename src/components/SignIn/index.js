@@ -14,6 +14,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: '20px',
   },
   form: {
     display: 'flex',
@@ -25,6 +26,7 @@ const styles = {
     color: 'white',
     padding: 20,
     paddingBottom: '60px',
+
     // boxShadow: "1px 2px 5px grey",
   },
   input: {
@@ -35,9 +37,7 @@ const styles = {
     width: '80%',
     padding: '5px 10px 5px 20px',
     borderColor: 'pink !important',
-    "&:not(hover):not($disabled):not($cssFocused):not($error) $notchedOutline": {
-      borderColor: "red" //default      
-    },
+    
   },
   fab: {
     margin: '10px 0px',
@@ -90,7 +90,8 @@ const GlobalCss = withStyles({
      fontSize: '20px',
    },
    '.MuiPaper-root': {
-    paddingBottom: '80px'
+    paddingBottom: '80px',
+    paddingTop: '60px'
    },
  
   },
