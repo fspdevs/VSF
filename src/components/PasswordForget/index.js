@@ -74,7 +74,7 @@ class PasswordForgetForm extends Component {
 
 const PasswordForgetLink = () => (
   <p>
-    <Link to={ROUTES.PASSWORD_FORGET} style={{'textDecoration': 'none', 'color': '#428ACA'}} onMouseOver="this.style.backgroundColor='#F8F8F8'" onMouseOut="this.style.backgroundColor='#FFFFFF'">Forgot Password?</Link>
+    <Link to={ROUTES.PASSWORD_FORGET} style={{'textDecoration': 'none', 'color': '#376B99'}} onMouseOver="this.style.backgroundColor='#F8F8F8'" onMouseOut="this.style.backgroundColor='#FFFFFF'">Forgot Password?</Link>
   </p>
 );
 
