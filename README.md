@@ -84,7 +84,6 @@
 - Match Material UI styling with Theme config options
 - configure the gatsby-plugin-material-ui
 - esignature
-- <del>Switch form regular table to MAterial-Table</del>
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
 - Change all forms into Material Ui forms with validation(optional)(New Homeowner)
 - Make Client info editable/deletable for their respective reps and admins
