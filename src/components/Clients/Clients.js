@@ -55,6 +55,7 @@ const styles = {
   addButton: {
     backgroundColor: '#428ACA',
     width: '200px',
+    color: 'white',
     margin: '0 auto',
     marginTop: '20px',
     height: '50px',
@@ -64,13 +65,16 @@ const styles = {
     },
   },
   cancelButton: {
-    backgroundColor: '#DC143C',
+    backgroundColor: 'white',
+    color: '#DC143C',
+    border: '2px solid #DC143C',
     width: '200px',
     margin: '0 auto',
     marginTop: '20px',
     height: '50px',
     '&:hover': {
       backgroundColor: '#DC143C',
+      color: 'white',
       opacity: '.8',
     },
   }

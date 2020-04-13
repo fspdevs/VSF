@@ -260,7 +260,7 @@ class SignUpFormBase extends Component {
 const SignUpLink = () => (
   <p style={{'color': '#21303A'}}>
     
-    Don't have an account? <Link to={ROUTES.SIGN_UP} style={{'textDecoration': 'none', 'color': '#428ACA'}}>Sign Up</Link>
+    Don't have an account? <Link to={ROUTES.SIGN_UP} style={{'textDecoration': 'none', 'color': '#376B99'}}>Sign Up</Link>
   </p>
 );
 

@@ -14,6 +14,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: '20px',
   },
   form: {
     display: 'flex',
@@ -24,21 +25,37 @@ const styles = {
     
     color: 'white',
     padding: 20,
-    boxShadow: "1px 2px 5px grey",
+    paddingBottom: '60px',
+
+    // boxShadow: "1px 2px 5px grey",
   },
   input: {
     margin: 5,
     textAlign: 'center',
     width: '60%',
     textAlign: 'center',
+    width: '80%',
     padding: '5px 10px 5px 20px',
+    borderColor: 'pink !important',
+    
   },
   fab: {
     margin: '10px 0px',
+    fontSize: '12px',
+    background: 'white',
+    border: '2px solid #428ACA',
+    color: '#428ACA',
+    marginBottom: '0px',
+    boxShadow: '0px 2px 3px -1px rgba(0,0,0,0.2), 0px 2px 5px 0px rgba(0,0,0,0.14), 0px 1px 9px 0px rgba(0,0,0, 0.12)',
   },
   button: {
     color: 'white',
-    background: '#faa818',
+    // background: '#faa818',
+    background: '#428ACA',
+    boxShadow: "1px 2px 5px grey",
+    padding: '13px',
+    marginTop: '20px',
+    width: '120px'
   }
 };
 
@@ -68,7 +85,15 @@ const GlobalCss = withStyles({
     '.MuiFab-extended': {
       background: '#428ACA',
       color: 'white',
-    }
+    },
+   '.MuiInputBase-root': {
+     fontSize: '20px',
+   },
+   '.MuiPaper-root': {
+    paddingBottom: '80px',
+    paddingTop: '60px'
+   },
+ 
   },
 })(() => null);
 
@@ -145,7 +170,7 @@ class SignInFormBase extends Component {
             type="password"
             placeholder="Password"
           />
-          <Button disabled={isInvalid} className={this.props.classes.button} type="submit">
+          <Button disabled={isInvalid}  className={this.props.classes.button} type="submit">
             Sign In
           </Button>
 

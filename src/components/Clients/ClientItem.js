@@ -137,12 +137,14 @@ const styles = {
     }
   },
   cancel: {
-    backgroundColor: '#FAA818',
-    color: 'white',
+    backgroundColor: 'white',
+    border: '2px solid #FAA818',
+    color: '#FAA818',
     width: '75px',
     '&:hover': {
       backgroundColor: '#FAA818',
       opacity: '.7',
+      color: 'white',
     }
   }
  
