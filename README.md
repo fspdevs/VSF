@@ -10,20 +10,16 @@
 ### SignIn Page (component/SignIn/index)
 
 - <del>Enable Google Sign-In in Firebase Console (Avery)</del>
-<<<<<<< HEAD
-- <del>Remove Social MEdia Sign IN Options (Avery)</del>
-- <del>Change Button Color (Kathleen)</del>
-- GEneral Styling (Kathleen)
-=======
+
 - <del>Remove Social MEdia Sign-IN Options (Avery)</del>
-- Change Button Color (Kathleen)
-- General Styling (Kathleen)
+- <del>Change Button Color (Kathleen)</del>
+- <del>General Styling (Kathleen)</del>
 
 ### SignUP Page
 
 - Add inputs for additional info needed for the Reps. (refer to the list at teh end of the readme)
 - Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component
->>>>>>> e17353c0872d21bd2780c0f792d6855071892fc1
+
 
 ### Navigation Menu Drawer (navigation.js)(Kathleen)
 
@@ -33,7 +29,7 @@
 - <del>Remove Landing Page Link</del>
 - <del>Change sign out to send you to the landing page</del>
 - <del>Add Signout link to end of the navigation list</del>
-- Change links font, color, and style
+- <del>Change links font, color, and style</del>
 
 ### Client/Homeowner View Component (homeowner.js) (Avery)
 
@@ -50,7 +46,7 @@
 ### Home Page (clientList.js)(Kathleen)
 
 - <del>Remove Address and Phone number from table</del>
-- Addtional Styling (Fonts Colors, shadows, padding, spacing)
+- <del>Addtional Styling (Fonts Colors, shadows, padding, spacing)</del>
 - Eventually Create Homeowner will be moved to the homeowner.js page but this button will remain here
 
 ### Account Page (o) (Avery)
@@ -119,6 +115,11 @@
 - Montserrat (TExt, body )
 - Spectral (menu, lists)
 - Karla (Buttons, links)
+
+## Alternative Font Scheme
+- Poppins (Headings, Titles)
+- Nunito Sans (text, body)
+- Karla (Buttons, links, Nav Items)
 
 ### modules
 
