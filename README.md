@@ -11,7 +11,7 @@
 
 - <del>Enable Google Sign-In in Firebase Console (Avery)</del>
 - <del>Remove Social MEdia Sign IN Options (Avery)</del>
-- Change Button Color (Kathleen)
+- <del>Change Button Color (Kathleen)</del>
 - GEneral Styling (Kathleen)
 
 ### Navigation Menu Drawer (navigation.js)(Kathleen)

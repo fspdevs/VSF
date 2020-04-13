@@ -43,6 +43,7 @@ const styles = {
     margin: '10px 0px',
     fontSize: '12px',
     background: 'white',
+    fontFamily: 'karla',
     border: '2px solid #428ACA',
     color: '#428ACA',
     marginBottom: '0px',
@@ -55,7 +56,8 @@ const styles = {
     boxShadow: "1px 2px 5px grey",
     padding: '13px',
     marginTop: '20px',
-    width: '120px'
+    width: '120px',
+    fontFamily: 'karla',
   }
 };
 
@@ -88,6 +90,7 @@ const GlobalCss = withStyles({
     },
    '.MuiInputBase-root': {
      fontSize: '20px',
+     fontFamily: 'Nunito Sans'
    },
    '.MuiPaper-root': {
     paddingBottom: '80px',

@@ -15,6 +15,15 @@ const DIV = styled(Container)({
   flexDirection: 'column',
   alignItems: 'center',
 });
+const H1 = styled(Typography)({
+//  fontFamily: 'Nunito Sans',
+ fontFamily: 'poppins',
+ fontSize: '55px',
+//  textTransform: 'uppercase',
+color: '#428ACA',
+ fontWeight: '700',
+ 
+});
 
 const Separator = styled(Box)({
   backgroundColor: 'red',
@@ -22,7 +31,7 @@ const Separator = styled(Box)({
 });
 const HomePageBase = () => (
   <DIV>
-    <h1>Home Page</h1>
+    <H1>Home Page</H1>
     {/* <p>The Home Page is accessible by every signed in user.</p> */}
     {/* Chaange to a class based component  */}
     <Clients />

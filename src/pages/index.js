@@ -45,6 +45,7 @@ const FAB = styled(Fab)({
   width: 100,
   backgroundColor: theme.color.cornBlue,
   color: theme.color.soulOrange,
+  fontFamily: 'karla',
   // textShadow: '1px 2px 3px black',
 });
 

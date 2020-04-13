@@ -61,6 +61,15 @@ module.exports = {
             family: `Karla`,
             variants: [`400`, `700`],
           },
+          {
+            family: `Poppins`,
+            variants: [`400`, `700`],
+          },
+          {
+            family: `Muli`,
+            variants: [`400`, `700`],
+          },
+
         ],
       },
     },

@@ -15,7 +15,9 @@ const SignInPage = () => (
     <Typography
       variant="h2"
       style={{
-        fontFamily: theme.fonts.nuni,
+        // fontFamily: 'muli',
+        fontFamily: 'poppins',
+        fontWeight: '700',
         color: theme.color.soulOrange,
       }}
     >
