@@ -1,39 +1,27 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 // import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
 import {
   Table,
   TableBody,
   TableHead,
   TableRow,
-  ToolTip,
+  // ToolTip,
   TableCell,
-  TableSortLabel,
+  // TableSortLabel,
   Typography,
-  TextField,
+  // TextField,
   Fab,
-  Button,
-  Grid,
-  Box,
-  Divider,
+  // Button,
+  // Grid,
+  // Box,
+  // Divider,
 } from '@material-ui/core';
 import theme from '../../theme';
-
-const GlobalCss = withStyles({
-  // @global is handled by jss-plugin-global.
-  '@global': {
-    // You should target [class*="MuiButton-root"] instead if you nest themes.
-    //  '.MuiTableCell-root'
-    '.Layout-root-5': {
-      padding: '0px',
-      //  backgroundColor: 'pink',
-    },
-  },
-})(() => null);
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 const styles = {
   input: {
@@ -67,54 +55,61 @@ const styles = {
     margin: 0,
     fontFamily: `${theme.fonts.nuni}`,
   },
+  projectWrap: {
+    margin: 50,
+  },
+  buttonText: {
+    fontSize: 15,
+    color: theme.color.drkGrey,
+    fontFamily: theme.fonts.karl,
+    padding: 10,
+  },
 };
 
 const Homeowner = props => {
-  console.log(props, 'data');
   const client = props.data.clients;
   console.log(props, 'props');
-
+  const classes = props.classes;
   return (
     <>
-      <GlobalCss />
       <Layout>
-        <Table className={props.classes.table}>
+        <Table className={classes.table}>
           <TableHead>
-            <TableRow className={props.classes.header}>
-              <TableCell className={props.classes.cell}>
+            <TableRow className={classes.header}>
+              <TableCell className={classes.cell}>
                 {' '}
-                <h3 className={props.classes.h3}>Name</h3>
+                <h3 className={classes.h3}>Name</h3>
               </TableCell>
-              <TableCell className={props.classes.cell}>
-                <h3 className={props.classes.h3}> Email</h3>
+              <TableCell className={classes.cell}>
+                <h3 className={classes.h3}> Email</h3>
               </TableCell>
-              <TableCell className={props.classes.cell}>
-                <h3 className={props.classes.h3}> Call</h3>
+              <TableCell className={classes.cell}>
+                <h3 className={classes.h3}> Call</h3>
                 {/* must create link to make a clall to this phone number */}
               </TableCell>
-              <TableCell className={props.classes.cell}>
-                <h3 className={props.classes.h3}>Directions</h3>
+              <TableCell className={classes.cell}>
+                <h3 className={classes.h3}>Directions</h3>
                 {/* Must create link to maps from this address */}
               </TableCell>
-              <TableCell className={props.classes.cell}>
-                <h3 className={props.classes.h3}>Rep</h3>
+              <TableCell className={classes.cell}>
+                <h3 className={classes.h3}>Rep</h3>
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
-              <TableCell className={props.classes.cell2}>
+              <TableCell className={classes.cell2}>
                 <div>
                   {client.firstName} {client.lastName}
                 </div>
               </TableCell>
-              <TableCell className={props.classes.cell2}>
+              <TableCell className={classes.cell2}>
                 <div>{client.email}</div>
               </TableCell>
-              <TableCell className={props.classes.cell2}>
+              <TableCell className={classes.cell2}>
                 <div>{client.phone}</div>
               </TableCell>
-              <TableCell className={props.classes.cell2}>
+              <TableCell className={classes.cell2}>
                 <div>
                   {client.addressLine1} {` `}
                   {client.addressLine2}
@@ -122,14 +117,22 @@ const Homeowner = props => {
                 <div>
                   {client.city} {client.state}, {client.zip}
                 </div>
-                {/* <h3>{client.country}</h3> */}
               </TableCell>
-              <TableCell className={props.classes.cell2}>
+              <TableCell className={classes.cell2}>
                 {client.rep}
               </TableCell>
             </TableRow>
           </TableBody>
         </Table>
+        <div className={classes.projectWrap}>
+          <Fab variant="extended">
+            {' '}
+            <AddCircleIcon />
+            <Typography componant="p" className={classes.buttonText}>
+              Start Application
+            </Typography>
+          </Fab>
+        </div>
       </Layout>
     </>
   );

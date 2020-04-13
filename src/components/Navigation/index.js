@@ -9,7 +9,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PersonIcon from '@material-ui/icons/Person';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { withStyles } from '@material-ui/core/styles';
 import { withFirebase } from '../Firebase/index';
@@ -20,7 +19,6 @@ import {
   IconButton,
   Drawer,
   List,
-  Divider,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -31,7 +29,7 @@ import {
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
   People as PeopleIcon,
-  Person,
+  Person as PersonIcon,
 } from '@material-ui/icons';
 
 import classNames from 'classnames';
@@ -320,19 +318,10 @@ const NavigationNonAuth = ({
 
       <List>
         <div>
-          {/* <Link to={ROUTES.LANDING}>
-            <ListItem>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Landing" />
-            </ListItem>
-          </Link> */}
           <Link to={ROUTES.SIGN_IN}>
             <ListItem>
               <ListItemIcon>
                 <CheckCircleIcon fontSize="large" />
-                {/* <DashboardIcon /> */}
               </ListItemIcon>
               <ListItemText primary="Sign In" />
             </ListItem>
@@ -340,7 +329,6 @@ const NavigationNonAuth = ({
           <Link to={ROUTES.SIGN_UP}>
             <ListItem>
               <ListItemIcon>
-                {/* <DashboardIcon /> */}
                 <PersonIcon fontSize="large" />
               </ListItemIcon>
               <ListItemText primary="Sign Up" />
