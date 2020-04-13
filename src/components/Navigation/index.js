@@ -113,9 +113,6 @@ const styles = theme => ({
   menuButtonHidden: {
     display: 'none',
   },
-  itemWrap: {
-    display: 'flex',
-  },
   title: {
     flexGrow: 1,
     fontSize: 40,
@@ -246,76 +243,49 @@ const NavigationAuth = ({
 
         <List>
           <div>
-            {/* <Link to={ROUTES.LANDING}>
+            <Link
+              to={ROUTES.HOME}
+              activeStyle={{ background: 'red' }}
+            >
               <ListItem>
                 <ListItemIcon>
-                  <DashboardIcon />
+                  <HomeIcon fontSize="large" />
                 </ListItemIcon>
-                <ListItemText primary="Landing" />
+                <ListItemText primary="Home" />
               </ListItem>
-            </Link> */}
+            </Link>
 
-            <ListItem>
-              <Link to={ROUTES.HOME} activeStyle={{ opacity: '.7' }}>
-                <div className={classes.itemWrap}>
+            <Link to={ROUTES.ACCOUNT}>
+              <ListItem>
+                <ListItemIcon>
+                  <AccountCircleIcon fontSize="large" />
+                </ListItemIcon>
+                <ListItemText primary=" My Account" />
+              </ListItem>
+            </Link>
+
+            {!!authUser.roles[ROLES.ADMIN] && (
+              <Link to={ROUTES.ADMIN}>
+                <ListItem>
                   <ListItemIcon>
-                    {/* <DashboardIcon /> */}
-                    <HomeIcon fontSize="large" />
+                    <SupervisorAccountIcon fontSize="large" />
                   </ListItemIcon>
-                  <ListItemText primary="Home" />
-                </div>
+                  <ListItemText primary="Admin" />
+                </ListItem>
               </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link
-                to={ROUTES.ACCOUNT}
-                activeStyle={{ opacity: '.7' }}
-              >
-                <div className={classes.itemWrap}>
-                  <ListItemIcon>
-                    {/* <PeopleIcon /> */}
-                    <AccountCircleIcon fontSize="large" />
-                  </ListItemIcon>
-                  <ListItemText primary="Account" />
-                </div>
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              {!!authUser.roles[ROLES.ADMIN] && (
-                <Link
-                  to={ROUTES.ADMIN}
-                  activeStyle={{ opacity: '.7' }}
-                >
-                  <div className={classes.itemWrap}>
-                    <ListItemIcon>
-                      {/* <DashboardIcon /> */}
-                      <SupervisorAccountIcon fontSize="large" />
-                    </ListItemIcon>
-                    <ListItemText primary="Admin" />
-                  </div>
-                </Link>
-              )}
-            </ListItem>
-
-            <ListItem>
-              <Link
-                to={ROUTES.LANDING}
-                activeStyle={{ opacity: '.7' }}
-              >
-                <div className={classes.itemWrap}>
-                  <ListItemIcon>
-                    {/* <DashboardIcon /> */}
-                    <ExitToAppIcon fontSize="large" />
-                  </ListItemIcon>
-                  {/* <SignOutButton /> */}
-                  <SignOutDrawer />
-                  {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
-                   */}
-                </div>
-              </Link>
-            </ListItem>
+            )}
+            <Link to={ROUTES.LANDING}>
+              <ListItem>
+                <ListItemIcon>
+                  {/* <DashboardIcon /> */}
+                  <ExitToAppIcon fontSize="large" />
+                </ListItemIcon>
+                {/* <SignOutButton /> */}
+                <SignOutDrawer />
+                {/* <ListItemText primary="Sign Out"  onClick={firebase ? firebase.doSignOut : () => {}}/>
+                 */}
+              </ListItem>
+            </Link>
           </div>
         </List>
       </Drawer>
@@ -359,30 +329,24 @@ const NavigationNonAuth = ({
               <ListItemText primary="Landing" />
             </ListItem>
           </Link> */}
-
-          <ListItem>
-            <Link to={ROUTES.SIGN_IN} activeStyle={{ opacity: '.7' }}>
-              <div className={classes.itemWrap}>
-                <ListItemIcon>
-                  <CheckCircleIcon fontSize="large" />
-                  {/* <DashboardIcon /> */}
-                </ListItemIcon>
-                <ListItemText primary="Sign In" />
-              </div>
-            </Link>
-          </ListItem>
-
-          <ListItem>
-            <Link to={ROUTES.SIGN_UP} activeStyle={{ opacity: '.7' }}>
-              <div className={classes.itemWrap}>
-                <ListItemIcon>
-                  {/* <DashboardIcon /> */}
-                  <PersonIcon fontSize="large" />
-                </ListItemIcon>
-                <ListItemText primary="Sign Up" />
-              </div>
-            </Link>
-          </ListItem>
+          <Link to={ROUTES.SIGN_IN}>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon fontSize="large" />
+                {/* <DashboardIcon /> */}
+              </ListItemIcon>
+              <ListItemText primary="Sign In" />
+            </ListItem>
+          </Link>
+          <Link to={ROUTES.SIGN_UP}>
+            <ListItem>
+              <ListItemIcon>
+                {/* <DashboardIcon /> */}
+                <PersonIcon fontSize="large" />
+              </ListItemIcon>
+              <ListItemText primary="Sign Up" />
+            </ListItem>
+          </Link>
         </div>
       </List>
     </Drawer>
