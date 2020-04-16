@@ -51,6 +51,7 @@ const GlobalCss = withStyles({
     '.MuiListItemText-primary': {
       color: 'white',
       fontSize: '26px',
+      fontFamily: 'karla',
     },
     // '.MuiListItem-root :hover': {
     //   color: '#333333',

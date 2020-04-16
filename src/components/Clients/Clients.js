@@ -29,6 +29,7 @@ const styles = {
     width: '90%',
     display: 'flex',
     flexDirection: 'column',
+    // fontFamily: 'Montserrat',
   },
   input: {
     margin: 5,
@@ -42,6 +43,7 @@ const styles = {
     marginTop: '20px',
     backgroundColor: '#428aca',
     color: 'white',
+    fontFamily: 'Karla',
   },
   select: {
     width: '80%',
@@ -58,6 +60,7 @@ const styles = {
     color: 'white',
     margin: '0 auto',
     marginTop: '20px',
+    fontFamily: 'Karla',
     height: '50px',
     '&:hover': {
       backgroundColor: '#428ACA',
@@ -71,6 +74,7 @@ const styles = {
     width: '200px',
     margin: '0 auto',
     marginTop: '20px',
+    fontFamily: 'Karla',
     height: '50px',
     '&:hover': {
       backgroundColor: '#DC143C',

@@ -40,6 +40,9 @@ const GlobalCss = withStyles({
       background: '#428ACA',
       color: 'white',
       width: '100%',
+      fontFamily: 'Montserrat',
+      // fontFamily: 'Muli',
+      textTransform: 'uppercase',
     },
     '.MuiDivider-root': {
       display: 'none',
@@ -52,6 +55,8 @@ const GlobalCss = withStyles({
     },
     '.MuiTableSortLabel-root': {
       color: 'white',
+      fontFamily: 'poppins',
+     
     },
     '.MuiContainer-root': {
       padding: '0px'
@@ -64,7 +69,13 @@ const GlobalCss = withStyles({
     },
     '.Layout-root-1': {
       padding: '0px',
-    }
+    },
+    '.MuiTableCell-body': {
+      fontFamily: 'nunito sans',
+      fontWeight: '400 !important',
+      color: '#21303A',
+    },
+
   },
 })(() => null);
 
@@ -111,6 +122,7 @@ const styles = {
     flexDirection: 'row',
     height: '22px',
     color: '#428aca',
+    fontFamily: 'karla',
   },
   icon: {
     margin: '0 auto',
