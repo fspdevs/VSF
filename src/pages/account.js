@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { compose } from 'recompose';
 import Layout from '../components/layout';
 import {
@@ -59,6 +59,26 @@ const styles = {
   },
 };
 const AccountPageBase = props => {
+  // use this reducer to send new info up to database and update  the authUser
+  const [rep, updateRep] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      firstName,
+      lastName,
+      email,
+      phone,
+      manager,
+      isAdmin,
+    },
+  );
+  const {
+    firstName,
+    lastName,
+    email,
+    phone,
+    manager,
+    isAdmin,
+  } = rep;
   const { classes } = props;
   return (
     <>
@@ -120,7 +140,7 @@ const AccountPageBase = props => {
                 <TextField
                   fullWidth={true}
                   id="outlined-basic"
-                  label="Email"
+                  label="Role"
                   variant="outlined"
                   value={authUser.roles.ADMIN}
                 />
