@@ -32,11 +32,9 @@ const styles = {
   input: {
     margin: 5,
     textAlign: 'center',
-    width: '60%',
     textAlign: 'center',
     width: '80%',
     padding: '5px 10px 5px 20px',
-    borderColor: 'pink !important',
     
   },
   fab: {
@@ -94,7 +92,7 @@ const GlobalCss = withStyles({
    },
    '.MuiPaper-root': {
     paddingBottom: '80px',
-    paddingTop: '60px'
+    paddingTop: '30px'
    },
  
   },
