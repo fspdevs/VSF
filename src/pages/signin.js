@@ -16,7 +16,7 @@ const SignInPage = () => (
       variant="h2"
       style={{
         // fontFamily: 'muli',
-        fontFamily: 'poppins',
+        fontFamily: theme.fonts.pop,
         fontWeight: '700',
         color: theme.color.soulOrange,
       }}
@@ -25,8 +25,6 @@ const SignInPage = () => (
     </Typography>
     <SignInForm />
     <SignInGoogle />
-    {/* <SignInFacebook />
-    <SignInTwitter /> */}
     <PasswordForgetLink />
     <SignUpLink />
   </>

@@ -25,10 +25,12 @@ const theme = {
     mont: 'Montserrat',
     spec: 'Sepctral',
     karl: 'Karla',
-    //  - Nunito or Nunito Sans (Headings, Titles)
-    // - Montserrat (TExt, body )
+    pop: 'Poppins',
+    muli: 'Muli',
+    // - Poppins (Headings, Titles)
+    // - Nunito Sans (TExt, body )
     // - Spectral (menu, lists)
-    // - Karla (Buttons, links)
+    // - Karla (Buttons, links, navitems)
   },
   device: {
     mobileS: `(max-width: ${size.mobileS})`,

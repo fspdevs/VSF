@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@material-ui/core/styles';
 import { Link } from 'gatsby';
+import Helmet from 'react-helmet';
 import {
   StyledAboutHeroBG,
   OverlayLanding,
@@ -13,6 +14,7 @@ import {
   Paper,
   Fab,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import theme from '../theme';
 import Logo from '../components/Queries/images/logos';
 
@@ -20,18 +22,6 @@ import Logo from '../components/Queries/images/logos';
 
 const LandingWrap = styled(Container)({
   zIndex: 4,
-  paddingTop: 20,
-  // alignItems: 'center',
-  width: '100vw',
-  // display: 'flex',
-  // flexDirection: 'column',
-  textAlign: 'center',
-  // justifyItems: 'center',
-});
-
-const verlayLanding = styled(Container)({
-  zIndex: 4,
-  paddingTop: 20,
   // alignItems: 'center',
   width: '100vw',
   // display: 'flex',
@@ -60,7 +50,6 @@ const LogoWrap = styled(Container)({
   position: 'relative',
   width: '50%',
   backgroundColor: 'transparent',
-
 });
 const OverlayLogo = styled(Container)({
   display: 'block',
@@ -72,39 +61,39 @@ const OverlayLogo = styled(Container)({
   height: '100%',
   top: '0',
   left: '0',
-  borderRadius: '40px'
-
+  borderRadius: '40px',
 });
 
-const LandingPage = () => {
+const styles = {
+  body: {
+    margin: 0,
+  },
+};
+
+const LandingPage = props => {
+  const classes = props;
   return (
     <>
+      <Helmet>
+        <body className={classes.body} />
+      </Helmet>
       <StyledAboutHeroBG>
         <OverlayLanding></OverlayLanding>
       </StyledAboutHeroBG>
 
       <LandingWrap>
-        {/* <Typography variant="h1">Vision Solar</Typography>
-        <Typography variant="h1">Finance </Typography>
-        <Typography variant="h1">Logo </Typography> */}
         <LogoWrap>
           <Logo />
           <OverlayLogo></OverlayLogo>
           <A to="/signin">
-          <FAB variant="extended">Sign In</FAB>
-        </A>
-        <A to="signup">
-          <FAB variant="extended">Sign Up</FAB>
-        </A>
+            <FAB variant="extended">Sign In</FAB>
+          </A>
+          <A to="signup">
+            <FAB variant="extended">Sign Up</FAB>
+          </A>
         </LogoWrap>
-       
-     
       </LandingWrap>
     </>
   );
 };
-export default () => (
-  // <Layout>
-  <LandingPage />
-  // </Layout>
-);
+export default withStyles(styles)(LandingPage);
