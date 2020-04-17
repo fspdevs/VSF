@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import { graphql } from 'gatsby';
-// import { styled, makeStyles } from '@material-ui/core/styles';
 import Layout from '../../components/layout';
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
@@ -9,19 +8,13 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  // ToolTip,
   TableCell,
-  // TableSortLabel,
   Typography,
-  // TextField,
   Fab,
-  // Button,
-  // Grid,
-  // Box,
-  // Divider,
 } from '@material-ui/core';
 import theme from '../../theme';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Project from '../Project/project';
 
 const styles = {
   input: {
@@ -49,11 +42,12 @@ const styles = {
     margin: 5,
     padding: 5,
     textAlign: 'center',
+    fontFamily: theme.fonts.nuni,
   },
   h3: {
     padding: 0,
     margin: 0,
-    fontFamily: `${theme.fonts.nuni}`,
+    fontFamily: theme.fonts.pop,
   },
   projectWrap: {
     margin: 50,
@@ -67,6 +61,21 @@ const styles = {
 };
 
 const Homeowner = props => {
+  const [state, updateState] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      contractIsOpen: false,
+    },
+  );
+
+  const openContract = () => {
+    alert('open contract');
+    updateState({
+      contractIsOpen: !contractIsOpen,
+    });
+  };
+
+  const { contractIsOpen } = state;
   const client = props.data.clients;
   console.log(props, 'props');
   const classes = props.classes;
@@ -125,13 +134,23 @@ const Homeowner = props => {
           </TableBody>
         </Table>
         <div className={classes.projectWrap}>
-          <Fab variant="extended">
-            {' '}
-            <AddCircleIcon />
-            <Typography componant="p" className={classes.buttonText}>
-              Start Application
-            </Typography>
-          </Fab>
+          {!contractIsOpen ? (
+            <Fab variant="extended" onClick={openContract}>
+              {' '}
+              <AddCircleIcon />
+              <Typography
+                componant="p"
+                className={classes.buttonText}
+              >
+                Start Application
+              </Typography>
+            </Fab>
+          ) : (
+            <>
+              <Project />
+              <Fab onClick={openContract}> Close Application</Fab>
+            </>
+          )}
         </div>
       </Layout>
     </>
