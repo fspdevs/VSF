@@ -55,8 +55,10 @@ const styles = {
     padding: '13px',
     marginTop: '20px',
     width: '120px',
-    fontFamily: 'karla',
+    fontFamily: `${theme.fonts.karl}`,
+ 
   }
+
 };
 
 const GlobalCss = withStyles({
@@ -88,7 +90,7 @@ const GlobalCss = withStyles({
     },
    '.MuiInputBase-root': {
      fontSize: '20px',
-     fontFamily: 'Nunito Sans'
+     fontFamily: `${theme.fonts.nuni}`,
    },
    '.MuiPaper-root': {
     paddingBottom: '80px',
