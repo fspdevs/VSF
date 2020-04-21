@@ -9,7 +9,8 @@ const SignUpPage = () => (
     <Typography
       variant="h2"
       style={{
-        fontFamily: theme.fonts.nuni,
+        fontFamily: theme.fonts.pop,
+        fontWeight: '700',
         color: theme.color.soulOrange,
       }}
     >

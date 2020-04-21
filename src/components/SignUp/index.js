@@ -12,6 +12,8 @@ import {
   FormControlLabel,
   FormHelperText,
   Checkbox,
+  RadioGroup,
+  Radio,
   Button,
   FormLabel,
 } from '@material-ui/core';
@@ -27,6 +29,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: '20px',
   },
   form: {
     display: 'flex',
@@ -34,15 +37,26 @@ const styles = {
     alignItems: 'center',
     width: '60%',
     padding: 20,
-    boxShadow: '1px 2px 5px grey',
+    // boxShadow: '1px 2px 5px grey',
     margin: '0 auto',
+    paddingBottom: '60px',
   },
   input: {
     margin: 5,
     textAlign: 'center',
-    width: '60%',
+    width: '80%',
     textAlign: 'center',
     padding: '5px 10px 5px 20px',
+  },
+  button: {
+    color: 'white',
+    // background: '#faa818',
+    background: `${theme.color.cornBlue}`,
+    boxShadow: "1px 2px 5px grey",
+    padding: '13px',
+    marginTop: '20px',
+    width: '120px',
+    fontFamily: `${theme.fonts.karl}`,
   },
   group: {
     marginTop: 20,
@@ -60,6 +74,36 @@ const styles = {
   }
 };
 
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+  
+  
+    '.MuiButtonBase-root.Mui-disabled': {
+      color: 'white',
+    },
+  
+    // '.MuiBox-root ': {
+    //   backgroundColor: 'pink',
+    // },
+    '.MuiFab-extended': {
+      background: `${theme.color.cornBlue}`,
+      color: 'white',
+    },
+   '.MuiInputBase-root': {
+     fontSize: '20px',
+     fontFamily: `${theme.fonts.nuni}`,
+   },
+   '.MuiPaper-root': {
+    paddingBottom: '80px',
+    paddingTop: '30px'
+   },
+ 
+  },
+})(() => null);
+
 const INITIAL_STATE = {
   username: '',
   email: '',
@@ -68,6 +112,7 @@ const INITIAL_STATE = {
   isAdmin: false,
   isRep: false,
   error: null,
+  role: 'none'
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -79,6 +124,8 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   to sign in with one of them. Afterward, associate your accounts
   on your personal account page.
 `;
+
+let errorRequired = "";
 
 const SignUpForm = styled(FormControl)({
   display: 'flex',
@@ -95,22 +142,30 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
+    event.preventDefault();
     const {
       username,
       email,
       passwordOne,
       isAdmin,
       isRep,
+      role,
     } = this.state;
     const roles = {};
+
+    // const [value, setValue] = React.useState('none');
 
     if (isAdmin) {
       roles[ROLES.ADMIN] = ROLES.ADMIN;
     }
     if (isRep) {
       roles[ROLES.REP] = ROLES.REP;
-    }
+    } 
 
+    
+    if (isRep === true || isAdmin === true) {
+      
+ 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -137,9 +192,28 @@ class SignUpFormBase extends Component {
       });
 
     event.preventDefault();
+
+  } else {
+    errorRequired = "You must choose a role.";
+    console.log( errorRequired,  "error")
+    
+   
+  }
+  };
+
+
+ handleChange = (event) => {
+  console.log(event.target, "event")
+    this.setState({ role: event.target.value});
+    if (event.target.value === 'isRep') {
+      this.setState({ isRep: true });
+    } else if (event.target.value === 'isAdmin') {
+      this.setState({ isAdmin: true });
+    }
   };
 
   onChange = event => {
+    // console.log(event.target, "event")
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -165,6 +239,8 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
+      <>
+      <GlobalCss/>
       <form
         onSubmit={this.onSubmit}
         className={this.props.classes.form}
@@ -219,40 +295,55 @@ class SignUpFormBase extends Component {
           <FormHelperText className={this.props.classes.helperText}>
             Choose One
           </FormHelperText>
+   
+          <RadioGroup 
+     name="role" aria-label="role" value={this.value} onChange={this.handleChange}>
+          <div>
           <FormControlLabel
+          value="isAdmin"
             control={
-              <Checkbox
+              <Radio
                 // required="true"
-                autoComplete
+                // autoComplete
                 name="isAdmin"
-                type="checkbox"
-                checked={isAdmin}
-                onChange={this.onChangeCheckbox}
+                type="radio"
+                color='primary'
+                // checked={isAdmin}
+               
+                // onChange={this.onChangeCheckbox}
               />
             }
             label="Admin"
           />
           <FormControlLabel
+          value="isRep"
             control={
-              <Checkbox
+              <Radio
                 // required="true"
-                autoComplete
+                // autoComplete
+                // checkedIcon
                 name="isRep"
-                type="checkbox"
-                checked={isRep}
-                onChange={this.onChangeCheckbox}
+                type="radio"
+                color="primary"
+                // checked={isRep}
+                // onChange={this.onChangeCheckbox}
               />
             }
             label="Rep"
           />
+             </div>
+          </RadioGroup>
+       
         </FormGroup>
 
-        <Button disabled={isInvalid} type="submit">
+        <Button disabled={isInvalid} type="submit"  className={this.props.classes.button}>
           Sign Up
         </Button>
-
+            {errorRequired !== "" ? <p>{errorRequired}</p> : null}
+            {console.log(errorRequired)}
         {error && <p>{error.message}</p>}
       </form>
+      </>
     );
   }
 }

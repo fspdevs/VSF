@@ -22,7 +22,6 @@ const styles = {
     alignItems: 'center',
     width: '60%',
     backgroundColor: theme.color.white,
-    
     color: 'white',
     padding: 20,
     paddingBottom: '60px',
@@ -41,16 +40,16 @@ const styles = {
     margin: '10px 0px',
     fontSize: '12px',
     background: 'white',
-    fontFamily: 'karla',
+    fontFamily: `${theme.fonts.karl}`,
     border: '2px solid #428ACA',
-    color: '#428ACA',
+    color: `${theme.color.cornBlue}`,
     marginBottom: '0px',
     boxShadow: '0px 2px 3px -1px rgba(0,0,0,0.2), 0px 2px 5px 0px rgba(0,0,0,0.14), 0px 1px 9px 0px rgba(0,0,0, 0.12)',
   },
   button: {
     color: 'white',
     // background: '#faa818',
-    background: '#428ACA',
+    background: `${theme.color.cornBlue}`,
     boxShadow: "1px 2px 5px grey",
     padding: '13px',
     marginTop: '20px',
@@ -74,18 +73,18 @@ const GlobalCss = withStyles({
       color: 'white',
     },
     '.MuiButton-root Mui-disabled': {
-      background: '#faa818',
+      background: `${theme.color.soulOrange}`,
       color: 'white',
     },
     '.Mui-disabled': {
-      background: '#faa818',
+      background: `${theme.color.soulOrange}`,
       color: 'white',
     },
     // '.MuiBox-root ': {
     //   backgroundColor: 'pink',
     // },
     '.MuiFab-extended': {
-      background: '#428ACA',
+      background: `${theme.color.cornBlue}`,
       color: 'white',
     },
    '.MuiInputBase-root': {
