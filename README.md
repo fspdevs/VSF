@@ -18,14 +18,15 @@
 ### SignUP Page
 
 - Add inputs for additional info needed for the Reps. (refer to the list at teh end of the readme)
-- Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component
+- Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component(Kathleen)
+- <del>styles (Kathleen)</del>
 
 
 ### Navigation Menu Drawer (navigation.js)(Kathleen)
 
 -<del> Add Material Icons</del>
 
-- Change Font
+- <del>Change Font </del>
 - <del>Remove Landing Page Link</del>
 - <del>Change sign out to send you to the landing page</del>
 - <del>Add Signout link to end of the navigation list</del>
@@ -87,7 +88,7 @@
 - configure the gatsby-plugin-material-ui
 - esignature
 - try updating to latest versions of packages every week (--yarn upgrade-interactive --latest--)
-- Change all forms into Material Ui forms with validation(optional)(New Homeowner)
+- Change all forms into Material Ui forms with validation(optional)(New Homeowner, sign in, sign up)
 - Make Client info editable/deletable for their respective reps and admins
 - Identity Provider configuration
 - Applications and forms should have a "Save and Continue" button
