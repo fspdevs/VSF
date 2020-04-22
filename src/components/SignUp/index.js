@@ -112,7 +112,8 @@ const INITIAL_STATE = {
   isAdmin: false,
   isRep: false,
   error: null,
-  role: 'none'
+  role: 'none',
+  errorRequired: false,
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -125,7 +126,7 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   on your personal account page.
 `;
 
-let errorRequired = "";
+// let errorRequired = false;
 
 const SignUpForm = styled(FormControl)({
   display: 'flex',
@@ -150,6 +151,7 @@ class SignUpFormBase extends Component {
       isAdmin,
       isRep,
       role,
+      errorRequired,
     } = this.state;
     const roles = {};
 
@@ -164,8 +166,8 @@ class SignUpFormBase extends Component {
 
     
     if (isRep === true || isAdmin === true) {
-      
- 
+      console.log("in submit firebase")
+      this.setState({errorRequired: false});
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -194,7 +196,7 @@ class SignUpFormBase extends Component {
     event.preventDefault();
 
   } else {
-    errorRequired = "You must choose a role.";
+    this.setState({ errorRequired: true });
     console.log( errorRequired,  "error")
     
    
@@ -339,8 +341,9 @@ class SignUpFormBase extends Component {
         <Button disabled={isInvalid} type="submit"  className={this.props.classes.button}>
           Sign Up
         </Button>
-            {errorRequired !== "" ? <p>{errorRequired}</p> : null}
-            {console.log(errorRequired)}
+            {/* {errorRequired !== "" ? <p>{errorRequired}</p> : null} */}
+            <p style={this.state.errorRequired ? { 'display': "block"} : { 'display': "none"}}>You must choose a role</p>
+            {console.log(this.state.errorRequired)}
         {error && <p>{error.message}</p>}
       </form>
       </>
