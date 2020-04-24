@@ -71,6 +71,14 @@ const styles = {
   },
   link: {
     color: 'pink',
+  },
+  roleWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '100%',
+  },
+  roleText: {
+   padding: '10px',
   }
 };
 
@@ -288,19 +296,23 @@ class SignUpFormBase extends Component {
           placeholder="Confirm Password"
         />
         <FormGroup className={this.props.classes.group}>
+        <div className={this.props.classes.roleWrap}>
+          {/* <div> */}
+          <div className={this.props.classes.roleText}>
           <FormLabel
             component="legend"
             className={this.props.classes.formLabel}
           >
             Role:
           </FormLabel>
-          <FormHelperText className={this.props.classes.helperText}>
+           </div>
+          {/* <FormHelperText className={this.props.classes.helperText}>
             Choose One
-          </FormHelperText>
-   
+          </FormHelperText> */}
+         
           <RadioGroup 
      name="role" aria-label="role" value={this.value} onChange={this.handleChange}>
-          <div>
+        <div>
           <FormControlLabel
           value="isAdmin"
             control={
@@ -335,7 +347,7 @@ class SignUpFormBase extends Component {
           />
              </div>
           </RadioGroup>
-       
+          </div>
         </FormGroup>
 
         <Button disabled={isInvalid} type="submit"  className={this.props.classes.button}>
