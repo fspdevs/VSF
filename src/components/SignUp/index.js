@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, navigate } from 'gatsby';
 import { styled } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
+import MuiAlert from '@material-ui/lab/Alert';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {
   TextField,
   Container,
@@ -112,6 +114,10 @@ const GlobalCss = withStyles({
   },
 })(() => null);
 
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const INITIAL_STATE = {
   username: '',
   email: '',
@@ -121,7 +127,7 @@ const INITIAL_STATE = {
   isRep: false,
   error: null,
   role: 'none',
-  errorRequired: false,
+  errorMess: '',
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -151,6 +157,8 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
+    console.log("in submit")
+    if (this.state.passwordOne === this.state.passwordTwo ) {
     event.preventDefault();
     const {
       username,
@@ -159,7 +167,7 @@ class SignUpFormBase extends Component {
       isAdmin,
       isRep,
       role,
-      errorRequired,
+      errorMess,
     } = this.state;
     const roles = {};
 
@@ -172,10 +180,11 @@ class SignUpFormBase extends Component {
       roles[ROLES.REP] = ROLES.REP;
     } 
 
-    
+
+
     if (isRep === true || isAdmin === true) {
       console.log("in submit firebase")
-      this.setState({errorRequired: false});
+      this.setState({errorMess: ""});
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -199,17 +208,24 @@ class SignUpFormBase extends Component {
         }
 
         this.setState({ error });
+       
       });
 
     event.preventDefault();
 
   } else {
-    this.setState({ errorRequired: true });
-    console.log( errorRequired,  "error")
+    this.setState({ errorMess: "You must choose a role" });
+    console.log( this.state.errorMess,  "error")
     
    
   }
+    } else {
+      this.setState({ errorMess: "Your conformation password must match" });
+      console.log( this.state.errorMess,  "error match")
+    }
+
   };
+
 
 
  handleChange = (event) => {
@@ -242,58 +258,74 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
 
-    const isInvalid =
-      passwordOne !== passwordTwo ||
-      passwordOne === '' ||
-      email === '' ||
-      username === '';
+    // const isInvalid =
+    //   passwordOne !== passwordTwo ||
+    //   passwordOne === '' ||
+    //   email === '' ||
+    //   username === '';
 
     return (
       <>
       <GlobalCss/>
-      <form
-        onSubmit={this.onSubmit}
+      <ValidatorForm
+        onSubmit={e => this.onSubmit(e)}
+        noValidate
+           
+        autoComplete="off"
         className={this.props.classes.form}
+        onError={errors => console.log(errors, "ERRORS")}
       >
-        <TextField
+        <TextValidator
           className={this.props.classes.input}
-          required="true"
-          autoComplete
+          // required="true"
+          // autoComplete
           name="username"
+          validators={['required']}
+          errorMessages={['this field is required']}
           value={username}
           onChange={this.onChange}
+          // required
           type="text"
           placeholder="Full Name"
         />
-        <TextField
+        <TextValidator
           className={this.props.classes.input}
-          required="true"
-          autoComplete
+          // required="true"
+          // autoComplete
           name="email"
           value={email}
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          validators={['required', 'isEmail']}
+          errorMessages={['this field is required', 'email is not valid']}
+          required
         />
-        <TextField
+        <TextValidator
           className={this.props.classes.input}
-          required="true"
-          autoComplete
+          // required="true"
+          // autoComplete
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
           type="password"
           placeholder="Password"
+          validators={['required']}
+          errorMessages={['this field is required']}
+          required
         />
-        <TextField
+        <TextValidator
           className={this.props.classes.input}
-          required="true"
-          autoComplete
+          // required="true"
+          // autoComplete
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
+          validators={['required']}
+          errorMessages={['this field is required']}
+          required
         />
         <FormGroup className={this.props.classes.group}>
         <div className={this.props.classes.roleWrap}>
@@ -350,14 +382,15 @@ class SignUpFormBase extends Component {
           </div>
         </FormGroup>
 
-        <Button disabled={isInvalid} type="submit"  className={this.props.classes.button}>
+        <Button  type="submit"  className={this.props.classes.button}>
           Sign Up
         </Button>
             {/* {errorRequired !== "" ? <p>{errorRequired}</p> : null} */}
-            <p style={this.state.errorRequired ? { 'display': "block"} : { 'display': "none"}}>You must choose a role</p>
-            {console.log(this.state.errorRequired)}
+            <p style={this.state.errorMess !== "" ? { 'display': "block"} : { 'display': "none"}}>{this.state.errorMess}</p>
+            {console.log(this.state.errorMess)}
         {error && <p>{error.message}</p>}
-      </form>
+        
+      </ValidatorForm>
       </>
     );
   }
