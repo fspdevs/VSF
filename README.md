@@ -18,7 +18,7 @@
 ### SignUP Page
 
 - Add inputs for additional info needed for the Reps. (refer to the list at teh end of the readme)
-- Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component(Kathleen)
+- <del>Create Validation only for (F. Name, L. Name, Email, Role ), they can add the other stuff in their Profile later via the account.js component(Kathleen)</del>
 - <del>styles (Kathleen)</del>
 
 
