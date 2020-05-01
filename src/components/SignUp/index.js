@@ -4,9 +4,6 @@ import { styled } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
 import {
   TextField,
-  Container,
-  Paper,
-  Input,
   FormControl,
   FormGroup,
   FormControlLabel,
@@ -34,7 +31,6 @@ const styles = {
     alignItems: 'center',
     width: '60%',
     padding: 20,
-    boxShadow: '1px 2px 5px grey',
     margin: '0 auto',
   },
   input: {
@@ -43,6 +39,10 @@ const styles = {
     width: '60%',
     textAlign: 'center',
     padding: '5px 10px 5px 20px',
+    '&:hover': {
+      backgroundColor: theme.color.soulOrangeLight,
+      opacity: '.7',
+    },
   },
   group: {
     marginTop: 20,
@@ -50,19 +50,23 @@ const styles = {
   },
   formLabel: {
     fontSize: '20px',
-    color: "black",
+    color: 'black',
   },
   helperText: {
     textAlign: 'center',
   },
   link: {
     color: 'pink',
-  }
+  },
 };
 
 const INITIAL_STATE = {
   username: '',
+  firstName: '',
+  lastName: '',
   email: '',
+  phone: '',
+  manager: '',
   passwordOne: '',
   passwordTwo: '',
   isAdmin: false,
@@ -97,18 +101,22 @@ class SignUpFormBase extends Component {
   onSubmit = event => {
     const {
       username,
+      firstName,
+      lastName,
+      phone,
+      manager,
       email,
       passwordOne,
       isAdmin,
       isRep,
     } = this.state;
-    const roles = {};
+    const role = '';
 
     if (isAdmin) {
-      roles[ROLES.ADMIN] = ROLES.ADMIN;
+      role = ROLES.ADMIN;
     }
     if (isRep) {
-      roles[ROLES.REP] = ROLES.REP;
+      role = ROLES.REP;
     }
 
     this.props.firebase
@@ -118,7 +126,11 @@ class SignUpFormBase extends Component {
         return this.props.firebase.user(authUser.user.uid).set({
           username,
           email,
-          roles,
+          firstName,
+          lastName,
+          phone,
+          manager,
+          role,
         });
       })
       .then(() => {
@@ -134,6 +146,9 @@ class SignUpFormBase extends Component {
         }
 
         this.setState({ error });
+      })
+      .then(() => {
+        alert('Submission Went through');
       });
 
     event.preventDefault();
@@ -150,6 +165,10 @@ class SignUpFormBase extends Component {
   render() {
     const {
       username,
+      firstName,
+      lastName,
+      phone,
+      manager,
       email,
       passwordOne,
       passwordTwo,
@@ -162,105 +181,171 @@ class SignUpFormBase extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === '' ||
+      firstName === '';
 
     return (
-      <form
-        onSubmit={this.onSubmit}
-        className={this.props.classes.form}
-      >
-        <TextField
-          className={this.props.classes.input}
-          required="true"
-          autoComplete
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <TextField
-          className={this.props.classes.input}
-          required="true"
-          autoComplete
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <TextField
-          className={this.props.classes.input}
-          required="true"
-          autoComplete
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <TextField
-          className={this.props.classes.input}
-          required="true"
-          autoComplete
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <FormGroup className={this.props.classes.group}>
-          <FormLabel
-            component="legend"
-            className={this.props.classes.formLabel}
-          >
-            Role:
-          </FormLabel>
-          <FormHelperText className={this.props.classes.helperText}>
-            Choose One
-          </FormHelperText>
-          <FormControlLabel
-            control={
-              <Checkbox
-                // required="true"
-                autoComplete
-                name="isAdmin"
-                type="checkbox"
-                checked={isAdmin}
-                onChange={this.onChangeCheckbox}
-              />
-            }
-            label="Admin"
+      <>
+        <form
+          onSubmit={this.onSubmit}
+          className={this.props.classes.form}
+        >
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Username"
           />
-          <FormControlLabel
-            control={
-              <Checkbox
-                // required="true"
-                autoComplete
-                name="isRep"
-                type="checkbox"
-                checked={isRep}
-                onChange={this.onChangeCheckbox}
-              />
-            }
-            label="Rep"
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="firstName"
+            value={firstName}
+            onChange={this.onChange}
+            type="text"
+            placeholder="First Name"
           />
-        </FormGroup>
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="lastName"
+            value={lastName}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Last Name"
+          />
+          <TextField
+            className={this.props.classes.input}
+            autoComplete
+            name="phone"
+            value={phone}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Phone Number"
+          />
 
-        <Button disabled={isInvalid} type="submit">
-          Sign Up
-        </Button>
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+          />
+          <TextField
+            className={this.props.classes.input}
+            autoComplete
+            name="manager"
+            value={manager}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Who is you Manager?"
+          />
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+          />
+          <TextField
+            className={this.props.classes.input}
+            required="true"
+            autoComplete
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+          />
+          <FormGroup className={this.props.classes.group}>
+            <FormLabel
+              component="legend"
+              className={this.props.classes.formLabel}
+            >
+              Role:
+            </FormLabel>
+            <FormHelperText className={this.props.classes.helperText}>
+              Choose One
+            </FormHelperText>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  // required="true"
+                  autoComplete
+                  name="isAdmin"
+                  type="checkbox"
+                  checked={isAdmin}
+                  onChange={this.onChangeCheckbox}
+                />
+              }
+              label="Admin"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  // required="true"
+                  autoComplete
+                  name="isRep"
+                  type="checkbox"
+                  checked={isRep}
+                  onChange={this.onChangeCheckbox}
+                />
+              }
+              label="Rep"
+            />
+          </FormGroup>
 
-        {error && <p>{error.message}</p>}
-      </form>
+          <Button disabled={isInvalid} type="submit">
+            Sign Up
+          </Button>
+
+          {error && <p>{error.message}</p>}
+        </form>
+        <div>
+          <p style={{ color: '#21303A', fontFamily: 'Nunito Sans' }}>
+            Already have an account?{' '}
+            <Link
+              to={ROUTES.SIGN_IN}
+              style={{
+                textDecoration: 'none',
+                color: '#376B99',
+                fontFamily: 'karla',
+              }}
+            >
+              Sign In
+            </Link>
+          </p>
+        </div>
+      </>
     );
   }
 }
 
 const SignUpLink = () => (
-  <p style={{'color': '#21303A', 'fontFamily': 'Nunito Sans'}}>
-    
-    Don't have an account? <Link to={ROUTES.SIGN_UP} style={{'textDecoration': 'none', 'color': '#376B99', 'fontFamily': 'karla'}}>Sign Up</Link>
+  <p style={{ color: '#21303A', fontFamily: 'Nunito Sans' }}>
+    Don't have an account?{' '}
+    <Link
+      to={ROUTES.SIGN_UP}
+      style={{
+        textDecoration: 'none',
+        color: '#376B99',
+        fontFamily: 'karla',
+      }}
+    >
+      Sign Up
+    </Link>
   </p>
 );
 
