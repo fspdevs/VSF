@@ -9,6 +9,8 @@ import {
   FormControlLabel,
   FormHelperText,
   Checkbox,
+  RadioGroup,
+  Radio,
   Button,
   FormLabel,
 } from '@material-ui/core';
@@ -24,6 +26,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingTop: '20px',
   },
   form: {
     display: 'flex',
@@ -31,18 +34,30 @@ const styles = {
     alignItems: 'center',
     width: '60%',
     padding: 20,
+    // boxShadow: '1px 2px 5px grey',
     margin: '0 auto',
+    paddingBottom: '60px',
   },
   input: {
     margin: 5,
     textAlign: 'center',
-    width: '60%',
+    width: '80%',
     textAlign: 'center',
     padding: '5px 10px 5px 20px',
     '&:hover': {
       backgroundColor: theme.color.soulOrangeLight,
       opacity: '.7',
     },
+  },
+  button: {
+    color: 'white',
+    // background: '#faa818',
+    background: `${theme.color.cornBlue}`,
+    boxShadow: "1px 2px 5px grey",
+    padding: '13px',
+    marginTop: '20px',
+    width: '120px',
+    fontFamily: `${theme.fonts.karl}`,
   },
   group: {
     marginTop: 20,
@@ -60,6 +75,36 @@ const styles = {
   },
 };
 
+const GlobalCss = withStyles({
+  // @global is handled by jss-plugin-global.
+  '@global': {
+    // You should target [class*="MuiButton-root"] instead if you nest themes.
+    //  '.MuiTableCell-root'
+  
+  
+    '.MuiButtonBase-root.Mui-disabled': {
+      color: 'white',
+    },
+  
+    // '.MuiBox-root ': {
+    //   backgroundColor: 'pink',
+    // },
+    '.MuiFab-extended': {
+      background: `${theme.color.cornBlue}`,
+      color: 'white',
+    },
+   '.MuiInputBase-root': {
+     fontSize: '20px',
+     fontFamily: `${theme.fonts.nuni}`,
+   },
+   '.MuiPaper-root': {
+    paddingBottom: '80px',
+    paddingTop: '30px'
+   },
+ 
+  },
+})(() => null);
+
 const INITIAL_STATE = {
   username: '',
   firstName: '',
@@ -72,6 +117,7 @@ const INITIAL_STATE = {
   isAdmin: false,
   isRep: false,
   error: null,
+  role: 'none'
 };
 
 const ERROR_CODE_ACCOUNT_EXISTS = 'auth/email-already-in-use';
@@ -83,6 +129,8 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
   to sign in with one of them. Afterward, associate your accounts
   on your personal account page.
 `;
+
+let errorRequired = "";
 
 const SignUpForm = styled(FormControl)({
   display: 'flex',
@@ -99,6 +147,7 @@ class SignUpFormBase extends Component {
   }
 
   onSubmit = event => {
+    event.preventDefault();
     const {
       username,
       firstName,
@@ -109,8 +158,11 @@ class SignUpFormBase extends Component {
       passwordOne,
       isAdmin,
       isRep,
+      role,
     } = this.state;
     const role = '';
+
+    // const [value, setValue] = React.useState('none');
 
     if (isAdmin) {
       role = ROLES.ADMIN;
@@ -119,6 +171,10 @@ class SignUpFormBase extends Component {
       role = ROLES.REP;
     }
 
+    
+    if (isRep === true || isAdmin === true) {
+      
+ 
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -152,9 +208,28 @@ class SignUpFormBase extends Component {
       });
 
     event.preventDefault();
+
+  } else {
+    errorRequired = "You must choose a role.";
+    console.log( errorRequired,  "error")
+    
+   
+  }
+  };
+
+
+ handleChange = (event) => {
+  console.log(event.target, "event")
+    this.setState({ role: event.target.value});
+    if (event.target.value === 'isRep') {
+      this.setState({ isRep: true });
+    } else if (event.target.value === 'isAdmin') {
+      this.setState({ isAdmin: true });
+    }
   };
 
   onChange = event => {
+    // console.log(event.target, "event")
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -186,148 +261,109 @@ class SignUpFormBase extends Component {
 
     return (
       <>
-        <form
-          onSubmit={this.onSubmit}
-          className={this.props.classes.form}
-        >
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="username"
-            value={username}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Username"
+      <GlobalCss/>
+      <form
+        onSubmit={this.onSubmit}
+        className={this.props.classes.form}
+      >
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Full Name"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="passwordOne"
+          value={passwordOne}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <TextField
+          className={this.props.classes.input}
+          required="true"
+          autoComplete
+          name="passwordTwo"
+          value={passwordTwo}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Confirm Password"
+        />
+        <FormGroup className={this.props.classes.group}>
+          <FormLabel
+            component="legend"
+            className={this.props.classes.formLabel}
+          >
+            Role:
+          </FormLabel>
+          <FormHelperText className={this.props.classes.helperText}>
+            Choose One
+          </FormHelperText>
+   
+          <RadioGroup 
+     name="role" aria-label="role" value={this.value} onChange={this.handleChange}>
+          <div>
+          <FormControlLabel
+          value="isAdmin"
+            control={
+              <Radio
+                // required="true"
+                // autoComplete
+                name="isAdmin"
+                type="radio"
+                color='primary'
+                // checked={isAdmin}
+               
+                // onChange={this.onChangeCheckbox}
+              />
+            }
+            label="Admin"
           />
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="firstName"
-            value={firstName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="First Name"
+          <FormControlLabel
+          value="isRep"
+            control={
+              <Radio
+                // required="true"
+                // autoComplete
+                // checkedIcon
+                name="isRep"
+                type="radio"
+                color="primary"
+                // checked={isRep}
+                // onChange={this.onChangeCheckbox}
+              />
+            }
+            label="Rep"
           />
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="lastName"
-            value={lastName}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Last Name"
-          />
-          <TextField
-            className={this.props.classes.input}
-            autoComplete
-            name="phone"
-            value={phone}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Phone Number"
-          />
+             </div>
+          </RadioGroup>
+       
+        </FormGroup>
 
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="email"
-            value={email}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Email Address"
-          />
-          <TextField
-            className={this.props.classes.input}
-            autoComplete
-            name="manager"
-            value={manager}
-            onChange={this.onChange}
-            type="text"
-            placeholder="Who is you Manager?"
-          />
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="passwordOne"
-            value={passwordOne}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Password"
-          />
-          <TextField
-            className={this.props.classes.input}
-            required="true"
-            autoComplete
-            name="passwordTwo"
-            value={passwordTwo}
-            onChange={this.onChange}
-            type="password"
-            placeholder="Confirm Password"
-          />
-          <FormGroup className={this.props.classes.group}>
-            <FormLabel
-              component="legend"
-              className={this.props.classes.formLabel}
-            >
-              Role:
-            </FormLabel>
-            <FormHelperText className={this.props.classes.helperText}>
-              Choose One
-            </FormHelperText>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  // required="true"
-                  autoComplete
-                  name="isAdmin"
-                  type="checkbox"
-                  checked={isAdmin}
-                  onChange={this.onChangeCheckbox}
-                />
-              }
-              label="Admin"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  // required="true"
-                  autoComplete
-                  name="isRep"
-                  type="checkbox"
-                  checked={isRep}
-                  onChange={this.onChangeCheckbox}
-                />
-              }
-              label="Rep"
-            />
-          </FormGroup>
-
-          <Button disabled={isInvalid} type="submit">
-            Sign Up
-          </Button>
-
-          {error && <p>{error.message}</p>}
-        </form>
-        <div>
-          <p style={{ color: '#21303A', fontFamily: 'Nunito Sans' }}>
-            Already have an account?{' '}
-            <Link
-              to={ROUTES.SIGN_IN}
-              style={{
-                textDecoration: 'none',
-                color: '#376B99',
-                fontFamily: 'karla',
-              }}
-            >
-              Sign In
-            </Link>
-          </p>
-        </div>
+        <Button disabled={isInvalid} type="submit"  className={this.props.classes.button}>
+          Sign Up
+        </Button>
+            {errorRequired !== "" ? <p>{errorRequired}</p> : null}
+            {console.log(errorRequired)}
+        {error && <p>{error.message}</p>}
+      </form>
       </>
     );
   }
