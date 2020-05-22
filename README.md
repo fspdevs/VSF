@@ -10,7 +10,6 @@
 ### SignIn Page (component/SignIn/index)
 
 - <del>Enable Google Sign-In in Firebase Console (Avery)</del>
-
 - <del>Remove Social MEdia Sign-IN Options (Avery)</del>
 - <del>Change Button Color (Kathleen)</del>
 - <del>General Styling (Kathleen)</del>
@@ -25,7 +24,6 @@
 ### Navigation Menu Drawer (navigation.js)(Kathleen)
 
 -<del> Add Material Icons</del>
-
 - <del>Change Font </del>
 - <del>Remove Landing Page Link</del>
 - <del>Change sign out to send you to the landing page</del>
